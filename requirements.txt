@@ -8,3 +8,4 @@ fastavro~=1.4.10
 setuptools~=49.2.1
 numpy~=1.20.2
 matplotlib~=3.4.2
+testresources~=2.0.1
