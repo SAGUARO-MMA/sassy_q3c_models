@@ -138,10 +138,6 @@ def sdss12phot_q3c_orm_cli(_args: Any = None):
         request_args['sort_order'] = f'{_args.sort_order}'
     if _args.sort_value:
         request_args['sort_value'] = f'{_args.sort_value}'
-    if _args.tt__gte:
-        request_args['tt__gte'] = f'{_args.tt__gte}'
-    if _args.tt__lte:
-        request_args['tt__lte'] = f'{_args.tt__lte}'
 
     # set up access to database
     try:
