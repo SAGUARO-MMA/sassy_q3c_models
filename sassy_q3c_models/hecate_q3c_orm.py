@@ -125,7 +125,8 @@ Indexes:
 # constant(s)
 # -
 HECATE_COLUMNS = 100
-HECATE_DAT_URL = 'http://hecate.ia.forth.gr/HECATE_v1.1.csv'
+HECATE_DAT_URL = 'https://hecate.ia.forth.gr/HECATE_v1.1.csv'
+HECATE_PAG_URL = 'https://hecate.ia.forth.gr'
 HECATE_PDF_URL = 'https://arXiv.org/pdf/2106.12101.pdf'
 HECATE_SORT_ORDER = ['asc', 'desc', 'ascending', 'descending']
 HECATE_SORT_VALUE = ['hid', 'name', 'ra', 'dec', 'd', 'ut', 'bt', 'vt', 'it', 'j', 'h', 'k', 'u', 'g', 'r', 'i', 'z']

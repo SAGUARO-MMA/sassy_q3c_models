@@ -16,7 +16,7 @@ __doc__ = """ python3 milliquas_q3c_read.py --help """
 # +
 # constant(s)
 # -
-MILLIQUAS_CATALOG_FILE = os.path.abspath(os.path.expanduser('milliquas.dat'))
+MILLIQUAS_CATALOG_FILE = os.path.abspath(os.path.expanduser('milliquas.txt'))
 MILLIQUAS_FORMAT = {
     'ra':        [0,    11,  'float',   'degrees', 'J2000 Right Ascension'],
     'dec':       [12,   23,  'float',   'degrees', 'J2000 Declination'],
@@ -116,13 +116,17 @@ def milliquas_q3c_read(_file: str = '', _verbose: bool = False) -> None:
                     lobe1=_record['lobe1'], 
                     lobe2=_record['lobe2'])
             # update database with results
-            if (_record['mid'] % 10000) == 0 and _verbose:
-                print(f"Inserting object {_record['name']} database")
+            if (_record['mid'] % MILLIQUAS_DIVISOR) == 0 and _verbose:
+                print(f"Inserting object {_record['name']} database, mid={_record['mid']}")
+                print(f"Inserting object {_milliquas_q3c.serialized()} database")
             session.add(_milliquas_q3c)
             session.commit()
     except Exception as e:
         session.rollback()
         raise Exception(f"Failed to insert object {_record['name']} database, error={e}")
+
+    # disconnect database
+    session.close()
 
 
 # +

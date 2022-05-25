@@ -108,6 +108,7 @@ Indexes:
 # -
 ASASSN_COLUMNS = 82
 ASASSN_DAT_URL = 'https://drive.google.com/file/d/1oDeWKuIIvMscd5DNNcLWb1rbSaAQ-LHr/view?usp=sharing'
+ASASSN_PAG_URL = 'https://asas-sn.osu.edu/variables'
 ASASSN_PDF_URL = 'https://arXiv.org/pdf/2006.10057.pdf'
 ASASSN_SORT_ORDER = ['asc', 'desc', 'ascending', 'descending']
 ASASSN_SORT_VALUE = ['ra', 'dec', 'vmag', 'amplitude', 'period', 'lksl', 'parallax', 'class_probability',

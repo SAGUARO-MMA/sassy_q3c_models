@@ -46,8 +46,9 @@ Indexes:
 # +
 # constant(s)
 # -
-GLADE_DAT_URL = 'http://aquarius.elte.hu/glade/GLADE_2.4.txt'
-GLADE_PDF_URL = 'http://arxiv.org/pdf/1804.05709.pdf'
+GLADE_DAT_URL = 'https://glade.elte.hu/GLADE_2.4.txt'
+GLADE_PAG_URL = 'https://glade.elte.hu'
+GLADE_PDF_URL = 'https://arxiv.org/pdf/1804.05709.pdf'
 GLADE_SORT_ORDER = ['asc', 'desc', 'ascending', 'descending']
 GLADE_SORT_VALUE = ['gid', 'pgc', 'gwgc', 'hyperleda', 'twomass', 'sdss', 'ra', 'dec', 'dist', 'z', 'b', 'b_abs', 'j',
                     'h', 'k']

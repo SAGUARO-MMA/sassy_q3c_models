@@ -42,7 +42,8 @@ Indexes:
 # constant(s)
 # -
 MILLIQUAS_COLUMNS = 17
-MILLIQUAS_DAT_URL = 'https://cdsarc.cds.unistra.fr/viz-bin/nph-Cat/tar.gz?VII/290'
+MILLIQUAS_DAT_URL = 'https://quasars.org/milliquas.zip'
+MILLIQUAS_PAG_URL = 'https://quasars.org/milliquas.htm'
 MILLIQUAS_PDF_URL = 'https://arxiv.org/pdf/2105.12985.pdf'
 MILLIQUAS_SORT_ORDER = ['asc', 'desc', 'ascending', 'descending']
 MILLIQUAS_SORT_VALUE = ['mid', 'ra', 'dec', 'name', 'objtype', 'rmag', 'bmag', 'z', 'qpct']

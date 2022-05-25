@@ -47,6 +47,7 @@ Indexes:
 # -
 TNS_COLUMNS = 21
 TNS_DAT_URL = "https://www.wis-tns.org/system/files/tns_public_objects/tns_public_objects.csv.zip"
+TNS_PAG_URL = "https://www.wis-tns.org"
 TNS_PDF_URL = "https://www.wis-tns.org/sites/default/files/presentations/TNS_LSSTC_Brokers_workshop_Apr_2021.pdf"
 TNS_SORT_ORDER = ['asc', 'desc', 'ascending', 'descending']
 TNS_SORT_VALUE = ['tid', 'name', 'ra', 'dec', 'redshift']

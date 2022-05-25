@@ -64,7 +64,8 @@ Indexes:
 # constant(s)
 # -
 GLADE_PLUS_COLUMNS = 39
-GLADE_PLUS_DAT_URL = 'http://elysium.elte.hu/~dalyag/GLADE+.txt'
+GLADE_PLUS_DAT_URL = 'https://elysium.elte.hu/~dalyag/GLADE+.txt'
+GLADE_PLUS_PAG_URL = 'https://glade.elte.hu'
 GLADE_PLUS_PDF_URL = 'https://arXiv.org/pdf/2110.06184.pdf'
 GLADE_PLUS_SORT_ORDER = ['asc', 'desc', 'ascending', 'descending']
 GLADE_PLUS_SORT_VALUE = ['gn', 'name', 'ra', 'dec', 'b', 'b_abs', 'j', 'h', 'k', 'w1', 'w2', 'b_j', 'z_helio', 'z_cmb',

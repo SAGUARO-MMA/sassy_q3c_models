@@ -17,8 +17,8 @@ __doc__ = """ python3 psql.py --help """
 # constant(s)
 # -
 DB_CONNECT_MSG = f'{DB_HOST}:{DB_PORT}/{DB_NAME}'
-DEFAULT_COMMAND = f'SELECT * FROM glade_plus_q3c WHERE q3c_radial_query(ra, dec, 23.5,  29.2, 5.0);'
-FETCH_METHOD = ['fetchall', 'fetchone', 'fetchmany']
+DEFAULT_COMMAND = f'SELECT * FROM glade_plus_q3c WHERE q3c_radial_query(ra, dec, 23.5, 29.2, 5.0);'
+FETCH_METHOD = ('fetchall', 'fetchone', 'fetchmany')
 FETCH_MANY = 50
 KEYS = ('authorization', 'command', 'database', 'method', 'nelms', 'port', 'server')
 RESULTS_PER_PAGE = 50
@@ -196,32 +196,47 @@ def psql(_args: dict = None):
     _nelms = int(_args['nelms'])
     _port = int(_args['port'])
     _server = _args['server'].strip()
-    _verbose = bool(_args['verbose'].strip())
+    _verbose = bool(_args['verbose'])
 
     # instantiate class
     try:
+        if _verbose:
+            print(f"calling Pqsl('{_authorization}', '{_database}', {_port}, '{_server}')")
         _t = Psql(_authorization, _database, _port, _server)
     except Exception as _e:
         raise Exception(f'failed to create class, error={_e}')
+    else:
+        if _verbose:
+            print(f"called Pqsl('{_authorization}', '{_database}', {_port}, '{_server}') OK")
 
     # do something
-    if _t:
+    if all(hasattr(_t, _k) for _k in FETCH_METHOD):
 
         # connect
+        if _verbose:
+            print(f"calling _t.connect(), _t={_t}")
         _t.connect()
+        if _verbose:
+            print(f"called _t.connect(), _t={_t}")
 
         # select
         if _method == 'fetchall':
+            if _verbose:
+                print(f"calling _t.fetchall(), _t={_t}")
             _all = _t.fetchall(_command)
             if _all:
                 pprint.pprint(f'{_all}')
 
         elif _method == 'fetchone':
+            if _verbose:
+                print(f"calling _t.fetchone(), _t={_t}")
             _one = _t.fetchone(_command)
             if _one:
                 pprint.pprint(f'{_one}')
 
         elif _method == 'fetchmany':
+            if _verbose:
+                print(f"calling _t.fetchmany(), _t={_t}")
             _many = _t.fetchmany(_command, _nelms)
             if _many:
                 pprint.pprint(f'{_many}')

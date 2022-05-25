@@ -161,8 +161,9 @@ Indexes:
 # +
 # constant(s)
 # -
-ZTF_PDF_URL = 'https://arXiv.org/pdf/1902.01932.pdf'
 ZTF_DAT_URL = 'https://ztf.uw.edu/alerts/public'
+ZTF_PAG_URL = 'https://mars.lco.global'
+ZTF_PDF_URL = 'https://arXiv.org/pdf/1902.01932.pdf'
 ZTF_CANDIDATE_RADIUS = 0.000416667
 ZTF_FILTERS = {1: 'g', 2: 'r', 3: 'i'}
 ZTF_FILTERS_R = {_v: _k for _k, _v in ZTF_FILTERS.items()}
