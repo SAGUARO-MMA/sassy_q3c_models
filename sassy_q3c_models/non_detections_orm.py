@@ -29,6 +29,9 @@ Indexes:
 # +
 # constant(s)
 # -
+NON_DETECTIONS_DAT_URL = 'None'
+NON_DETECTIONS_PAG_URL = 'None'
+NON_DETECTIONS_PDF_URL = 'None'
 NON_DETECTIONS_SORT_ORDER = ['asc', 'desc', 'ascending', 'descending']
 NON_DETECTIONS_SORT_VALUE = ['nid', 'oid', 'diffmaglim', 'jd', 'fid']
 NON_DETECTIONS_HEADERS = ('nid', 'oid', 'diffmaglim', 'jd', 'fid')

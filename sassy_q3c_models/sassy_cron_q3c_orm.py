@@ -71,6 +71,9 @@ Indexes:
 # +
 # constant(s)
 # -
+SASSY_CRON_DAT_URL = 'None'
+SASSY_CRON_PAG_URL = 'None'
+SASSY_CRON_PDF_URL = 'None'
 SASSY_CRON_SORT_ORDER = ['asc', 'desc', 'ascending', 'descending']
 SASSY_CRON_SORT_VALUE = ['zoid', 'zjd', 'zmagap', 'zmagpsf', 'zmagdiff', 'zra', 'zdec', 'gz', 'gdist', 'gsep',
                          'aetype', 'altype', 'aeprob', 'alprob', 'sid']

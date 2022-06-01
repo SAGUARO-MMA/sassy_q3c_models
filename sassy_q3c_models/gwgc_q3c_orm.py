@@ -44,7 +44,7 @@ Indexes:
 # constant(s)
 # -
 GWGC_DAT_URL = 'https://cdsarc.u-strasbg.fr/ftp/VII/267/gwgc.dat.gz'
-GWGC_PAG_URL = ''
+GWGC_PAG_URL = 'None'
 GWGC_PDF_URL = 'https://arXiv.org/pdf/1103.0695.pdf'
 GWGC_SORT_ORDER = ['asc', 'desc', 'ascending', 'descending']
 GWGC_SORT_VALUE = ['gid', 'pgc', 'name', 'ra', 'dec', 'tt', 'b_app', 'a', 'b', 'b_div_a', 'pa', 'b_abs', 'dist']
