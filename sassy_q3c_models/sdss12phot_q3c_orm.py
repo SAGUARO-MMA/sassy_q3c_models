@@ -94,8 +94,8 @@ class Sdss12PhotQ3cRecord(db.Model):
     zmag = db.Column(db.Float, nullable=True, default=math.nan)
     e_zmag = db.Column(db.Float, nullable=True, default=math.nan)
     zsp = db.Column(db.Float, nullable=True, default=math.nan)
-    zsh = db.Column(db.Float, nullable=True, default=math.nan)
-    e_zsh = db.Column(db.Float, nullable=True, default=math.nan)
+    zph = db.Column(db.Float, nullable=True, default=math.nan)
+    e_zph = db.Column(db.Float, nullable=True, default=math.nan)
     lastcol = db.Column(db.Float, nullable=True, default=math.nan)
 
     # +
@@ -124,8 +124,8 @@ class Sdss12PhotQ3cRecord(db.Model):
             'zmag': self.zmag,
             'e_zmag': self.e_zmag,
             'zsp': self.zsp,
-            'zsh': self.zsh,
-            'e_zsh': self.e_zsh,
+            'zph': self.zph,
+            'e_zph': self.e_zph,
             'lastcol': self.lastcol
         }
 

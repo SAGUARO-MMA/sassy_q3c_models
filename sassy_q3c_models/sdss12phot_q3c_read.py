@@ -155,14 +155,14 @@ def sdss12phot_q3c_read(_file: str = '', _verbose: bool = False) -> None:
                     _sdss12phot_q3c['zsp'] = math.nan
 
                 try:
-                    _sdss12phot_q3c['zsh'] = float(_row[20].strip())
+                    _sdss12phot_q3c['zph'] = float(_row[20].strip())
                 except:
-                    _sdss12phot_q3c['zsh'] = math.nan
+                    _sdss12phot_q3c['zph'] = math.nan
 
                 try:
-                    _sdss12phot_q3c['e_zsh'] = float(_row[21].strip())
+                    _sdss12phot_q3c['e_zph'] = float(_row[21].strip())
                 except:
-                    _sdss12phot_q3c['e_zsh'] = math.nan
+                    _sdss12phot_q3c['e_zph'] = math.nan
 
                 try:
                     _sdss12phot_q3c['lastcol'] = float(_row[22].strip())

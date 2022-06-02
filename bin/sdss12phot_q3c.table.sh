@@ -32,8 +32,8 @@ CREATE TABLE sdss12phot_q3c (
   zmag  double precision,
   e_zmag  double precision,
   zsp  double precision,
-  zsh  double precision,
-  e_zsh  double precision,
+  zph  double precision,
+  e_zph  double precision,
   lastcol double precision);
 END_TABLE
 PGPASSWORD=${5} psql --echo-all -h ${1} -p ${2} -U ${4} -d ${3} << END_Q3C
