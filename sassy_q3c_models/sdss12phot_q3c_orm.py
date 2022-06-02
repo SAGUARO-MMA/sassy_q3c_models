@@ -34,8 +34,8 @@ __doc__ = """
  zmag       | double precision      |           |          |                                             | plain    |              |
  e_zmag     | double precision      |           |          |                                             | plain    |              |
  zsp        | double precision      |           |          |                                             | plain    |              |
- zsh        | double precision      |           |          |                                             | plain    |              |
- e_zsh      | double precision      |           |          |                                             | plain    |              |
+ zph        | double precision      |           |          |                                             | plain    |              |
+ e_zph      | double precision      |           |          |                                             | plain    |              |
  lastcol    | double precision      |           |          |                                             | plain    |              |
 Indexes:
     "sdss12phot_q3c_pkey" PRIMARY KEY, btree (sid)
@@ -54,7 +54,7 @@ SDSS12PHOT_PDF_URL = 'https://arxiv.org/pdf/1501.00963.pdf'
 SDSS12PHOT_SORT_ORDER = ['asc', 'desc', 'ascending', 'descending']
 SDSS12PHOT_SORT_VALUE = ['sid', 'sdss12', 'ra', 'dec', 'obsdate', 'u', 'g', 'r', 'i', 'z', 'zsp']
 SDSS12PHOT_HEADERS = ('sid', 'ra', 'dec', 'mode', 'q_mode', 'classifier', 'sdss12', 'm_sdss12', 'obsdate', 'quality', 'umag',
-                      'e_umag', 'gmag', 'e_gmag', 'rmag', 'e_rmag', 'imag', 'e_imag', 'zmag', 'e_zmag', 'zsp', 'zsh', 'e_zsh', 'lastcol')
+                      'e_umag', 'gmag', 'e_gmag', 'rmag', 'e_rmag', 'imag', 'e_imag', 'zmag', 'e_zmag', 'zsp', 'zph', 'e_zph', 'lastcol')
 
 
 # +
