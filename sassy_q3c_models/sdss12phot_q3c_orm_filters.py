@@ -129,6 +129,22 @@ def sdss12phot_q3c_orm_filters(query: Any = None, request_args: dict = None):
     if request_args.get('zsp__lte'):
         query = query.filter(Sdss12PhotQ3cRecord.zsp <= float(request_args['zsp__lte']))
 
+    # return records where the zph >= value (API: ?zph=5.2)
+    if request_args.get('zph__gte'):
+        query = query.filter(Sdss12PhotQ3cRecord.zph >= float(request_args['zph__gte']))
+
+    # return records where the zph <= value (API: ?zph=5.2)
+    if request_args.get('zph__lte'):
+        query = query.filter(Sdss12PhotQ3cRecord.zph <= float(request_args['zph__lte']))
+
+    # return records where the nnzph >= value (API: ?nnzph=5.2)
+    if request_args.get('nnzph__gte'):
+        query = query.filter(Sdss12PhotQ3cRecord.nnzph >= float(request_args['nnzph__gte']))
+
+    # return records where the nnzph <= value (API: ?nnzph=5.2)
+    if request_args.get('nnzph__lte'):
+        query = query.filter(Sdss12PhotQ3cRecord.nnzph <= float(request_args['nnzph__lte']))
+
     # sort results
     sort_value = request_args.get('sort_value', SDSS12PHOT_SORT_VALUE[0]).lower()
     sort_order = request_args.get('sort_order', SDSS12PHOT_SORT_ORDER[0]).lower()

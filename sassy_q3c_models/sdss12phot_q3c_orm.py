@@ -36,7 +36,7 @@ __doc__ = """
  zsp        | double precision      |           |          |                                             | plain    |              |
  zph        | double precision      |           |          |                                             | plain    |              |
  e_zph      | double precision      |           |          |                                             | plain    |              |
- lastcol    | double precision      |           |          |                                             | plain    |              |
+ nnzph      | double precision      |           |          |                                             | plain    |              |
 Indexes:
     "sdss12phot_q3c_pkey" PRIMARY KEY, btree (sid)
     "sdss12phot_q3c_q3c_ang2ipix_idx" btree (q3c_ang2ipix(ra, "dec")) CLUSTER
@@ -49,12 +49,12 @@ Access method: heap
 # -
 SDSS12PHOT_COLUMNS = 23
 SDSS12PHOT_DAT_URL = 'None'
-SDSS12PHOT_PAG_URL = 'https://vizier.cfa.harvard.edu/viz-bin/VizieR?-source=V/147'
+SDSS12PHOT_PAG_URL = 'https://sdss.org/dr12'
 SDSS12PHOT_PDF_URL = 'https://arxiv.org/pdf/1501.00963.pdf'
 SDSS12PHOT_SORT_ORDER = ['asc', 'desc', 'ascending', 'descending']
 SDSS12PHOT_SORT_VALUE = ['sid', 'sdss12', 'ra', 'dec', 'obsdate', 'u', 'g', 'r', 'i', 'z', 'zsp']
 SDSS12PHOT_HEADERS = ('sid', 'ra', 'dec', 'mode', 'q_mode', 'classifier', 'sdss12', 'm_sdss12', 'obsdate', 'quality', 'umag',
-                      'e_umag', 'gmag', 'e_gmag', 'rmag', 'e_rmag', 'imag', 'e_imag', 'zmag', 'e_zmag', 'zsp', 'zph', 'e_zph', 'lastcol')
+                      'e_umag', 'gmag', 'e_gmag', 'rmag', 'e_rmag', 'imag', 'e_imag', 'zmag', 'e_zmag', 'zsp', 'zph', 'e_zph', 'nnzph')
 
 
 # +
@@ -96,7 +96,7 @@ class Sdss12PhotQ3cRecord(db.Model):
     zsp = db.Column(db.Float, nullable=True, default=math.nan)
     zph = db.Column(db.Float, nullable=True, default=math.nan)
     e_zph = db.Column(db.Float, nullable=True, default=math.nan)
-    lastcol = db.Column(db.Float, nullable=True, default=math.nan)
+    nnzph = db.Column(db.Float, nullable=True, default=math.nan)
 
     # +
     # method: serialized()
@@ -126,7 +126,7 @@ class Sdss12PhotQ3cRecord(db.Model):
             'zsp': self.zsp,
             'zph': self.zph,
             'e_zph': self.e_zph,
-            'lastcol': self.lastcol
+            'nnzph': self.nnzph
         }
 
     # +

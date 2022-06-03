@@ -36,20 +36,20 @@ Column     Name               Description
 7          m_sdss12           [*] The asterisk indicates that 2 different SDSS objects share the same SDSS12 name
 8          ObsDate            Mean Observation date (yr)
 9          quality            Quality of the observation: 1=bad 2=acceptable 3=good
-10         umag               Model magnitude in u filter (mag)
+10         umag               Model magnitude in u filter, AB scale (mag)
 11         e_umag             Error in umag
-12         gmag               Model magnitude in g filter (mag)
+12         gmag               Model magnitude in g filter, AB scale (mag)
 13         e_gmag             Error in gmag
-14         rmag               Model magnitude in r filter (mag)
+14         rmag               Model magnitude in r filter, AB scale (mag)
 15         e_rmag             Error in rmag
-16         imag               Model magnitude in i filter (mag)
+16         imag               Model magnitude in i filter, AB scale (mag)
 17         e_imag             Error in imag
-18         zmag               Model magnitude in z filter (mag)
+18         zmag               Model magnitude in z filter, AB scale (mag)
 19         e_zmag             Error in zmag
 20         zsp                Spectroscopic redshift (when SpObjID>0)
-21         zsh                Spectroscopic redshift (when SpObjID>0)  ?????
-22         e_zsh              Error in zsh                             ?????
-23         lastcol            Unknown  (identified in csv as __zph_)   ?????
+21         zph                Photometric redshift
+22         e_zph              Error in zsh                                  
+23         nnzph              Average redshift of the nearest neighbors
 """
 
 
@@ -133,6 +133,14 @@ def sdss12phot_q3c_orm_cli(_args: Any = None):
         request_args['zsp__gte'] = f'{_args.zsp__gte}'
     if _args.zsp__lte:
         request_args['zsp__lte'] = f'{_args.zsp__lte}'
+    if _args.zph__gte:
+        request_args['zph__gte'] = f'{_args.zph__gte}'
+    if _args.zph__lte:
+        request_args['zph__lte'] = f'{_args.zph__lte}'
+    if _args.nnzph__gte:
+        request_args['nnzph__gte'] = f'{_args.nnzph__gte}'
+    if _args.nnzph__lte:
+        request_args['nnzph__lte'] = f'{_args.nnzph__lte}'
 
     if _args.sort_order:
         request_args['sort_order'] = f'{_args.sort_order}'
@@ -207,8 +215,12 @@ if __name__ == '__main__':
     _p.add_argument(f'--i__lte', help=f'i mag <= <float>')
     _p.add_argument(f'--z__gte', help=f'z mag >= <float>')
     _p.add_argument(f'--z__lte', help=f'z mag <= <float>')
-    _p.add_argument(f'--zsp__gte', help=f'Redshift mag >= <float>')
-    _p.add_argument(f'--zsp__lte', help=f'Redshift mag <= <float>')
+    _p.add_argument(f'--zsp__gte', help=f'Redshift (spectroscopic) >= <float>')
+    _p.add_argument(f'--zsp__lte', help=f'Redshift (spectroscopic) <= <float>')
+    _p.add_argument(f'--zph__gte', help=f'Redshift (photometric) >= <float>')
+    _p.add_argument(f'--zph__lte', help=f'Redshift (photometric) <= <float>')
+    _p.add_argument(f'--nnzph__gte', help=f'Nearest-Neighbor Redshift (photometric) >= <float>')
+    _p.add_argument(f'--nnzph__lte', help=f'Nearest-Neighbor Redshift (photometric) <= <float>')
 
     _p.add_argument(f'--sort_order', help=f"Sort order, one of {SDSS12PHOT_SORT_ORDER}")
     _p.add_argument(f'--sort_value', help=f"Sort value, one of {SDSS12PHOT_SORT_VALUE}")

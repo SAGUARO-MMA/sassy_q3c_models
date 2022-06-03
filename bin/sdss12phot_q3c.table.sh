@@ -34,7 +34,7 @@ CREATE TABLE sdss12phot_q3c (
   zsp  double precision,
   zph  double precision,
   e_zph  double precision,
-  lastcol double precision);
+  nnzph double precision);
 END_TABLE
 PGPASSWORD=${5} psql --echo-all -h ${1} -p ${2} -U ${4} -d ${3} << END_Q3C
   CREATE INDEX ON sdss12phot_q3c (q3c_ang2ipix(ra, dec));

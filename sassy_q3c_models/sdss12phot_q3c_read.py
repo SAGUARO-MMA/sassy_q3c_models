@@ -165,9 +165,9 @@ def sdss12phot_q3c_read(_file: str = '', _verbose: bool = False) -> None:
                     _sdss12phot_q3c['e_zph'] = math.nan
 
                 try:
-                    _sdss12phot_q3c['lastcol'] = float(_row[22].strip())
+                    _sdss12phot_q3c['nnzph'] = float(_row[22].strip())
                 except:
-                    _sdss12phot_q3c['lastcol'] = math.nan
+                    _sdss12phot_q3c['nnzph'] = math.nan
 
                 # create record
                 try:
