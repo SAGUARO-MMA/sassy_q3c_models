@@ -268,7 +268,7 @@ def ztf_q3c_read(_dir: str = '', _verbose: bool = False):
             session.rollback()
             _ic -= 1
             print(f'failed inserting {_ztc_q3c_rec} into database, error={_x}')
-
+            continue
 
 # +
 # main()
@@ -282,9 +282,4 @@ if __name__ == '__main__':
     _a = _pa.parse_args()
 
     # execute
-    try:
-        ztf_q3c_read(_dir=_a.dir.strip(), _verbose=bool(_a.verbose))
-    except Exception as _:
-        if bool(_a.verbose):
-            print(f"{_}")
-        print(f"Use: {__doc__}")
+    ztf_q3c_read(_dir=_a.dir.strip(), _verbose=bool(_a.verbose))

@@ -46,6 +46,8 @@ import pprint
 # noinspection PyUnresolvedReferences
 import psycopg2
 # noinspection PyUnresolvedReferences
+import psycopg2.extras
+# noinspection PyUnresolvedReferences
 import random
 # noinspection PyUnresolvedReferences
 import requests
