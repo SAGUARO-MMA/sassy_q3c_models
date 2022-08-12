@@ -106,6 +106,9 @@ DB_VARCHAR_40 = 40
 DB_VARCHAR_45 = 45
 DB_VARCHAR_200 = 200
 
+ARCSEC = "\u2033"
+ARCMIN = "\u2032"
+
 DEGREE = "\u00B0"
 MARKERS = ["o", "*", "d", "s", "+", "x"]
 ORIGIN = 180.0
