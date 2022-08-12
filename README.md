@@ -88,6 +88,8 @@ you will need an account and a bot key.
  >>> from sassy_q3c_models.milliquas_q3c_orm_cli
  >>> from sassy_q3c_models.non_detections_q3c_orm_cli
  >>> from sassy_q3c_models.sassy_cron_orm_cli
+ >>> from sassy_q3c_models.sdss12phot_q3c_orm_cli
+ >>> from sassy_q3c_models.sdss12photoz_q3c_orm_cli
  >>> from sassy_q3c_models.tns_q3c_orm_cli
  >>> from sassy_q3c_models.ztf_q3c_orm_cli
 ```
@@ -128,6 +130,12 @@ Add the following to your requirement.txt:
  >>> import sassy_cron_orm
  >>> print(sassy_cron_orm.__doc__)
 
+ >>> import sdss12phot_q3c_orm
+ >>> print(sdss12phot_q3c_orm.__doc__)
+
+ >>> import sdss12photoz_q3c_orm
+ >>> print(sdss12photoz_q3c_orm.__doc__)
+
  >>> import tns_q3c_orm
  >>> print(tns_q3c_orm.__doc__)
 
@@ -153,6 +161,10 @@ Add the following to your requirement.txt:
  % python3 non_detections_orm.py --help
 
  % python3 sassy_cron_orm.py --help
+
+ % python3 sdss12phot_q3c_orm.py --help
+
+ % python3 sdss12photoz_q3c_orm.py --help
 
  % python3 tns_q3c_orm.py --help
 
