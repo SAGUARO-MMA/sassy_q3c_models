@@ -112,6 +112,8 @@ ORIGIN = 180.0
 SQUARE = "\u25AB"
 UPPER_H = "\u02B0"
 
+VERSION = '1.0.0'
+
 
 # +
 # function: get_astropy_coords()
