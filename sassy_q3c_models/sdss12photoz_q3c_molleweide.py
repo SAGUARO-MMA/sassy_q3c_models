@@ -38,13 +38,13 @@ def sdss12photoz_q3c_molleweide(_verbose: bool = False):
         engine = create_engine(f'postgresql+psycopg2://{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_PORT}/{DB_NAME}')
         get_session = sessionmaker(bind=engine)
         session = get_session()
-        query = session.query(Sdss12PhotozQ3cRecord)
+        query = session.query(Sdss12PhotoZQ3cRecord)
     except Exception as _e1:
         raise Exception(f"failed to connect to database, error='{_e1}'")
 
     # get co-oords
     _dec, _ra = [], []
-    for _e in Sdss12PhotozQ3cRecord.serialize_list(query.all()):
+    for _e in Sdss12PhotoZQ3cRecord.serialize_list(query.all()):
         if verify_keys(_e, set(SDSS12PHOTOZ_HEADERS)):
             _ra.append(_e['ra'])
             _dec.append(_e['dec'])

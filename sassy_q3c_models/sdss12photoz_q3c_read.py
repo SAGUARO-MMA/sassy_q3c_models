@@ -17,19 +17,35 @@ __doc__ = """ python3 sdss12photoz_q3c_read.py --help """
 # constant(s)
 # -
 SDSS12PHOTOZ_Q3C_DIVISOR = 10000
-SDSS12PHOTOZ_Q3C_CATALOG_FILE = os.path.abspath(os.path.expanduser('/science/catalogs/sdss12_photoz.000001.tsv'))
+SDSS12PHOTOZ_Q3C_CATALOG_FILE = os.path.abspath(os.path.expanduser('/science/catalogs/sdss12_photoz.000000.tsv'))
+
+
+# +
+# function: get_max_idx()
+# -
+def get_max_idx(_table: str = 'sdss12photoz_q3c', _index: str = 'sid') -> int:
+    """ returns max row number in database table for key or -1 """
+    try:
+        with create_engine(f'postgresql+psycopg2://{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_PORT}/{DB_NAME}').connect() as _c:
+            _ret = [_ for _ in _c.execute(f"SELECT MAX({_index}) FROM {_table};")]
+            return tuple(_ret[0])[0] if (_ret and len(_ret) == 1) else -1
+    except Exception:
+        return -1
 
 
 # +
 # function: sdss12photoz_q3c_read()
 # -
 # noinspection PyBroadException
-def sdss12photoz_q3c_read(_file: str = SDSS12PHOTOZ_Q3C_CATALOG_FILE, _verbose: bool = False) -> None:
+def sdss12photoz_q3c_read(_file: str = SDSS12PHOTOZ_Q3C_CATALOG_FILE, _index: int = -1, _verbose: bool = False) -> None:
 
     # check input(s)
     _file = os.path.abspath(os.path.expanduser(_file))
     if not os.path.exists(_file):
         print(f"<ERROR> invalid input, _file={_file}")
+        return
+    if _index < 0:
+        print(f"<ERROR> invalid input, _index={_index}")
         return
 
     # connect to database
@@ -40,32 +56,34 @@ def sdss12photoz_q3c_read(_file: str = SDSS12PHOTOZ_Q3C_CATALOG_FILE, _verbose: 
         get_session = sessionmaker(bind=engine)
         session = get_session()
     except Exception as _e0:
-        print(f"<ERROR> failed connecting to database postgresql+psycopg2://{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_PORT}/{DB_NAME}, error={_e0}")
+        print(f"<ERROR> failed connecting to database postgresql+psycopg2://{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_PORT}/{DB_NAME}, error='{_e0}'")
         return
-   
-    if _verbose:
-        print(f"<INFO> connected to database postgresql+psycopg2://{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_PORT}/{DB_NAME} OK")
+    else:   
+        if _verbose:
+            print(f"<INFO> connected to database postgresql+psycopg2://{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_PORT}/{DB_NAME} OK, _index={_index}")
 
     # read the file
-    _lc, _sid = 0, 0
-    _header, _row, _dict = [], [], {}
+    _sid = _index
+    _header = []
     with open(_file, 'r') as _fd:
         for _line in _fd:
 
+            # initialize
+            _rec, _row, _dict = None, [], {}
+
             # get header
-            _lc += 1
             if '#RAdeg' in _line.strip():
                 _header = _line.strip()[1:].split('\t')
-                print(f"<INFO> line {_lc}: _header={_header}")
+                if _header != SDSS12PHOTOZ_HEADERS:
+                    print(f"<ERROR> unexpected {_header} != {SDSS12PHOTOZ_HEADERS}")
+                    return
 
             # get elements
             elif _line.strip()[0] != '#':
-                _sid += 1
                 _line = _line.replace('\t', '?')
                 _row = _line.strip().split('?')
                 if len(_row) != SDSS12PHOTOZ_COLUMNS:
-                    print(f"<ERROR> line {_lc}: row contains {len(_row)} columns, expected {SDSS12PHOTOZ_COLUMNS}")
-                    _sid -= 1
+                    print(f"<ERROR> row contains {len(_row)} columns, expected {SDSS12PHOTOZ_COLUMNS}")
                     continue
 
                 # create dictionary
@@ -73,12 +91,10 @@ def sdss12photoz_q3c_read(_file: str = SDSS12PHOTOZ_Q3C_CATALOG_FILE, _verbose: 
                 if [_k for _k in _dict] == SDSS12PHOTOZ_HEADERS:
                     _dict = dict(zip(SDSS12PHOTOZ_KEYS, _row))
                     if not verify_keys(_d=_dict, _s=set(SDSS12PHOTOZ_KEYS)):
-                        print(f"<ERROR> line {_lc}: _dict = {_dict} is invalid")
-                        _sid -= 1
+                        print(f"<ERROR> _dict = {_dict} is invalid")
                         continue
 
                 # create orm object
-                _rec = None
                 try:
                     _rec = Sdss12PhotoZQ3cRecord(
                         sid=_sid,
@@ -228,12 +244,11 @@ def sdss12photoz_q3c_read(_file: str = SDSS12PHOTOZ_Q3C_CATALOG_FILE, _verbose: 
                         abs_i_mag=float(_dict['abs_i_mag']) if _dict['abs_i_mag'].strip() != '' else math.nan,
                         abs_z_mag=float(_dict['abs_z_mag']) if _dict['abs_z_mag'].strip() != '' else math.nan)
                 except Exception as _e1:
-                    print(f"<ERROR> failed to create record _rec={_rec}, error={_e1}")
-                    _sid -= 1
+                    print(f"<ERROR> failed to create record _rec={_rec}, error='{_e1}'")
                     continue
                 else:
                     if (_sid % SDSS12PHOTOZ_Q3C_DIVISOR == 0) and _verbose:
-                        print(f"<INFO> _lc={_lc}, _sid={_sid}, created record _rec={_rec.serialized()}")
+                        print(f"<INFO> _sid={_sid}, created record _rec={_rec.serialized()}")
 
                 # add record to database
                 try:
@@ -243,12 +258,14 @@ def sdss12photoz_q3c_read(_file: str = SDSS12PHOTOZ_Q3C_CATALOG_FILE, _verbose: 
                         print(f"_sid={_sid}, commiting record(s) OK")
                 except Exception as _e2:
                     session.rollback()
-                    print(f"<ERROR> _sid={_sid}, failed to insert record {_rec.serialized()} into database, error={_e2}")
-                    _sid -= 1
+                    print(f"<ERROR> _sid={_sid}, failed to insert record {_rec.serialized()} into database, error='{_e2}'")
                     continue
+                else:      
+                    if (_sid % SDSS12PHOTOZ_Q3C_DIVISOR == 0) and _verbose:
+                        print(f"_sid={_sid}, inserted record {_rec.serialized()} into database OK")
 
-                if (_sid % SDSS12PHOTOZ_Q3C_DIVISOR == 0) and _verbose:
-                    print(f"_sid={_sid}, inserted record {_rec.serialized()} into database OK")
+                # incement counter
+                _sid += 1
 
     # disconnect database
     if _verbose:
@@ -265,12 +282,13 @@ if __name__ == '__main__':
     # noinspection PyTypeChecker
     _p = argparse.ArgumentParser(description='Read SDSS12 PhotoZ File', formatter_class=argparse.RawTextHelpFormatter)
     _p.add_argument(f'--file', default=SDSS12PHOTOZ_Q3C_CATALOG_FILE, help="""Input file [%(default)s]""")
+    _p.add_argument(f'--index', default=f"{get_max_idx()}", help="""Index [%(default)s]""")
     _p.add_argument(f'--verbose', default=False, action='store_true', help=f'if present, produce more verbose output')
     _a = _p.parse_args()
 
     # execute
     try:
-        sdss12photoz_q3c_read(_file=_a.file.strip(), _verbose=bool(_a.verbose))
+        sdss12photoz_q3c_read(_file=_a.file.strip(), _index=int(_a.index)+1, _verbose=bool(_a.verbose))
     except Exception as _:
         if bool(_a.verbose):
             print(f"{_}")
