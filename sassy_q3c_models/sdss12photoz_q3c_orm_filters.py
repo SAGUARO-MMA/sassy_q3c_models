@@ -71,7 +71,9 @@ def sdss12photoz_q3c_orm_filters(query: Any = None, request_args: dict = None):
 
     # return records with name like value (API: ?name=NGC1365)
     if request_args.get('name'):
-        query = query.filter(Sdss12PhotoZQ3cRecord.sdss12.ilike(f"%{request_args['sdss12']}%"))
+        query = query.filter(or_(
+            Sdss12PhotoZQ3cRecord.sdss12.ilike(f"%{request_args['name']}%"),
+            Sdss12PhotoZQ3cRecord.sdssid.ilike(f"%{request_args['name']}%")))
 
     # return records where the obsdate >= value (API: ?obsdate__gte=2015.2)
     if request_args.get('obsdate__gte'):

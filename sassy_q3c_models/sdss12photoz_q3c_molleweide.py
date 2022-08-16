@@ -45,7 +45,7 @@ def sdss12photoz_q3c_molleweide(_verbose: bool = False):
     # get co-oords
     _dec, _ra = [], []
     for _e in Sdss12PhotoZQ3cRecord.serialize_list(query.all()):
-        if verify_keys(_e, set(SDSS12PHOTOZ_HEADERS)):
+        if verify_keys(_e, set(SDSS12PHOTOZ_KEYS)):
             _ra.append(_e['ra'])
             _dec.append(_e['dec'])
     if _verbose:

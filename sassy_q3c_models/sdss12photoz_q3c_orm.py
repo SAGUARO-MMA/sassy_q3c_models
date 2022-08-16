@@ -201,7 +201,7 @@ SDSS12PHOTOZ_DAT_URL = 'None'
 SDSS12PHOTOZ_PAG_URL = 'https://vizier.u-strasbg.fr/viz-bin/VizieR?-source=+SDSS-DR12'
 SDSS12PHOTOZ_PDF_URL = 'https://arxiv.org/pdf/1501.00963.pdf'
 SDSS12PHOTOZ_SORT_ORDER = ['asc', 'desc', 'ascending', 'descending']
-SDSS12PHOTOZ_SORT_VALUE = ['sid', 'sdss12', 'ra', 'dec', 'obsdate', 'u', 'g', 'r', 'i', 'z', 'zsp']
+SDSS12PHOTOZ_SORT_VALUE = ['sid', 'sdss12', 'ra', 'dec', 'obsdate', 'umag', 'gmag', 'rmag', 'imag', 'zsp', 'zph', 'ave_zph']
 SDSS12PHOTOZ_HTUPLES = (
     # 0: 'RAdeg', 'DEdeg', 'mode', 'q_mode', 'cl', 'SDSS12', 'm_SDSS12', 'SDSS-ID', 'objID', 'Sp-ID']
     ("RAdeg", "ra"),

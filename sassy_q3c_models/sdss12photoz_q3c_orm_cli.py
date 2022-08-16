@@ -188,13 +188,6 @@ def sdss12photoz_q3c_orm_cli(_args: Any = None):
     if _args is None:
         raise Exception('Invalid arguments')
 
-    # if --catalog is present, download the catalog
-    # if _args.catalog:
-    #     if _args.verbose:
-    #         print(f"Downloading catalog from {ARXIV_DAT_URL} to {ARXIV_DAT_FIL}")
-    #     get_gzip(_url=ARXIV_DAT_URL, _file=ARXIV_DAT_FIL)
-    #     return
-
     # if --paper is present, download the science paper
     if _args.paper:
         if _args.verbose:
@@ -302,10 +295,10 @@ def sdss12photoz_q3c_orm_cli(_args: Any = None):
         raise Exception(f"failed to execute query, error='{_e2}'")
 
     # report output alphabetically
-    print(f"#{','.join(_ for _ in SDSS12PHOTOZ_HEADERS)}")
+    print(f"#{','.join(_ for _ in SDSS12PHOTOZ_KEYS)}")
     for _e in Sdss12PhotoZQ3cRecord.serialize_list(query.all()):
-        if verify_keys(_e, set(SDSS12PHOTOZ_HEADERS)):
-            print(f"{','.join(str(_e[_l]) for _l in SDSS12PHOTOZ_HEADERS)}")
+        if verify_keys(_e, set(SDSS12PHOTOZ_KEYS)):
+            print(f"{','.join(str(_e[_l]) for _l in SDSS12PHOTOZ_KEYS)}")
 
 
 # +
@@ -351,7 +344,6 @@ if __name__ == '__main__':
     _p.add_argument(f'--sort_value', help=f"Sort value, one of {SDSS12PHOTOZ_SORT_VALUE}")
 
     # non-database query argument(s)ß
-    # _p.add_argument(f'--catalog', default=False, action='store_true', help=f'if present, download the catalog')
     _p.add_argument(f'--paper', default=False, action='store_true', help=f'if present, download the science paper')
     _p.add_argument(f'--text', default=False, action='store_true', help=f'if present, describe the catalog')
     _p.add_argument(f'--verbose', default=False, action='store_true', help=f'if present, produce more verbose output')
