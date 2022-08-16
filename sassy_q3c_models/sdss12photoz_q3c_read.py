@@ -16,8 +16,8 @@ __doc__ = """ python3 sdss12photoz_q3c_read.py --help """
 # +
 # constant(s)
 # -
-SDSS12PHOTOZ_Q3C_DIVISOR = 50000
-SDSS12PHOTOZ_Q3C_CATALOG_FILE = os.path.abspath(os.path.expanduser('/science/catalogs/sdss12_photoz.000782.tsv'))
+SDSS12PHOTOZ_Q3C_DIVISOR = 10000
+SDSS12PHOTOZ_Q3C_CATALOG_FILE = os.path.abspath(os.path.expanduser('/science/catalogs/sdss12_photoz.000001.tsv'))
 
 
 # +
@@ -29,21 +29,22 @@ def sdss12photoz_q3c_read(_file: str = SDSS12PHOTOZ_Q3C_CATALOG_FILE, _verbose: 
     # check input(s)
     _file = os.path.abspath(os.path.expanduser(_file))
     if not os.path.exists(_file):
-        raise Exception(f"invalid input, _file={_file}")
+        print(f"<ERROR> invalid input, _file={_file}")
+        return
 
     # connect to database
-    # if _verbose:
-    #     print(f"connecting to database postgresql+psycopg2://{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_PORT}/{DB_NAME}")
-    # try:
-    #     engine = create_engine(f"postgresql+psycopg2://{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_PORT}/{DB_NAME}")
-    #     get_session = sessionmaker(bind=engine)
-    #     session = get_session()
-    # except Exception as _c:
-    #     raise Exception(f"failed connecting to database "
-    #                     f"postgresql+psycopg2://{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_PORT}/{DB_NAME}, error={_c}")
-    # else:
-    #     if _verbose:
-    #         print(f"connected to database postgresql+psycopg2://{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_PORT}/{DB_NAME} OK")
+    try:
+        if _verbose:
+            print(f"connecting to database postgresql+psycopg2://{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_PORT}/{DB_NAME}")
+        engine = create_engine(f"postgresql+psycopg2://{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_PORT}/{DB_NAME}")
+        get_session = sessionmaker(bind=engine)
+        session = get_session()
+    except Exception as _e0:
+        print(f"<ERROR> failed connecting to database postgresql+psycopg2://{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_PORT}/{DB_NAME}, error={_e0}")
+        return
+   
+    if _verbose:
+        print(f"<INFO> connected to database postgresql+psycopg2://{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_PORT}/{DB_NAME} OK")
 
     # read the file
     _lc, _sid = 0, 0
@@ -51,13 +52,14 @@ def sdss12photoz_q3c_read(_file: str = SDSS12PHOTOZ_Q3C_CATALOG_FILE, _verbose: 
     with open(_file, 'r') as _fd:
         for _line in _fd:
 
-            # first line of file should be a header
-            if _line[0] == '#' and _lc == 0:
+            # get header
+            _lc += 1
+            if '#RAdeg' in _line.strip():
                 _header = _line.strip()[1:].split('\t')
+                print(f"<INFO> line {_lc}: _header={_header}")
 
-            # get elements and create dictionary
-            else:
-                _lc += 1
+            # get elements
+            elif _line.strip()[0] != '#':
                 _sid += 1
                 _line = _line.replace('\t', '?')
                 _row = _line.strip().split('?')
@@ -65,16 +67,18 @@ def sdss12photoz_q3c_read(_file: str = SDSS12PHOTOZ_Q3C_CATALOG_FILE, _verbose: 
                     print(f"<ERROR> line {_lc}: row contains {len(_row)} columns, expected {SDSS12PHOTOZ_COLUMNS}")
                     _sid -= 1
                     continue
-                else:
-                    _dict = dict(zip(_header, _row))
-                    if [_k for _k in _dict] == SDSS12PHOTOZ_HEADERS:
-                        _dict = dict(zip(SDSS12PHOTOZ_KEYS, _row))
 
-                if not verify_keys(_d=_dict, _s=set(SDSS12PHOTOZ_KEYS)):
-                    print(f"<ERROR> line {_lc}: _dict = {_dict} is INVALID")
-                    continue
+                # create dictionary
+                _dict = dict(zip(_header, _row))
+                if [_k for _k in _dict] == SDSS12PHOTOZ_HEADERS:
+                    _dict = dict(zip(SDSS12PHOTOZ_KEYS, _row))
+                    if not verify_keys(_d=_dict, _s=set(SDSS12PHOTOZ_KEYS)):
+                        print(f"<ERROR> line {_lc}: _dict = {_dict} is invalid")
+                        _sid -= 1
+                        continue
 
                 # create orm object
+                _rec = None
                 try:
                     _rec = Sdss12PhotoZQ3cRecord(
                         sid=_sid,
@@ -86,12 +90,12 @@ def sdss12photoz_q3c_read(_file: str = SDSS12PHOTOZ_Q3C_CATALOG_FILE, _verbose: 
                         sdss12=_dict['sdss12'].strip(),
                         m_sdss12=_dict['m_sdss12'].strip(),
                         sdssid=_dict['sdssid'].strip(),
-                        objid=_dict['objid'].strip(),
+                        objid=f"0x{_dict['objid'].strip()}",
                         specid=_dict['specid'].strip(),
-                        spobjid=int(_dict['spobjid']) if _dict['spobjid'].strip() != '' else -1,
-                        parentid=int(_dict['parentid']) if _dict['parentid'].strip() != '' else -1,
-                        flags=int(_dict['flags']) if _dict['flags'].strip() != '' else -1,
-                        status=int(_dict['status']) if _dict['status'].strip() != '' else -1,
+                        spobjid=f"0x{_dict['spobjid'].strip()}",
+                        parentid=f"0x{_dict['parentid'].strip()}",
+                        flags=f"0x{_dict['flags'].strip()}",
+                        status=int(_dict['status'], 16) if _dict['status'].strip() != '' else -1,
                         e_ra=float(_dict['e_ra']) if _dict['e_ra'].strip() != '' else math.nan,
                         e_dec=float(_dict['e_dec']) if _dict['e_dec'].strip() != '' else math.nan,
                         obsdate=float(_dict['obsdate']) if _dict['obsdate'].strip() != '' else math.nan,
@@ -108,7 +112,7 @@ def sdss12photoz_q3c_read(_file: str = SDSS12PHOTOZ_Q3C_CATALOG_FILE, _verbose: 
                         e_zmag=float(_dict['e_zmag']) if _dict['e_zmag'].strip() != '' else math.nan,
                         zsp=float(_dict['zsp']) if _dict['zsp'].strip() != '' else math.nan,
                         e_zsp=float(_dict['e_zsp']) if _dict['e_zsp'].strip() != '' else math.nan,
-                        f_zsp=int(_dict['f_zsp']) if _dict['e_zsp'].strip() != '' else math.nan,
+                        f_zsp=int(_dict['f_zsp'], 16) if _dict['f_zsp'].strip() != '' else -1,
                         vdisp=float(_dict['vdisp']) if _dict['e_zsp'].strip() != '' else math.nan,
                         e_vdisp=float(_dict['e_vdisp']) if _dict['e_zsp'].strip() != '' else math.nan,
                         spinst=_dict['spinst'].strip(),
@@ -116,7 +120,7 @@ def sdss12photoz_q3c_read(_file: str = SDSS12PHOTOZ_Q3C_CATALOG_FILE, _verbose: 
                         spclass=_dict['spclass'].strip(),
                         spubclass=_dict['spubclass'].strip(),
                         spsignal=float(_dict['spsignal']) if _dict['spsignal'].strip() != '' else math.nan,
-                        u_flags=int(_dict['u_flags']) if _dict['u_flags'].strip() != '' else -1,
+                        u_flags=f"0x{_dict['u_flags'].strip()}",
                         u_prob=int(_dict['u_prob']) if _dict['u_prob'].strip() != '' else -1,
                         u_photo=int(_dict['u_photo']) if _dict['u_photo'].strip() != '' else -1,
                         u_date=float(_dict['u_date']) if _dict['u_date'].strip() != '' else math.nan,
@@ -133,7 +137,7 @@ def sdss12photoz_q3c_read(_file: str = SDSS12PHOTOZ_Q3C_CATALOG_FILE, _verbose: 
                         u_dvrad=float(_dict['u_dvrad']) if _dict['u_dvrad'].strip() != '' else math.nan,
                         u_dvell=float(_dict['u_dvell']) if _dict['u_dvell'].strip() != '' else math.nan,
                         u_pa=float(_dict['u_pa']) if _dict['u_pa'].strip() != '' else math.nan,
-                        g_flags=int(_dict['g_flags']) if _dict['g_flags'].strip() != '' else -1,
+                        g_flags=f"0x{_dict['g_flags'].strip()}",
                         g_prob=int(_dict['g_prob']) if _dict['g_prob'].strip() != '' else -1,
                         g_photo=int(_dict['g_photo']) if _dict['g_photo'].strip() != '' else -1,
                         g_date=float(_dict['g_date']) if _dict['g_date'].strip() != '' else math.nan,
@@ -150,7 +154,7 @@ def sdss12photoz_q3c_read(_file: str = SDSS12PHOTOZ_Q3C_CATALOG_FILE, _verbose: 
                         g_dvrad=float(_dict['g_dvrad']) if _dict['g_dvrad'].strip() != '' else math.nan,
                         g_dvell=float(_dict['g_dvell']) if _dict['g_dvell'].strip() != '' else math.nan,
                         g_pa=float(_dict['g_pa']) if _dict['g_pa'].strip() != '' else math.nan,
-                        r_flags=int(_dict['r_flags']) if _dict['r_flags'].strip() != '' else -1,
+                        r_flags=f"0x{_dict['r_flags'].strip()}",
                         r_prob=int(_dict['r_prob']) if _dict['r_prob'].strip() != '' else -1,
                         r_photo=int(_dict['r_photo']) if _dict['r_photo'].strip() != '' else -1,
                         r_date=float(_dict['r_date']) if _dict['r_date'].strip() != '' else math.nan,
@@ -167,7 +171,7 @@ def sdss12photoz_q3c_read(_file: str = SDSS12PHOTOZ_Q3C_CATALOG_FILE, _verbose: 
                         r_dvrad=float(_dict['r_dvrad']) if _dict['r_dvrad'].strip() != '' else math.nan,
                         r_dvell=float(_dict['r_dvell']) if _dict['r_dvell'].strip() != '' else math.nan,
                         r_pa=float(_dict['r_pa']) if _dict['r_pa'].strip() != '' else math.nan,
-                        i_flags=int(_dict['i_flags']) if _dict['i_flags'].strip() != '' else -1,
+                        i_flags=f"0x{_dict['i_flags'].strip()}",
                         i_prob=int(_dict['i_prob']) if _dict['i_prob'].strip() != '' else -1,
                         i_photo=int(_dict['i_photo']) if _dict['i_photo'].strip() != '' else -1,
                         i_date=float(_dict['i_date']) if _dict['i_date'].strip() != '' else math.nan,
@@ -184,7 +188,7 @@ def sdss12photoz_q3c_read(_file: str = SDSS12PHOTOZ_Q3C_CATALOG_FILE, _verbose: 
                         i_dvrad=float(_dict['i_dvrad']) if _dict['i_dvrad'].strip() != '' else math.nan,
                         i_dvell=float(_dict['i_dvell']) if _dict['i_dvell'].strip() != '' else math.nan,
                         i_pa=float(_dict['i_pa']) if _dict['i_pa'].strip() != '' else math.nan,
-                        z_flags=int(_dict['z_flags']) if _dict['z_flags'].strip() != '' else -1,
+                        z_flags=f"0x{_dict['z_flags'].strip()}",
                         z_prob=int(_dict['z_prob']) if _dict['z_prob'].strip() != '' else -1,
                         z_photo=int(_dict['z_photo']) if _dict['z_photo'].strip() != '' else -1,
                         z_date=float(_dict['z_date']) if _dict['z_date'].strip() != '' else math.nan,
@@ -223,27 +227,34 @@ def sdss12photoz_q3c_read(_file: str = SDSS12PHOTOZ_Q3C_CATALOG_FILE, _verbose: 
                         abs_r_mag=float(_dict['abs_r_mag']) if _dict['abs_r_mag'].strip() != '' else math.nan,
                         abs_i_mag=float(_dict['abs_i_mag']) if _dict['abs_i_mag'].strip() != '' else math.nan,
                         abs_z_mag=float(_dict['abs_z_mag']) if _dict['abs_z_mag'].strip() != '' else math.nan)
-                except Exception as _:
-                    print(f'<ERROR> failed to create record _rec={_rec}')
+                except Exception as _e1:
+                    print(f"<ERROR> failed to create record _rec={_rec}, error={_e1}")
+                    _sid -= 1
                     continue
                 else:
-                    if _sid % SDSS12PHOTOZ_Q3C_DIVISOR == 0:
-                        print(f"<OK> _lc={_lc}, _sid={_sid}, created dictionary _dict = {_dict}")
-                        print(f'<OK> _lc={_lc}, _sid={_sid}, created record _rec={_rec.serialized()}')
+                    if (_sid % SDSS12PHOTOZ_Q3C_DIVISOR == 0) and _verbose:
+                        print(f"<INFO> _lc={_lc}, _sid={_sid}, created record _rec={_rec.serialized()}")
 
                 # add record to database
-                # try:
-                #     session.add(_sdss12photoz_rec)
-                #     session.commit()
-                # except Exception as _d:
-                #     session.rollback()
-                #     print(f"<ERROR> failed to insert record {_sdss12photoz_rec.serialized()} into database, error={_d}")
-                # else:
-                #     if (_sid % SDSS12PHOTOZ_Q3C_DIVISOR == 0) and _verbose:
-                #         print(f"inserted record {_sdss12photoz_rec.serialized()} into database OK")
+                try:
+                    session.add(_rec)
+                    if (_sid % SDSS12PHOTOZ_Q3C_DIVISOR == 0) and _verbose:
+                        session.commit()
+                        print(f"_sid={_sid}, commiting record(s) OK")
+                except Exception as _e2:
+                    session.rollback()
+                    print(f"<ERROR> _sid={_sid}, failed to insert record {_rec.serialized()} into database, error={_e2}")
+                    _sid -= 1
+                    continue
+
+                if (_sid % SDSS12PHOTOZ_Q3C_DIVISOR == 0) and _verbose:
+                    print(f"_sid={_sid}, inserted record {_rec.serialized()} into database OK")
 
     # disconnect database
-    # session.close()
+    if _verbose:
+        print(f"disconnecting to database postgresql+psycopg2://{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_PORT}/{DB_NAME}")
+    session.commit()
+    session.close()
 
 
 # +
@@ -258,9 +269,9 @@ if __name__ == '__main__':
     _a = _p.parse_args()
 
     # execute
-    # try:
-    sdss12photoz_q3c_read(_file=_a.file.strip(), _verbose=bool(_a.verbose))
-    # except Exception as _:
-    #     if bool(_a.verbose):
-    #         print(f"{_}")
-    #     print(f"Use: {__doc__}")
+    try:
+        sdss12photoz_q3c_read(_file=_a.file.strip(), _verbose=bool(_a.verbose))
+    except Exception as _:
+        if bool(_a.verbose):
+            print(f"{_}")
+        print(f"Use: {__doc__}")

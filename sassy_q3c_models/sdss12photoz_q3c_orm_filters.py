@@ -83,43 +83,93 @@ def sdss12photoz_q3c_orm_filters(query: Any = None, request_args: dict = None):
 
     # return records where the u >= value (API: ?u__gte=5.2)
     if request_args.get('u__gte'):
-        query = query.filter(Sdss12PhotoZQ3cRecord.umag >= float(request_args['u__gte']))
+        query = query.filter(or_(
+            Sdss12PhotoZQ3cRecord.umag >= float(request_args['u__gte']),
+            Sdss12PhotoZQ3cRecord.u_prime_mag >= float(request_args['u__gte']),
+            Sdss12PhotoZQ3cRecord.u_pmag >= float(request_args['u__gte']),
+            Sdss12PhotoZQ3cRecord.u_upmag >= float(request_args['u__gte']),
+            Sdss12PhotoZQ3cRecord.abs_u_mag >= float(request_args['u__gte'])))
 
     # return records where the u <= value (API: ?u__lte=5.2)
     if request_args.get('u__lte'):
-        query = query.filter(Sdss12PhotoZQ3cRecord.umag <= float(request_args['u__lte']))
+        query = query.filter(or_(
+            Sdss12PhotoZQ3cRecord.umag <= float(request_args['u__lte']),
+            Sdss12PhotoZQ3cRecord.u_prime_mag <= float(request_args['u__lte']),
+            Sdss12PhotoZQ3cRecord.u_pmag <= float(request_args['u__lte']),
+            Sdss12PhotoZQ3cRecord.u_upmag <= float(request_args['u__lte']),
+            Sdss12PhotoZQ3cRecord.abs_u_mag <= float(request_args['u__lte'])))
 
     # return records where the g >= value (API: ?g__gte=5.2)
     if request_args.get('g__gte'):
-        query = query.filter(Sdss12PhotoZQ3cRecord.gmag >= float(request_args['g__gte']))
+        query = query.filter(or_(
+            Sdss12PhotoZQ3cRecord.gmag >= float(request_args['g__gte']),
+            Sdss12PhotoZQ3cRecord.g_prime_mag >= float(request_args['g__gte']),
+            Sdss12PhotoZQ3cRecord.g_pmag >= float(request_args['g__gte']),
+            Sdss12PhotoZQ3cRecord.g_upmag >= float(request_args['g__gte']),
+            Sdss12PhotoZQ3cRecord.abs_g_mag >= float(request_args['g__gte'])))
 
     # return records where the g <= value (API: ?g__lte=5.2)
     if request_args.get('g__lte'):
-        query = query.filter(Sdss12PhotoZQ3cRecord.gmag <= float(request_args['g__lte']))
+        query = query.filter(or_(
+            Sdss12PhotoZQ3cRecord.gmag <= float(request_args['g__lte']),
+            Sdss12PhotoZQ3cRecord.g_prime_mag <= float(request_args['g__lte']),
+            Sdss12PhotoZQ3cRecord.g_pmag <= float(request_args['g__lte']),
+            Sdss12PhotoZQ3cRecord.g_upmag <= float(request_args['g__lte']),
+            Sdss12PhotoZQ3cRecord.abs_g_mag <= float(request_args['g__lte'])))
 
     # return records where the r >= value (API: ?r__gte=5.2)
     if request_args.get('r__gte'):
-        query = query.filter(Sdss12PhotoZQ3cRecord.rmag >= float(request_args['r__gte']))
+        query = query.filter(or_(
+            Sdss12PhotoZQ3cRecord.rmag >= float(request_args['r__gte']),
+            Sdss12PhotoZQ3cRecord.r_prime_mag >= float(request_args['r__gte']),
+            Sdss12PhotoZQ3cRecord.r_pmag >= float(request_args['r__gte']),
+            Sdss12PhotoZQ3cRecord.r_upmag >= float(request_args['r__gte']),
+            Sdss12PhotoZQ3cRecord.abs_r_mag >= float(request_args['r__gte'])))
 
     # return records where the r <= value (API: ?r__lte=5.2)
     if request_args.get('r__lte'):
-        query = query.filter(Sdss12PhotoZQ3cRecord.rmag <= float(request_args['r__lte']))
+        query = query.filter(or_(
+            Sdss12PhotoZQ3cRecord.rmag <= float(request_args['r__lte']),
+            Sdss12PhotoZQ3cRecord.r_prime_mag <= float(request_args['r__lte']),
+            Sdss12PhotoZQ3cRecord.r_pmag <= float(request_args['r__lte']),
+            Sdss12PhotoZQ3cRecord.r_upmag <= float(request_args['r__lte']),
+            Sdss12PhotoZQ3cRecord.abs_r_mag <= float(request_args['r__lte'])))
 
     # return records where the i >= value (API: ?i__gte=5.2)
     if request_args.get('i__gte'):
-        query = query.filter(Sdss12PhotoZQ3cRecord.imag >= float(request_args['i__gte']))
+        query = query.filter(or_(
+            Sdss12PhotoZQ3cRecord.imag >= float(request_args['i__gte']),
+            Sdss12PhotoZQ3cRecord.i_prime_mag >= float(request_args['i__gte']),
+            Sdss12PhotoZQ3cRecord.i_pmag >= float(request_args['i__gte']),
+            Sdss12PhotoZQ3cRecord.i_upmag >= float(request_args['i__gte']),
+            Sdss12PhotoZQ3cRecord.abs_i_mag >= float(request_args['i__gte'])))
 
     # return records where the i <= value (API: ?i__lte=5.2)
     if request_args.get('i__lte'):
-        query = query.filter(Sdss12PhotoZQ3cRecord.imag <= float(request_args['i__lte']))
+        query = query.filter(or_(
+            Sdss12PhotoZQ3cRecord.imag <= float(request_args['i__lte']),
+            Sdss12PhotoZQ3cRecord.i_prime_mag <= float(request_args['i__lte']),
+            Sdss12PhotoZQ3cRecord.i_pmag <= float(request_args['i__lte']),
+            Sdss12PhotoZQ3cRecord.i_upmag <= float(request_args['i__lte']),
+            Sdss12PhotoZQ3cRecord.abs_i_mag <= float(request_args['i__lte'])))
 
     # return records where the z >= value (API: ?z__gte=5.2)
     if request_args.get('z__gte'):
-        query = query.filter(Sdss12PhotoZQ3cRecord.zmag >= float(request_args['z__gte']))
+        query = query.filter(or_(
+            Sdss12PhotoZQ3cRecord.zmag >= float(request_args['z__gte']),
+            Sdss12PhotoZQ3cRecord.z_prime_mag >= float(request_args['z__gte']),
+            Sdss12PhotoZQ3cRecord.z_pmag >= float(request_args['z__gte']),
+            Sdss12PhotoZQ3cRecord.z_upmag >= float(request_args['z__gte']),
+            Sdss12PhotoZQ3cRecord.abs_z_mag >= float(request_args['z__gte'])))
 
     # return records where the z <= value (API: ?z__lte=5.2)
     if request_args.get('z__lte'):
-        query = query.filter(Sdss12PhotoZQ3cRecord.zmag <= float(request_args['z__lte']))
+        query = query.filter(or_(
+            Sdss12PhotoZQ3cRecord.zmag <= float(request_args['z__lte']),
+            Sdss12PhotoZQ3cRecord.z_prime_mag <= float(request_args['z__lte']),
+            Sdss12PhotoZQ3cRecord.z_pmag <= float(request_args['z__lte']),
+            Sdss12PhotoZQ3cRecord.z_upmag <= float(request_args['z__lte']),
+            Sdss12PhotoZQ3cRecord.abs_z_mag <= float(request_args['z__lte'])))
 
     # return records where the zsp >= value (API: ?zsp__gte=5.2)
     if request_args.get('zsp__gte'):
@@ -137,13 +187,13 @@ def sdss12photoz_q3c_orm_filters(query: Any = None, request_args: dict = None):
     if request_args.get('zph__lte'):
         query = query.filter(Sdss12PhotoZQ3cRecord.zph <= float(request_args['zph__lte']))
 
-    # return records where the nnzph >= value (API: ?nnzph=5.2)
-    if request_args.get('nnzph__gte'):
-        query = query.filter(Sdss12PhotoZQ3cRecord.nnzph >= float(request_args['nnzph__gte']))
+    # return records where the ave_zph >= value (API: ?ave_zph=5.2)
+    if request_args.get('ave_zph__gte'):
+        query = query.filter(Sdss12PhotoZQ3cRecord.ave_zph >= float(request_args['ave_zph__gte']))
 
-    # return records where the nnzph <= value (API: ?nnzph=5.2)
-    if request_args.get('nnzph__lte'):
-        query = query.filter(Sdss12PhotoZQ3cRecord.nnzph <= float(request_args['nnzph__lte']))
+    # return records where the ave_zph <= value (API: ?ave_zph=5.2)
+    if request_args.get('ave_zph__lte'):
+        query = query.filter(Sdss12PhotoZQ3cRecord.ave_zph <= float(request_args['ave_zph__lte']))
 
     # sort results
     sort_value = request_args.get('sort_value', SDSS12PHOTOZ_SORT_VALUE[0]).lower()

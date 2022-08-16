@@ -37,11 +37,11 @@ classifier                   int            Type of object (3=galaxy, 6=star)
 sdss12                       char*24        SDSS-DR12 name, based on J2000 position
 m_sdss12                     char*1         The asterisk indicates that 2 different SDSS objects share the same SDSS12 name
 sdssid                       char*32        SDSS object identifier
-objid                        char*32        SDSS unique object identifier
+objid                        char*24        SDSS unique object identifier
 specid                       char*32        Spectroscopic Plate-MJD-Fiber identifier
-spobjid                      int            Pointer to the spectrum of object, or 0
-parentid                     int            Pointer to parent (if object de-blended)
-flags                        bigint         Photo object attribute flags
+spobjid                      char*24        Pointer to the spectrum of object, or 0
+parentid                     char*24        Pointer to parent (if object de-blended)
+flags                        char*24        Photo object attribute flags
 status                       int            Hexadecimal status
 e_ra           {ARCSEC}             float          Mean error on RA
 e_dec          {ARCSEC}             float          Mean error on Dec
@@ -62,96 +62,96 @@ e_zsp                        float          Mean error on zsp (negative for bad 
 f_zsp                        int            z warning flag
 vdisp          km/s          float          Velocity dispersion
 e_vdisp        km/s          float          Mean error on Vdisp
-spinst                       char*16        Spectral instrument used (SDSS or BOSS)
-sptype                       char*16        Source type
-spclass                      char*16        Spectroscopic class: GALAXY, QSO, STAR
-subclass                     char*16        Spectroscopic subclass
+spinst                       char*24        Spectral instrument used (SDSS or BOSS)
+sptype                       char*24        Source type
+spclass                      char*24        Spectroscopic class: GALAXY, QSO, STAR
+subclass                     char*24        Spectroscopic subclass
 spsignal                     float          Median signal-to-noise over all good pixels
-uflags                                      Detection flags, u band
-u_prob                       float          Probability 0=notStar, 1=Star in u band
+u_flags                      char*24        Detection flags, u band
+u_prob                       int            Probability 0=notStar, 1=Star in u band
 u_photo                      int            Phototype in u band, 6=Star
-udate          yr            datetime       Date of observation in u band
+u_date         yr            float          Date of observation in u band
 u_prime_mag    mag           float          Model magnitude in u{ARCMIN} filter
 e_u_prime_mag  mag           float          Mean error on u{ARCMIN} filter
-upmag          mag           float          PSF magnitude in u band
-e_upmag        mag           float          Mean error on upmag
-uupmag         mag           float          Petrosian magnitude in u band
-e_uupmag       mag           float          Mean error on uPmag
-uuprad         {ARCSEC}             float          Petrosian radius in u band
-e_uuprad       {ARCSEC}             float          Mean error in uPrad
-uora           {ARCSEC}             float          Offset of u position along RA
-uodec          {ARCSEC}             float          Offset of u position along Dec
-udvrad         {ARCSEC}             float          de Vaucouleurs fit radius, u band
-udvell         {ARCSEC}             float          de Vaucouleurs fit ellipticity, u band
-upa            {DEGREE}             float          Position angle of dVrad in u band
-gflags                                      Detection flags, g band
-gs                           float          Probability 0=notStar, 1=Star in g band
-gc                           int            Phototype in g band, 6=Star
-gdate          yr            float          Date of observation in g band
+u_pmag         mag           float          PSF magnitude in u band
+e_u_pmag       mag           float          Mean error on u_pmag
+u_upmag        mag           float          Petrosian magnitude in u band
+e_u_upmag      mag           float          Mean error on u_upmag
+u_prad         {ARCSEC}             float          Petrosian radius in u band
+e_u_urad       {ARCSEC}             float          Mean error in u_prad
+u_ora          {ARCSEC}             float          Offset of u position along RA
+u_odec         {ARCSEC}             float          Offset of u position along Dec
+u_dvrad        {ARCSEC}             float          de Vaucouleurs fit radius, u band
+u_dvell        {ARCSEC}             float          de Vaucouleurs fit ellipticity, u band
+u_pa           {DEGREE}             float          Position angle of dVrad in u band
+g_flags                      char*24        Detection flags, g band
+g_prob                       int            Probability 0=notStar, 1=Star in g band
+g_photo                      int            Phototype in g band, 6=Star
+g_date         yr            float          Date of observation in g band
 g_prime_mag    mag           float          Model magnitude in g{ARCMIN} filter
 e_g_prime_mag  mag           float          Mean error on g{ARCMIN} filter
-gpmag          mag           float          PSF magnitude in g band
-e_gpmag        mag           float          Mean error on gpmag
-gupmag         mag           float          Petrosian magnitude in g band
-e_gupmag       mag           float          Mean error on gPmag
-guprad         {ARCSEC}             float          Petrosian radius in g band
-e_guprad       {ARCSEC}             float          Mean error in gPrad
-gora           {ARCSEC}             float          Offset of g position along RA
-godec          {ARCSEC}             float          Offset of g position along Dec
-gdvrad         {ARCSEC}             float          de Vaucouleurs fit radius, g band
-gdvell         {ARCSEC}             float          de Vaucouleurs fit ellipticity, g band
-gpa            {DEGREE}             float          Position angle of dVrad in g band
-rflags                                      Detection flags, r band
-r_prob                       float          Probability 0=notStar, 1=Star in r band
+g_pmag         mag           float          PSF magnitude in g band
+e_g_pmag       mag           float          Mean error on g_pmag
+g_upmag        mag           float          Petrosian magnitude in g band
+e_g_upmag      mag           float          Mean error on g_upmag
+g_prad         {ARCSEC}             float          Petrosian radius in g band
+e_g_prad       {ARCSEC}             float          Mean error in g_prad
+g_ora          {ARCSEC}             float          Offset of g position along RA
+g_odec         {ARCSEC}             float          Offset of g position along Dec
+g_dvrad        {ARCSEC}             float          de Vaucouleurs fit radius, g band
+g_dvell        {ARCSEC}             float          de Vaucouleurs fit ellipticity, g band
+g_pa           {DEGREE}             float          Position angle of dVrad in g band
+r_flags                      char*24        Detection flags, r band
+r_prob                       int            Probability 0=notStar, 1=Star in r band
 r_photo                      int            Phototype in r band, 6=Star
-rdate          yr            float          Date of observation in r band
+r_date         yr            float          Date of observation in r band
 r_prime_mag    mag           float          Model magnitude in r{ARCMIN} filter
 e_r_prime_mag  mag           float          Mean error on r{ARCMIN} filter
-rpmag          mag           float          PSF magnitude in r band
-e_rpmag        mag           float          Mean error on rpmag
-rupmag         mag           float          Petrosian magnitude in r band
-e_rupmag       mag           float          Mean error on rPmag
-ruprad         {ARCSEC}             float          Petrosian radius in r band
-e_ruprad       {ARCSEC}             float          Mean error in rPrad
-rora           {ARCSEC}             float          Offset of r position along RA
-rodec          {ARCSEC}             float          Offset of r position along Dec
-rdvrad         {ARCSEC}             float          de Vaucouleurs fit radius, r band
-rdvell         {ARCSEC}             float          de Vaucouleurs fit ellipticity, r band
-rpa            {DEGREE}             float          Position angle of dVrad in r band
-iflags                                      Detection flags, i band
-i_prob                       float          Probability 0=notStar, 1=Star in i band
+r_pmag         mag           float          PSF magnitude in r band
+e_r_pmag       mag           float          Mean error on r_pmag
+r_upmag        mag           float          Petrosian magnitude in r band
+e_r_upmag      mag           float          Mean error on r_upmag
+r_prad         {ARCSEC}             float          Petrosian radius in r band
+e_r_urad       {ARCSEC}             float          Mean error in r_prad
+r_ora          {ARCSEC}             float          Offset of u position along RA
+r_odec         {ARCSEC}             float          Offset of r position along Dec
+r_dvrad        {ARCSEC}             float          de Vaucouleurs fit radius, r band
+r_dvell        {ARCSEC}             float          de Vaucouleurs fit ellipticity, r band
+r_pa           {DEGREE}             float          Position angle of dVrad in r band
+i_flags                      char*24        Detection flags, i band
+i_prob                       int            Probability 0=notStar, 1=Star in i band
 i_photo                      int            Phototype in i band, 6=Star
-idate          yr            float          Date of observation in i band
+i_date         yr            float          Date of observation in i band
 i_prime_mag    mag           float          Model magnitude in i{ARCMIN} filter
 e_i_prime_mag  mag           float          Mean error on i{ARCMIN} filter
-ipmag          mag           float          PSF magnitude in i band
-e_ipmag        mag           float          Mean error on ipmag
-iupmag         mag           float          Petrosian magnitude in i band
-e_iupmag       mag           float          Mean error on iPmag
-iuprad         {ARCSEC}             float          Petrosian radius in i band
-e_iuprad       {ARCSEC}             float          Mean error in iPrad
-iora           {ARCSEC}             float          Offset of i position along RA
-iodec          {ARCSEC}             float          Offset of i position along Dec
-idvrad         {ARCSEC}             float          de Vaucouleurs fit radius, i band
-idvell         {ARCSEC}             float          de Vaucouleurs fit ellipticity, i band
-ipa            {DEGREE}             float          Position angle of dVrad in i band
-zflags                                      Detection flags, z band
-z_prob                       float          Probability 0=notStar, 1=Star in z band
+i_pmag         mag           float          PSF magnitude in i band
+e_i_pmag       mag           float          Mean error on i_pmag
+i_upmag        mag           float          Petrosian magnitude in i band
+e_i_upmag      mag           float          Mean error on i_upmag
+i_prad         {ARCSEC}             float          Petrosian radius in i band
+e_i_urad       {ARCSEC}             float          Mean error in i_prad
+i_ora          {ARCSEC}             float          Offset of i position along RA
+i_odec         {ARCSEC}             float          Offset of i position along Dec
+i_dvrad        {ARCSEC}             float          de Vaucouleurs fit radius, i band
+i_dvell        {ARCSEC}             float          de Vaucouleurs fit ellipticity, i band
+i_pa           {DEGREE}             float          Position angle of dVrad in i band
+z_flags                      char*24        Detection flags, z band
+z_prob                       int            Probability 0=notStar, 1=Star in z band
 z_photo                      int            Phototype in z band, 6=Star
-zdate          yr            float          Date of observation in z band
+z_date         yr            float          Date of observation in z band
 z_prime_mag    mag           float          Model magnitude in z{ARCMIN} filter
 e_z_prime_mag  mag           float          Mean error on z{ARCMIN} filter
-zpmag          mag           float          PSF magnitude in z band
-e_zpmag        mag           float          Mean error on zpmag
-zupmag         mag           float          Petrosian magnitude in z band
-e_zupmag       mag           float          Mean error on zPmag
-zuprad         {ARCSEC}             float          Petrosian radius in z band
-e_zuprad       {ARCSEC}             float          Mean error in zPrad
-zora           {ARCSEC}             float          Offset of z position along RA
-zodec          {ARCSEC}             float          Offset of z position along Dec
-zdvrad         {ARCSEC}             float          de Vaucouleurs fit radius, z band
-zdvell         {ARCSEC}             float          de Vaucouleurs fit ellipt, z band
-zpa            {DEGREE}             float          Position angle of dVrad in z band
+z_pmag         mag           float          PSF magnitude in z band
+e_z_pmag       mag           float          Mean error on z_pmag
+z_upmag        mag           float          Petrosian magnitude in z band
+e_z_upmag      mag           float          Mean error on z_upmag
+z_prad         {ARCSEC}             float          Petrosian radius in z band
+e_z_urad       {ARCSEC}             float          Mean error in z_prad
+z_ora          {ARCSEC}             float          Offset of z position along RA
+z_odec         {ARCSEC}             float          Offset of z position along Dec
+z_dvrad        {ARCSEC}             float          de Vaucouleurs fit radius, z band
+z_dvell        {ARCSEC}             float          de Vaucouleurs fit ellipticity, z band
+z_pa           {DEGREE}             float          Position angle of dVrad in z band
 pmra           mas/yr        float          Proper motion along RA
 e_pmra         mas/yr        float          Mean error on pmRA
 pmdec          mas/yr        float          Proper motion along Dec
@@ -262,10 +262,10 @@ def sdss12photoz_q3c_orm_cli(_args: Any = None):
         request_args['zph__gte'] = f'{_args.zph__gte}'
     if _args.zph__lte:
         request_args['zph__lte'] = f'{_args.zph__lte}'
-    if _args.nnzph__gte:
-        request_args['nnzph__gte'] = f'{_args.nnzph__gte}'
-    if _args.nnzph__lte:
-        request_args['nnzph__lte'] = f'{_args.nnzph__lte}'
+    if _args.ave_zph__gte:
+        request_args['ave_zph__gte'] = f'{_args.ave_zph__gte}'
+    if _args.ave_zph__lte:
+        request_args['ave_zph__lte'] = f'{_args.ave_zph__lte}'
 
     if _args.sort_order:
         request_args['sort_order'] = f'{_args.sort_order}'
@@ -344,8 +344,8 @@ if __name__ == '__main__':
     _p.add_argument(f'--zsp__lte', help=f'Redshift (spectroscopic) <= <float>')
     _p.add_argument(f'--zph__gte', help=f'Redshift (photometric) >= <float>')
     _p.add_argument(f'--zph__lte', help=f'Redshift (photometric) <= <float>')
-    _p.add_argument(f'--nnzph__gte', help=f'Nearest-Neighbor Redshift (photometric) >= <float>')
-    _p.add_argument(f'--nnzph__lte', help=f'Nearest-Neighbor Redshift (photometric) <= <float>')
+    _p.add_argument(f'--ave_zph__gte', help=f'Nearest-Neighbor Redshift (photometric) >= <float>')
+    _p.add_argument(f'--ave_zph__lte', help=f'Nearest-Neighbor Redshift (photometric) <= <float>')
 
     _p.add_argument(f'--sort_order', help=f"Sort order, one of {SDSS12PHOTOZ_SORT_ORDER}")
     _p.add_argument(f'--sort_value', help=f"Sort value, one of {SDSS12PHOTOZ_SORT_VALUE}")

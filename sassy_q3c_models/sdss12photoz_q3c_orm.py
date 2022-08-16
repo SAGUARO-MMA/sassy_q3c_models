@@ -10,7 +10,167 @@ from sassy_q3c_models import *
 # +
 # __doc__ string
 # -
-__doc__ = """ from sassy_q3c_models.sdss12photoz_orm import * """
+__doc__ = """
+                                       Table "public.sdss12photoz_q3c"
+    Column     |         Type          | Collation | Nullable |                    Default                    
+---------------+-----------------------+-----------+----------+-----------------------------------------------
+ sid           | integer               |           | not null | nextval('sdss12photoz_q3c_sid_seq'::regclass)
+ ra            | double precision      |           |          | 
+ dec           | double precision      |           |          | 
+ mode          | integer               |           |          | 
+ q_mode        | character varying(1)  |           |          | 
+ classifier    | integer               |           |          | 
+ sdss12        | character varying(24) |           |          | 
+ m_sdss12      | character varying(1)  |           |          | 
+ sdssid        | character varying(32) |           |          | 
+ objid         | character varying(24) |           |          | 
+ specid        | character varying(32) |           |          | 
+ spobjid       | character varying(24) |           |          | 
+ parentid      | character varying(24) |           |          | 
+ flags         | character varying(24) |           |          | 
+ status        | integer               |           |          | 
+ e_ra          | double precision      |           |          | 
+ e_dec         | double precision      |           |          | 
+ obsdate       | double precision      |           |          | 
+ quality       | integer               |           |          | 
+ umag          | double precision      |           |          | 
+ e_umag        | double precision      |           |          | 
+ gmag          | double precision      |           |          | 
+ e_gmag        | double precision      |           |          | 
+ rmag          | double precision      |           |          | 
+ e_rmag        | double precision      |           |          | 
+ imag          | double precision      |           |          | 
+ e_imag        | double precision      |           |          | 
+ zmag          | double precision      |           |          | 
+ e_zmag        | double precision      |           |          | 
+ zsp           | double precision      |           |          | 
+ e_zsp         | double precision      |           |          | 
+ f_zsp         | integer               |           |          | 
+ vdisp         | double precision      |           |          | 
+ e_vdisp       | double precision      |           |          | 
+ spinst        | character varying(24) |           |          | 
+ sptype        | character varying(24) |           |          | 
+ spclass       | character varying(24) |           |          | 
+ spubclass     | character varying(24) |           |          | 
+ spsignal      | double precision      |           |          | 
+ u_flags       | character varying(24) |           |          | 
+ u_prob        | integer               |           |          | 
+ u_photo       | integer               |           |          | 
+ u_date        | double precision      |           |          | 
+ u_prime_mag   | double precision      |           |          | 
+ e_u_prime_mag | double precision      |           |          | 
+ u_pmag        | double precision      |           |          | 
+ e_u_pmag      | double precision      |           |          | 
+ u_upmag       | double precision      |           |          | 
+ e_u_upmag     | double precision      |           |          | 
+ u_prad        | double precision      |           |          | 
+ e_u_prad      | double precision      |           |          | 
+ u_ora         | double precision      |           |          | 
+ u_odec        | double precision      |           |          | 
+ u_dvrad       | double precision      |           |          | 
+ u_dvell       | double precision      |           |          | 
+ u_pa          | double precision      |           |          | 
+ g_flags       | character varying(24) |           |          | 
+ g_prob        | integer               |           |          | 
+ g_photo       | integer               |           |          | 
+ g_date        | double precision      |           |          | 
+ g_prime_mag   | double precision      |           |          | 
+ e_g_prime_mag | double precision      |           |          | 
+ g_pmag        | double precision      |           |          | 
+ e_g_pmag      | double precision      |           |          | 
+ g_upmag       | double precision      |           |          | 
+ e_g_upmag     | double precision      |           |          | 
+ g_prad        | double precision      |           |          | 
+ e_g_prad      | double precision      |           |          | 
+ g_ora         | double precision      |           |          | 
+ g_odec        | double precision      |           |          | 
+ g_dvrad       | double precision      |           |          | 
+ g_dvell       | double precision      |           |          | 
+ g_pa          | double precision      |           |          | 
+ r_flags       | character varying(24) |           |          | 
+ r_prob        | integer               |           |          | 
+ r_photo       | integer               |           |          | 
+ r_date        | double precision      |           |          | 
+ r_prime_mag   | double precision      |           |          | 
+ e_r_prime_mag | double precision      |           |          | 
+ r_pmag        | double precision      |           |          | 
+ e_r_pmag      | double precision      |           |          | 
+ r_upmag       | double precision      |           |          | 
+ e_r_upmag     | double precision      |           |          | 
+ r_prad        | double precision      |           |          | 
+ e_r_prad      | double precision      |           |          | 
+ r_ora         | double precision      |           |          | 
+ r_odec        | double precision      |           |          | 
+ r_dvrad       | double precision      |           |          | 
+ r_dvell       | double precision      |           |          | 
+ r_pa          | double precision      |           |          | 
+ i_flags       | character varying(24) |           |          | 
+ i_prob        | integer               |           |          | 
+ i_photo       | integer               |           |          | 
+ i_date        | double precision      |           |          | 
+ i_prime_mag   | double precision      |           |          | 
+ e_i_prime_mag | double precision      |           |          | 
+ i_pmag        | double precision      |           |          | 
+ e_i_pmag      | double precision      |           |          | 
+ i_upmag       | double precision      |           |          | 
+ e_i_upmag     | double precision      |           |          | 
+ i_prad        | double precision      |           |          | 
+ e_i_prad      | double precision      |           |          | 
+ i_ora         | double precision      |           |          | 
+ i_odec        | double precision      |           |          | 
+ i_dvrad       | double precision      |           |          | 
+ i_dvell       | double precision      |           |          | 
+ i_pa          | double precision      |           |          | 
+ z_flags       | character varying(24) |           |          | 
+ z_prob        | integer               |           |          | 
+ z_photo       | integer               |           |          | 
+ z_date        | double precision      |           |          | 
+ z_prime_mag   | double precision      |           |          | 
+ e_z_prime_mag | double precision      |           |          | 
+ z_pmag        | double precision      |           |          | 
+ e_z_pmag      | double precision      |           |          | 
+ z_upmag       | double precision      |           |          | 
+ e_z_upmag     | double precision      |           |          | 
+ z_prad        | double precision      |           |          | 
+ e_z_prad      | double precision      |           |          | 
+ z_ora         | double precision      |           |          | 
+ z_odec        | double precision      |           |          | 
+ z_dvrad       | double precision      |           |          | 
+ z_dvell       | double precision      |           |          | 
+ z_pa          | double precision      |           |          | 
+ pmra          | double precision      |           |          | 
+ e_pmra        | double precision      |           |          | 
+ pmdec         | double precision      |           |          | 
+ e_pmdec       | double precision      |           |          | 
+ sigra         | double precision      |           |          | 
+ sigdec        | double precision      |           |          | 
+ m             | integer               |           |          | 
+ n             | integer               |           |          | 
+ g_o_plate     | double precision      |           |          | 
+ r_e_plate     | double precision      |           |          | 
+ g_j_plate     | double precision      |           |          | 
+ r_f_plate     | double precision      |           |          | 
+ i_n_plate     | double precision      |           |          | 
+ zph           | double precision      |           |          | 
+ e_zph         | double precision      |           |          | 
+ ave_zph       | double precision      |           |          | 
+ chi2          | double precision      |           |          | 
+ abs_u_mag     | double precision      |           |          | 
+ abs_g_mag     | double precision      |           |          | 
+ abs_r_mag     | double precision      |           |          | 
+ abs_i_mag     | double precision      |           |          | 
+ abs_z_mag     | double precision      |           |          | 
+Indexes:
+    "sdss12photoz_q3c_pkey" PRIMARY KEY, btree (sid)
+    "sdss12photoz_q3c_gmag_idx" btree (gmag)
+    "sdss12photoz_q3c_imag_idx" btree (imag)
+    "sdss12photoz_q3c_q3c_ang2ipix_idx" btree (q3c_ang2ipix(ra, "dec")) CLUSTER
+    "sdss12photoz_q3c_rmag_idx" btree (rmag)
+    "sdss12photoz_q3c_umag_idx" btree (umag)
+    "sdss12photoz_q3c_zmag_idx" btree (zmag)
+    "sdss12photoz_q3c_zph_idx" btree (zph)
+    "sdss12photoz_q3c_zsp_idx" btree (zsp)
+"""
 
 
 # +
@@ -215,13 +375,13 @@ class Sdss12PhotoZQ3cRecord(db.Model):
     sdss12 = db.Column(db.String(DB_VARCHAR_24), nullable=False, default='')
     m_sdss12 = db.Column(db.String(DB_VARCHAR_1), nullable=False, default='')
     sdssid = db.Column(db.String(DB_VARCHAR_32), nullable=False, default='')
-    objid = db.Column(db.String(DB_VARCHAR_32), nullable=False, default='')
+    objid = db.Column(db.String(DB_VARCHAR_24), nullable=False, default='')
     specid = db.Column(db.String(DB_VARCHAR_32), nullable=False, default='')
 
     # 10: ['SpObjID', 'parentID', 'flags', 'Status', 'e_RAdeg', 'e_DEdeg', 'ObsDate', 'Q', 'umag', 'e_umag']
-    spobjid = db.Column(db.Integer, nullable=True, default=-1)
-    parentid = db.Column(db.Integer, nullable=True, default=-1)
-    flags = db.Column(db.BigInteger, nullable=True, default=-1)
+    spobjid = db.Column(db.String(DB_VARCHAR_24), nullable=False, default='')
+    parentid = db.Column(db.String(DB_VARCHAR_24), nullable=False, default='')
+    flags = db.Column(db.String(DB_VARCHAR_24), nullable=False, default='')
     status = db.Column(db.Integer, nullable=True, default=-1)
     e_ra = db.Column(db.Float, nullable=False)
     e_dec = db.Column(db.Float, nullable=False)
@@ -251,7 +411,7 @@ class Sdss12PhotoZQ3cRecord(db.Model):
     spclass = db.Column(db.String(DB_VARCHAR_24), nullable=False, default='')
     spubclass = db.Column(db.String(DB_VARCHAR_24), nullable=False, default='')
     spsignal = db.Column(db.Float, nullable=False)
-    u_flags = db.Column(db.BigInteger, nullable=False)
+    u_flags = db.Column(db.String(DB_VARCHAR_24), nullable=False, default='')
     u_prob = db.Column(db.Integer, nullable=False)
 
     # 40: ['uc', 'uDate', "u'mag", "e_u'mag", 'upmag', 'e_upmag', 'uPmag', 'e_uPmag', 'uPrad', 'e_uPrad']
@@ -272,7 +432,7 @@ class Sdss12PhotoZQ3cRecord(db.Model):
     u_dvrad = db.Column(db.Float, nullable=False)
     u_dvell = db.Column(db.Float, nullable=False)
     u_pa = db.Column(db.Float, nullable=False)
-    g_flags = db.Column(db.BigInteger, nullable=False)
+    g_flags = db.Column(db.String(DB_VARCHAR_24), nullable=False, default='')
     g_prob = db.Column(db.Integer, nullable=False)
     g_photo = db.Column(db.Integer, nullable=False)
     g_date = db.Column(db.Float, nullable=False)
@@ -293,7 +453,7 @@ class Sdss12PhotoZQ3cRecord(db.Model):
     # 70: ['gdVell', 'gPA', 'rFlags', 'rs', 'rc', 'rDate', "r'mag", "e_r'mag", 'rpmag', 'e_rpmag']
     g_dvell = db.Column(db.Float, nullable=False)
     g_pa = db.Column(db.Float, nullable=False)
-    r_flags = db.Column(db.BigInteger, nullable=False)
+    r_flags = db.Column(db.String(DB_VARCHAR_24), nullable=False, default='')
     r_prob = db.Column(db.Integer, nullable=False)
     r_photo = db.Column(db.Integer, nullable=False)
     r_date = db.Column(db.Float, nullable=False)
@@ -312,7 +472,7 @@ class Sdss12PhotoZQ3cRecord(db.Model):
     r_dvrad = db.Column(db.Float, nullable=False)
     r_dvell = db.Column(db.Float, nullable=False)
     r_pa = db.Column(db.Float, nullable=False)
-    i_flags = db.Column(db.BigInteger, nullable=False)
+    i_flags = db.Column(db.String(DB_VARCHAR_24), nullable=False, default='')
 
     # 90: ['is', 'ic', 'iDate', "i'mag", "e_i'mag", 'ipmag', 'e_ipmag', 'iPmag', 'e_iPmag', 'iPrad']
     i_prob = db.Column(db.Integer, nullable=False)
@@ -333,7 +493,7 @@ class Sdss12PhotoZQ3cRecord(db.Model):
     i_dvrad = db.Column(db.Float, nullable=False)
     i_dvell = db.Column(db.Float, nullable=False)
     i_pa = db.Column(db.Float, nullable=False)
-    z_flags = db.Column(db.BigInteger, nullable=False)
+    z_flags = db.Column(db.String(DB_VARCHAR_24), nullable=False, default='')
     z_prob = db.Column(db.Integer, nullable=False)
     z_photo = db.Column(db.Integer, nullable=False)
     z_date = db.Column(db.Float, nullable=False)
@@ -369,7 +529,7 @@ class Sdss12PhotoZQ3cRecord(db.Model):
     g_j_plate = db.Column(db.Float, nullable=False)
     r_f_plate = db.Column(db.Float, nullable=False)
     i_n_plate = db.Column(db.Float, nullable=False)
-    zph = db.Column(db.Float, nullable=False)
+    zph = db.Column(db.Float, nullable=False, index=True)
     e_zph = db.Column(db.Float, nullable=False)
     ave_zph = db.Column(db.Float, nullable=False)
     chi2 = db.Column(db.Float, nullable=False)

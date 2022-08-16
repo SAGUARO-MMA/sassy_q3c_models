@@ -20,11 +20,11 @@ CREATE TABLE sdss12photoz_q3c (
   sdss12 VARCHAR(24),
   m_sdss12 VARCHAR(1),
   sdssid VARCHAR(32),
-  objid VARCHAR(32),
+  objid VARCHAR(24),
   specid VARCHAR(32),
-  spobjid integer,
-  parentid integer,
-  flags bigint,
+  spobjid VARCHAR(24),
+  parentid VARCHAR(24),
+  flags VARCHAR(24),
   status integer,
   e_ra double precision,
   e_dec double precision,
@@ -50,7 +50,7 @@ CREATE TABLE sdss12photoz_q3c (
   spclass VARCHAR(24),
   spubclass VARCHAR(24),
   spsignal double precision,
-  u_flags bigint,
+  u_flags VARCHAR(24),
   u_prob integer,
   u_photo integer,
   u_date double precision,
@@ -67,7 +67,7 @@ CREATE TABLE sdss12photoz_q3c (
   u_dvrad double precision,
   u_dvell double precision,
   u_pa double precision,
-  g_flags bigint,
+  g_flags VARCHAR(24),
   g_prob integer,
   g_photo integer,
   g_date double precision,
@@ -84,7 +84,7 @@ CREATE TABLE sdss12photoz_q3c (
   g_dvrad double precision,
   g_dvell double precision,
   g_pa double precision,
-  r_flags bigint,
+  r_flags VARCHAR(24),
   r_prob integer,
   r_photo integer,
   r_date double precision,
@@ -101,7 +101,7 @@ CREATE TABLE sdss12photoz_q3c (
   r_dvrad double precision,
   r_dvell double precision,
   r_pa double precision,
-  i_flags bigint,
+  i_flags VARCHAR(24),
   i_prob integer,
   i_photo integer,
   i_date double precision,
@@ -118,7 +118,7 @@ CREATE TABLE sdss12photoz_q3c (
   i_dvrad double precision,
   i_dvell double precision,
   i_pa double precision,
-  z_flags bigint,
+  z_flags VARCHAR(24),
   z_prob integer,
   z_photo integer,
   z_date double precision,
@@ -168,6 +168,5 @@ PGPASSWORD=${5} psql --echo-all -h ${1} -p ${2} -U ${4} -d ${3} << END_Q3C
   CREATE INDEX ON sdss12photoz_q3c(zmag);
   CREATE INDEX ON sdss12photoz_q3c(zsp);
   CREATE INDEX ON sdss12photoz_q3c(zph);
-    zsp = db.Column(db.Float, nullable=False, index=True)
   ANALYZE VERBOSE sdss12photoz_q3c;
 END_Q3C
