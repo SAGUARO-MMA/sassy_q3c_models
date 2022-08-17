@@ -48,7 +48,7 @@ Access method: heap
 # constant(s)
 # -
 SDSS12PHOT_COLUMNS = 23
-SDSS12PHOT_DAT_URL = 'None'
+SDSS12PHOT_DAT_URL = ''
 SDSS12PHOT_PAG_URL = 'https://sdss.org/dr12'
 SDSS12PHOT_PDF_URL = 'https://arxiv.org/pdf/1501.00963.pdf'
 SDSS12PHOT_SORT_ORDER = ['asc', 'desc', 'ascending', 'descending']

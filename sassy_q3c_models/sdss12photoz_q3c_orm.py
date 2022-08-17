@@ -197,7 +197,7 @@ Indexes:
 # +
 # constant(s)
 # -
-SDSS12PHOTOZ_DAT_URL = 'None'
+SDSS12PHOTOZ_DAT_URL = ''
 SDSS12PHOTOZ_PAG_URL = 'https://vizier.u-strasbg.fr/viz-bin/VizieR?-source=+SDSS-DR12'
 SDSS12PHOTOZ_PDF_URL = 'https://arxiv.org/pdf/1501.00963.pdf'
 SDSS12PHOTOZ_SORT_ORDER = ['asc', 'desc', 'ascending', 'descending']
