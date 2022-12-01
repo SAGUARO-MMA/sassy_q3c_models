@@ -16,12 +16,12 @@ PGPASSWORD=${5} psql --echo-all -h ${1} -p ${2} -U ${4} -d ${3} << END_TABLE
 DROP TABLE IF EXISTS gaiadr3variable_q3c;
 CREATE TABLE gaiadr3variable_q3c (
   sid serial PRIMARY KEY,
-  solution_id bigint,
-  source_id bigint,
   ra double precision,
   dec double precision,
+  solution_id bigint,
+  source_id bigint,
   classification VARCHAR(16),
-  best_class_name VARCHAR(26),
+  best_class_name VARCHAR(32),
   best_class_score double precision,
   num_selected_g_fov integer,
   mean_obs_time_g_fov double precision,
@@ -88,7 +88,7 @@ CREATE TABLE gaiadr3variable_q3c (
   in_vari_ms_oscillator boolean,
   in_vari_agn boolean,
   in_vari_microlensing boolean,
-  in_vari_compact_companion boolean,
+  in_vari_compact_companion boolean
 );
 END_TABLE
 PGPASSWORD=${5} psql --echo-all -h ${1} -p ${2} -U ${4} -d ${3} << END_Q3C
