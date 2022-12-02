@@ -231,7 +231,7 @@ class GaiaDR3VariableQ3cRecord(db.Model):
     __tablename__ = 'gaiadr3variable_q3c'
     sid = db.Column(db.Integer, primary_key=True)
 
-    # 0: ['RAdeg', 'DEdeg', 'mode', 'q_mode', 'cl', 'SDSS12', 'm_SDSS12', 'SDSS-ID', 'objID', 'Sp-ID']
+    # 0:
     ra = db.Column(db.Float, nullable=False, index=True)
     ra_error = db.Column(db.Float, nullable=False)
     dec = db.Column(db.Float, nullable=False, index=True)
