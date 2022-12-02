@@ -29,7 +29,7 @@ CREATE TABLE gaiadr3variable_q3c (
   solution_id bigint,
   source_id bigint,
   classification VARCHAR(16),
-  best_class_name VARCHAR(32),
+  best_class_name VARCHAR(26),
   best_class_score double precision,
   num_selected_g_fov integer,
   mean_obs_time_g_fov double precision,
