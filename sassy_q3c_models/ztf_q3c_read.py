@@ -198,6 +198,19 @@ def get_next_index(_table: str = 'ztf_q3c', _key: str = 'zid'):
 
 
 # +
+# function: get_max_idx()
+# -
+def get_max_idx(_table: str = 'ztf_q3c', _index: str = 'zid') -> int:
+    """ returns max row number in database table for key or -1 """
+    try:
+        with create_engine(f'postgresql+psycopg2://{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_PORT}/{DB_NAME}').connect() as _c:
+            _ret = [_ for _ in _c.execute(f"SELECT MAX({_index}) FROM {_table};")]
+            return tuple(_ret[0])[0] if (_ret and len(_ret) == 1) else -1
+    except Exception:
+        return -1
+
+
+# +
 # function: get_last_row()
 # -
 # noinspection PyBroadException
