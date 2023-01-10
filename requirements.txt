@@ -1,6 +1,5 @@
 astropy>=4.2.1
 Flask-SQLAlchemy~=2.5.1
-MarkupSafe==0.23 # Flask-SQLAlchemy~=2.5.1 -> Flask>=0.10 -> Jinja2>=2.4 -> MarkupSafe>=0.23, but >0.23 is incompatible
 SQLAlchemy~=1.4.22
 psycopg2-binary~=2.8.6
 requests~=2.25.1
