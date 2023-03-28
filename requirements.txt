@@ -1,4 +1,4 @@
-astropy~=4.2.1
+astropy>=4.2.1
 Flask-SQLAlchemy~=2.5.1
 SQLAlchemy~=1.4.22
 psycopg2-binary~=2.8.6
