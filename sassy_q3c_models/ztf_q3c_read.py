@@ -259,11 +259,17 @@ def ztf_q3c_read(_dir: str = '', _verbose: bool = False):
     # noinspection PyBroadException
     try:
         # connect to database
+        if _verbose:
+            print(f"Connecting to database via 'postgresql+psycopg2://{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_PORT}/{DB_NAME}'")
         engine = create_engine(f'postgresql+psycopg2://{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_PORT}/{DB_NAME}')
         get_session = sessionmaker(bind=engine)
         session = get_session()
     except Exception as _e:
         raise Exception(f'Failed to connect to database, error={_e}')
+        return
+    else:
+        if _verbose:
+            print(f"Connected to database via 'postgresql+psycopg2://{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_PORT}/{DB_NAME}'")
 
     # loop around file(s)
     _ic = get_max_index()
