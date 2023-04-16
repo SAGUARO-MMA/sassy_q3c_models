@@ -100,8 +100,7 @@ CREATE TABLE gaiadr3variable_q3c (
 );
 END_TABLE
 PGPASSWORD=${5} psql --echo-all -h ${1} -p ${2} -U ${4} -d ${3} << END_Q3C
-  CREATE INDEX idx_gaiadr3variable_q3c_ra ON gaiadr3variable_q3c(ra);
-  CREATE INDEX idx_gaiadr3variable_q3c_dec ON gaiadr3variable_q3c(dec);
+  CREATE INDEX ON gaiadr3variable_q3c (q3c_ang2ipix(ra, dec));
   CREATE INDEX idx_gaiadr3variable_q3c_ra_error ON gaiadr3variable_q3c(ra_error);
   CREATE INDEX idx_gaiadr3variable_q3c_dec_error ON gaiadr3variable_q3c(dec_error);
   CREATE INDEX idx_gaiadr3variable_q3c_pmra ON gaiadr3variable_q3c(pmra);
