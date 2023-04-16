@@ -15,7 +15,7 @@
 PGPASSWORD=${5} psql --echo-all -h ${1} -p ${2} -U ${4} -d ${3} << END_TABLE
 DROP TABLE IF EXISTS gaiadr3variable_q3c;
 CREATE TABLE gaiadr3variable_q3c (
-  sid serial PRIMARY KEY,
+  gid serial PRIMARY KEY,
   ra double precision,
   ra_error double precision,
   dec double precision,
