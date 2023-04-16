@@ -198,6 +198,19 @@ def get_next_index(_table: str = 'ztf_q3c', _key: str = 'zid'):
 
 
 # +
+# function: get_max_idx()
+# -
+def get_max_idx(_table: str = 'ztf_q3c', _index: str = 'zid') -> int:
+    """ returns max row number in database table for key or -1 """
+    try:
+        with create_engine(f'postgresql+psycopg2://{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_PORT}/{DB_NAME}').connect() as _c:
+            _ret = [_ for _ in _c.execute(f"SELECT MAX({_index}) FROM {_table};")]
+            return tuple(_ret[0])[0] if (_ret and len(_ret) == 1) else -1
+    except Exception:
+        return -1
+
+
+# +
 # function: get_last_row()
 # -
 # noinspection PyBroadException
@@ -246,11 +259,17 @@ def ztf_q3c_read(_dir: str = '', _verbose: bool = False):
     # noinspection PyBroadException
     try:
         # connect to database
+        if _verbose:
+            print(f"Connecting to database via 'postgresql+psycopg2://{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_PORT}/{DB_NAME}'")
         engine = create_engine(f'postgresql+psycopg2://{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_PORT}/{DB_NAME}')
         get_session = sessionmaker(bind=engine)
         session = get_session()
     except Exception as _e:
         raise Exception(f'Failed to connect to database, error={_e}')
+        return
+    else:
+        if _verbose:
+            print(f"Connected to database via 'postgresql+psycopg2://{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_PORT}/{DB_NAME}'")
 
     # loop around file(s)
     _ic = get_max_index()

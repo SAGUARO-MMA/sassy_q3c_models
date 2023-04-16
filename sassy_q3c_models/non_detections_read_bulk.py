@@ -108,12 +108,17 @@ def non_detections_read_bulk(_file: str = '', _dir: str = '', _nelms: int = DEF_
 
     # connect to database (method 1)
     try:
+        if _verbose:
+            print(f"Connecting to database via 'postgresql+psycopg2://{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_PORT}/{DB_NAME}'")
         engine = create_engine(f"postgresql+psycopg2://{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_PORT}/{DB_NAME}")
         get_session = sessionmaker(bind=engine)
         session = get_session()
     except Exception as _e1:
         print(f"<ERROR> failed to connect to database, error='{_e1}'")
         return
+    else:
+        if _verbose:
+            print(f"Connected to database via 'postgresql+psycopg2://{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_PORT}/{DB_NAME}'")
 
     # connect to database (method 2)
     try:
