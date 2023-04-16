@@ -11,10 +11,10 @@ from sassy_q3c_models import *
 # __doc__ string
 # -
 __doc__ = """
-                                       Table "public.sdss12photoz_q3c"
+                                       Table "public.gaiadr3variable_q3c"
     Column                      |         Type          | Collation | Nullable |                    Default                    
 --------------------------------+-----------------------+-----------+----------+-----------------------------------------------
- sid                            | integer               |           | not null | nextval('sdss12photoz_q3c_sid_seq'::regclass)
+ gid                            | integer               |           | not null | nextval('gaiadr3variable_q3c_gid_seq'::regclass)
  ra                             | double precision      |           |          | 
  ra_error                       | double precision      |           |          | 
  dec                            | double precision      |           |          | 
@@ -98,17 +98,17 @@ __doc__ = """
  in_vari_compact_companion      | boolean               |           |          | 
 Indexes:
     "gaiadr3variable_q3c_pkey" PRIMARY KEY, btree (sid)
-    "idx_sdss12photoz_q3c_ra" btree (ra)
-    "idx_sdss12photoz_q3c_dec" btree (dec)
-    "idx_sdss12photoz_q3c_ra_error" btree (ra_error)
-    "idx_sdss12photoz_q3c_dec_error" btree (dec_error)
-    "idx_sdss12photoz_q3c_pmra" btree (pmra)
-    "idx_sdss12photoz_q3c_pmdec" btree (pmdec)
-    "idx_sdss12photoz_q3c_classification" btree (classification)
-    "idx_sdss12photoz_q3c_mean_g_mag_fov" btree (mean_g_mag_fov)
-    "idx_sdss12photoz_q3c_median_g_mag_fov" btree (median_g_mag_fov)
-    "idx_sdss12photoz_q3c_best_class_name" btree (best_class_name)
-    "idx_sdss12photoz_q3c_best_class_score" btree (best_class_score)
+    "idx_gaiadr3variable_q3c_ra" btree (ra)
+    "idx_gaiadr3variable_q3c_dec" btree (dec)
+    "idx_gaiadr3variable_q3c_ra_error" btree (ra_error)
+    "idx_gaiadr3variable_q3c_dec_error" btree (dec_error)
+    "idx_gaiadr3variable_q3c_pmra" btree (pmra)
+    "idx_gaiadr3variable_q3c_pmdec" btree (pmdec)
+    "idx_gaiadr3variable_q3c_classification" btree (classification)
+    "idx_gaiadr3variable_q3c_mean_g_mag_fov" btree (mean_g_mag_fov)
+    "idx_gaiadr3variable_q3c_median_g_mag_fov" btree (median_g_mag_fov)
+    "idx_gaiadr3variable_q3c_best_class_name" btree (best_class_name)
+    "idx_gaiadr3variable_q3c_best_class_score" btree (best_class_score)
 """
 
 
@@ -220,7 +220,7 @@ db = SQLAlchemy()
 
 
 # +
-# class: Sdss12PhotoZQ3cRecord(), inherits from db.Model
+# class: GaiaDR3VariableQ3cRecord(), inherits from db.Model
 # -
 # noinspection PyUnresolvedReferences
 class GaiaDR3VariableQ3cRecord(db.Model):
