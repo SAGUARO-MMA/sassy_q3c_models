@@ -294,6 +294,8 @@ def ztf_q3c_orm_cli(_args: Any = None):
         request_args['ssnamenr'] = f'{_args.ssnamenr}'
     if _args.zid:
         request_args['zid'] = f'{_args.zid}'
+    if _args.zid__csv:
+        request_args['zid'] = f'{_args.zid__csv}'
 
     # set up access to database
     try:
@@ -324,10 +326,17 @@ def ztf_q3c_orm_cli(_args: Any = None):
     # report output alphabetically
     print(f"#{','.join(_ for _ in ZTF_HEADERS)}")
     for _e in ZtfQ3cRecord.serialize_list(query.all()):
+        print(f"_e={_e}")
         _pc = _e.pop('previous_candidates', [])
         _f = {**_e, **_e.pop('candidate')}
         if verify_keys(_f, set(ZTF_HEADERS)):
             print(f"{','.join(str(_f[_l]) for _l in ZTF_HEADERS)}")
+    for _e in query.all():
+        # get csv
+        if _args.zid__csv:
+            print(f"GETTING CSV")
+            print(f"csv={_e.get_csv()}")
+
 
 
 # +
@@ -375,6 +384,7 @@ if __name__ == '__main__':
     _p.add_argument(f'--sigmapsf__lte', help=f'Magnitude sigma <= <float>')
     _p.add_argument(f'--ssnamenr', help=f'Solar system name <str>')
     _p.add_argument(f'--zid', help=f'ZTF id <int>')
+    _p.add_argument(f'--zid__csv', help=f'ZTF id <int> (get csv)')
 
     # non-database query argument(s)
     _p.add_argument(f'--paper', default=False, action='store_true', help=f'if present, download the science paper')
@@ -386,6 +396,4 @@ if __name__ == '__main__':
     try:
         ztf_q3c_orm_cli(_args=_a)
     except Exception as _:
-        if bool(_a.verbose):
-            print(f"{_}")
-        print(f"Use: {__doc__}")
+        print(f"{_}\nUse: {__doc__}")

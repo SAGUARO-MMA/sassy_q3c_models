@@ -342,6 +342,47 @@ class ZtfQ3cRecord(db.Model):
         return pc_query.order_by(ZtfQ3cRecord.jd.desc())
 
     # +
+    # method: get_photometry()
+    # -
+    def get_photometry(self):
+        filter_mapping = ['', 'g', 'r', 'i']
+        prv_candidates = ZtfQ3cRecord.serialize_list(self.previous_candidates)
+        non_detections = NonDetection.serialize_list(self.non_detections)
+        ZtfQ3cRecord.add_records(prv_candidates, non_detections)
+        photometry = {}
+        index = 0
+        for candidate in prv_candidates:
+            values = candidate['candidate']
+            photometry[index] = {}
+            for key in values.keys():
+                if key in ['diffmaglim', 'magpsf', 'sigmapsf']:
+                    photometry[index][key] = values[key]
+                elif key == 'fid':
+                    photometry[index]['filter'] = filter_mapping[values[key]]
+                elif key == 'jd':
+                    photometry[index][key] = values[key]
+                    photometry[index]['isot'] = Time(values[key], format='jd').isot
+            index += 1
+        photometry[index] = {
+            'jd': self.jd,
+            'isot': Time(self.jd, format='jd').isot,
+            'filter': filter_mapping[self.fid],
+            'magpsf': self.magpsf,
+            'sigmapsf': self.sigmapsf,
+            'diffmaglim': self.diffmaglim
+        }
+        return photometry
+
+    # +
+    # method: get_csv()
+    # -
+    def get_csv(self):
+        csv = []
+        for _k, _v in self.get_photometry().items():
+            csv.append(_v)
+        return pd.DataFrame(csv)
+
+    # +
     # method: serialized()
     # -
     def serialized(self, show_previous: bool = False) -> dict:
