@@ -13,6 +13,13 @@ from sassy_q3c_models.ps1_q3c_orm_filters import *
 __doc__ = """ python3 ps1_q3c_orm_cli.py --help """
 
 
+DB_HOST = 'localhost'
+DB_PORT = 5432
+DB_NAME = 'sassy'
+DB_USER = 'sassy'
+DB_PASS = 'SASSy_520'
+
+
 # +
 # __text__
 # -
@@ -128,8 +135,7 @@ def ps1_q3c_orm_cli(_args: Any = None):
     # report output alphabetically
     print(f"#{','.join(_ for _ in PS1_HEADERS)}")
     for _e in Ps1Q3cRecord.serialize_list(query.all()):
-        if 'candidate' in _e and verify_keys(_e['candidate'], set(PS1_HEADERS)):
-            print(f"{','.join(str(_e['candidate'][_l]) for _l in PS1_HEADERS)}")
+        print(f"{','.join(str(_e[_l]) for _l in PS1_HEADERS)}")
 
 
 # +
