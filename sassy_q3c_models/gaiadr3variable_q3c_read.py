@@ -4,7 +4,7 @@
 # +
 # import(s)
 # -
-from sassy_q3c_models.GAIADR3variable_q3c_orm import *
+from sassy_q3c_models.gaiadr3variable_q3c_orm import *
 
 
 # +
