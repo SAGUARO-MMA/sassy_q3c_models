@@ -16,8 +16,8 @@ CREATE TABLE ps1_q3c (
   psps_objid bigint,
   ra double precision NOT NULL,
   dec double precision NOT NULL,
-  l double precision NOT NULL,
-  b double precision NOT NULL,
+  l double precision,
+  b double precision,
   obj_class VARCHAR(8),
   prob_galaxy double precision,
   prob_star double precision,
@@ -39,5 +39,5 @@ ALTER TABLE ps1 ALTER COLUMN pid TYPE bigint;
 CREATE INDEX idx_ps1_q3c_objid ON ps1(objid);
 CREATE INDEX ON ps1_q3c (q3c_ang2ipix(ra, dec));
 CLUSTER ps1_q3c_q3c_ang2ipix_idx ON ps1_q3c;
-ANALYZE VERBOSE ps1;
+ANALYZE VERBOSE ps1_q3c;
 END_TABLE
