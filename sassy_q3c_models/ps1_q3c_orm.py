@@ -94,7 +94,7 @@ class Ps1Q3cRecord(db.Model):
             'extra_photoz': self.extra_photoz,
             'celld_photoz': self.celld_photoz,
             'cellid_photoz': self.cellid_photoz,
-            'ps_score': self.cellid_photoz
+            'ps_score': self.ps_score
         }
 
     # +

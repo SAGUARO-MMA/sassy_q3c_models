@@ -42,7 +42,7 @@ import os
 # noinspection PyUnresolvedReferences
 import math
 # noinspection PyUnresolvedReferences
-import pandas as pd
+# import pandas as pd
 # noinspection PyUnresolvedReferences
 import pprint
 # noinspection PyUnresolvedReferences
