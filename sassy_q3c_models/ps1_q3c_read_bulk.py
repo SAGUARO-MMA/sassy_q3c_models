@@ -128,7 +128,7 @@ def ps1_q3c_read_bulk(_file: str = '', _nelms: int = DEF_NELMS, _verbose: bool =
 if __name__ == '__main__':
 
     # noinspection PyTypeChecker
-    _p = argparse.ArgumentParser(description='Populate NonDetection Table', formatter_class=argparse.RawTextHelpFormatter)
+    _p = argparse.ArgumentParser(description='Populate Ps1Q3c Table', formatter_class=argparse.RawTextHelpFormatter)
     _p.add_argument('--file', default='', help="""Input file [%(default)s]""")
     _p.add_argument('--nelms', default=DEF_NELMS, help="""Number of elements between screen updates [%(default)s]""")
     _p.add_argument(f'--verbose', default=False, action='store_true', help=f'if present, produce more verbose output')
