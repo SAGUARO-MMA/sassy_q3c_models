@@ -134,8 +134,6 @@ def GAIADR3VARIABLE_q3c_read(_file: str = GAIADR3VARIABLE_Q3C_CATALOG_FILE, _ind
                         num_selected_bp=int(_dict['num_selected_bp'], 16) if _dict['num_selected_bp'].strip() != '' else -1,
                         mean_obs_time_bp=float(_dict['mean_obs_time_bp']) if _dict['mean_obs_time_bp'].strip() != '' else math.nan,
                         time_duration_bp=float(_dict['time_duration_bp']) if _dict['time_duration_bp'].strip() != '' else math.nan,
-                        mean_obs_time_bp=float(_dict['mean_obs_time_bp']) if _dict['mean_obs_time_bp'].strip() != '' else math.nan,
-                        time_duration_bp=float(_dict['time_duration_bp']) if _dict['time_duration_bp'].strip() != '' else math.nan,
                         min_mag_bp=float(_dict['min_mag_bp']) if _dict['min_mag_bp'].strip() != '' else math.nan,
                         max_mag_bp=float(_dict['max_mag_bp']) if _dict['max_mag_bp'].strip() != '' else math.nan,
                         mean_mag_bp=float(_dict['mean_mag_bp']) if _dict['mean_mag_bp'].strip() != '' else math.nan,
