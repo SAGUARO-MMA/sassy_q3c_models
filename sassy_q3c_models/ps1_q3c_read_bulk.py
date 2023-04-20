@@ -61,6 +61,7 @@ def ps1_q3c_read_bulk(_file: str = '', _nelms: int = DEF_NELMS, _verbose: bool =
                 continue
             _x = _l.strip().split(",")
             if len(_x) != DEF_COLUMNS:
+                print(f"ERROR: invalid record at line {_i}, '{_l}'")
                 continue
 
             # parse line
@@ -86,7 +87,7 @@ def ps1_q3c_read_bulk(_file: str = '', _nelms: int = DEF_NELMS, _verbose: bool =
                 _cellid_photoz=int(_x[18])
                 _ps_score=math.nan
 
-                if _verbose:
+                if _verbose and (_i % _nelms == 0):
                     print(f"line {_i} contains objid={_objid}, psps_objid={_psps_objid}, ra={_ra}, dec={_dec}, l={_l}, b={_b}, obj_class={_obj_class}, prob_galaxy={_prob_galaxy}, prob_star={_prob_star}, prob_qso={_prob_qso}, extra_class={_extra_class}, celld_class={_celld_class}, cellid_class={_cellid_class}, z_phot={_z_phot}, z_err={_z_err}, z_zero={_z_zero}, extra_photoz={_extra_photoz}, celld_photoz={_celld_photoz}, cellid_photoz={_cellid_photoz}, ps_score={_ps_score}")
             except Exception as _e2:
                 print(f"ERROR: failed to parse line {_i}, '{_l}', error='{_e2}'")
@@ -100,7 +101,8 @@ def ps1_q3c_read_bulk(_file: str = '', _nelms: int = DEF_NELMS, _verbose: bool =
                 print(f"ERROR: failed to create Ps1Q3cRecord(), error='{_e3}'")
                 continue
             else:
-                print(f"created Ps1Q3cRecord(), _pr={_pr.serialized()}")
+                if _verbose and (_i % _nelms == 0):
+                    print(f"created Ps1Q3cRecord(), _pr={_pr.serialized()}")
 
             # insert into database
             try:
@@ -112,9 +114,10 @@ def ps1_q3c_read_bulk(_file: str = '', _nelms: int = DEF_NELMS, _verbose: bool =
                         session.commit()
             except Exception as _e4:
                 session.rollback()
-                print(f"Failed to insert Ps1Q3cRecord() into database, _i={_i}, error='{_e4}'")
+                print(f"Failed to insert Ps1Q3cRecord() into database, _pr={_pr.serialized()}, _i={_i}, error='{_e4}'")
 
     # close
+    session.commit()
     if hasattr(session, 'close'):
         session.close()
 
