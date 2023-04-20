@@ -67,7 +67,7 @@ class Ps1Q3cRecord(db.Model):
     extra_photoz = db.Column(db.Integer)
     celld_photoz = db.Column(db.Float)
     cellid_photoz = db.Column(db.Integer)
-    ps_score = db.Column(db.Float)
+    ps_score = db.Column(db.Float, index=True)
 
     # +
     # method: serialized()
