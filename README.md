@@ -71,6 +71,7 @@ you will need an account and a bot key.
  >>> import sassy_q3c_models.hecate_q3c_orm_cli
  >>> import sassy_q3c_models.milliquas_q3c_orm_cli
  >>> import sassy_q3c_models.non_detections_q3c_orm_cli
+ >>> import sassy_q3c_models.ps1_q3c_orm_cli
  >>> import sassy_q3c_models.sassy_cron_orm_cli
  >>> import sassy_q3c_models.tns_q3c_orm_cli
  >>> import sassy_q3c_models.ztf_q3c_orm_cli
@@ -87,6 +88,7 @@ you will need an account and a bot key.
  >>> from sassy_q3c_models.hecate_q3c_orm_cli
  >>> from sassy_q3c_models.milliquas_q3c_orm_cli
  >>> from sassy_q3c_models.non_detections_q3c_orm_cli
+ >>> from sassy_q3c_models.ps1_q3c_orm_cli
  >>> from sassy_q3c_models.sassy_cron_orm_cli
  >>> from sassy_q3c_models.sdss12phot_q3c_orm_cli
  >>> from sassy_q3c_models.sdss12photoz_q3c_orm_cli
@@ -118,11 +120,17 @@ Add the following to your requirement.txt:
  >>> import gwgc_q3c_orm
  >>> print(gwgc_q3c_orm.__doc__)
 
+ >>> import gaiadr3variable_q3c_orm
+ >>> print(gaiadr3variable_q3c_orm.__doc__)
+
  >>> import hecate_q3c_orm
  >>> print(hecate_q3c_orm.__doc__)
 
  >>> import milliquas_q3c_orm
  >>> print(milliquas_q3c_orm.__doc__)
+
+ >>> import ps1_q3c_orm
+ >>> print(ps1_q3c_orm.__doc__)
 
  >>> import non_detections_orm
  >>> print(non_detections_orm.__doc__)
@@ -154,11 +162,15 @@ Add the following to your requirement.txt:
 
  % python3 gwgc_q3c_orm.py --help
 
+ % python3 gaiadr3variable_q3c_orm.py --help
+
  % python3 hecate_q3c_orm.py --help
 
  % python3 milliquas_q3c_orm.py --help
 
  % python3 non_detections_orm.py --help
+
+ % python3 ps1_q3c_orm.py --help
 
  % python3 sassy_cron_orm.py --help
 
@@ -173,6 +185,6 @@ Add the following to your requirement.txt:
 
 --------------------------------------
 
-Last Modified: 20220520
+Last Modified: 20230424
 
 Last Author: Phil Daly (pndaly@arizona.edu)

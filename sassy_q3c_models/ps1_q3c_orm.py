@@ -11,6 +11,36 @@ from sassy_q3c_models import *
 # __doc__ string
 # -
 __doc__ = """
+                                                           Table "public.ps1_q3c"
+    Column     |         Type         | Collation | Nullable |               Default                | Storage  | Stats target | Description 
+---------------+----------------------+-----------+----------+--------------------------------------+----------+--------------+-------------
+ pid           | bigint               |           | not null | nextval('ps1_q3c_pid_seq'::regclass) | plain    |              | 
+ objid         | bigint               |           |          |                                      | plain    |              | 
+ psps_objid    | bigint               |           |          |                                      | plain    |              | 
+ ra            | double precision     |           | not null |                                      | plain    |              | 
+ dec           | double precision     |           | not null |                                      | plain    |              | 
+ l             | double precision     |           |          |                                      | plain    |              | 
+ b             | double precision     |           |          |                                      | plain    |              | 
+ obj_class     | character varying(8) |           |          |                                      | extended |              | 
+ prob_galaxy   | double precision     |           |          |                                      | plain    |              | 
+ prob_star     | double precision     |           |          |                                      | plain    |              | 
+ prob_qso      | double precision     |           |          |                                      | plain    |              | 
+ extra_class   | double precision     |           |          |                                      | plain    |              | 
+ celld_class   | double precision     |           |          |                                      | plain    |              | 
+ cellid_class  | integer              |           |          |                                      | plain    |              | 
+ z_phot        | double precision     |           |          |                                      | plain    |              | 
+ z_err         | double precision     |           |          |                                      | plain    |              | 
+ z_zero        | double precision     |           |          |                                      | plain    |              | 
+ extra_photoz  | integer              |           |          |                                      | plain    |              | 
+ celld_photoz  | double precision     |           |          |                                      | plain    |              | 
+ cellid_photoz | integer              |           |          |                                      | plain    |              | 
+ ps_score      | double precision     |           |          |                                      | plain    |              | 
+Indexes:
+    "ps1_q3c_pkey" PRIMARY KEY, btree (pid)
+    "idx_ps1_q3c_objid" btree (objid)
+    "idx_ps1_q3c_ps_score" btree (ps_score)
+    "ps1_q3c_q3c_ang2ipix_idx" btree (q3c_ang2ipix(ra, "dec")) CLUSTER
+Access method: heap
 """
 
 
