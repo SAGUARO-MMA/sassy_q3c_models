@@ -12,6 +12,13 @@ Pythonic object request models (ORMs) for the SASSyII database tables (mainly) u
  % python3 setup.py install
 ```
 
+or
+
+```bash
+ % pip install git+https://github.com/SAGUARO-MMA/sassy_q3c_models.git
+```
+
+
 ## Requirement(s)
 
  - Python3 (v3.6 or later)
