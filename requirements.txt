@@ -4,7 +4,7 @@ SQLAlchemy
 psycopg2-binary
 requests
 urllib3
-fastavro
+fastavro==1.6.1
 setuptools
 numpy
 matplotlib
