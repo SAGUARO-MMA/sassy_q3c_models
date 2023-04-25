@@ -16,6 +16,7 @@ __doc__ = """ python3 ztf_q3c_read.py --help """
 # +
 # constant(s)
 # -
+DEF_DIR = f"{DB_AVRO}/{get_utc(-1).split('T')[0].replace('-', '/')}"
 MAX_SIZE = 2**31 - 1
 ZTF_DIVISOR = 10000
 
@@ -281,6 +282,7 @@ def ztf_q3c_read(_dir: str = '', _verbose: bool = False):
             _ztc_q3c_rec = ZtfQ3cRecord(**_data)
             if (_ic % ZTF_DIVISOR == 0) and _verbose:
                 print(f'inserting {_ztc_q3c_rec} into database at position {_ic}')
+                print(f'{_ztc_q3c_rec.serialized()}')
             session.add(_ztc_q3c_rec)
             session.commit()
         except Exception as _x:
@@ -289,6 +291,7 @@ def ztf_q3c_read(_dir: str = '', _verbose: bool = False):
             print(f'failed inserting {_ztc_q3c_rec} into database, error={_x}')
             continue
 
+
 # +
 # main()
 # -
@@ -296,7 +299,7 @@ if __name__ == '__main__':
 
     # noinspection PyTypeChecker
     _pa = argparse.ArgumentParser(description='Read ZTF Data', formatter_class=argparse.RawTextHelpFormatter)
-    _pa.add_argument(f'--dir', default=f'{os.getcwd()}', help="""Directory [%(default)s]""")
+    _pa.add_argument(f'--dir', default=DEF_DIR, help="""Directory [%(default)s]""")
     _pa.add_argument(f'--verbose', default=False, action='store_true', help=f'if present, produce more verbose output')
     _a = _pa.parse_args()
 
