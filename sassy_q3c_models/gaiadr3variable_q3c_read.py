@@ -10,7 +10,7 @@ from sassy_q3c_models.gaiadr3variable_q3c_orm import *
 # +
 # __doc__ string
 # -
-__doc__ = """python3 gaiadr3vairable_q3c_read.py --help"""
+__doc__ = """ python3 gaiadr3vairable_q3c_read.py --help """
 
 
 # +
@@ -24,18 +24,13 @@ GAIADR3VARIABLE_Q3C_CATALOG_FILE = os.path.abspath(os.path.expanduser('/science/
 # function: get_max_idx()
 # -
 def get_max_idx(_table: str = 'GAIADR3VARIABLE_q3c', _index: str = 'gid') -> int:
-    """ returns max row number in database table for key or 0 """
+    """ returns max row number in database table for key or -1 """
     try:
         with create_engine(f'postgresql+psycopg2://{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_PORT}/{DB_NAME}').connect() as _c:
             _ret = [_ for _ in _c.execute(f"SELECT MAX({_index}) FROM {_table};")]
-            print(f"_ret={_ret}")
-            # _ret=[(None,)]
-            if _ret[0][0] is None:
-                return 0
-            else:
-                return _ret[0][0]
-    except:
-        return 0
+            return tuple(_ret[0])[0] if (_ret and len(_ret) == 1) else -1
+    except Exception:
+        return -1
 
 
 # +
@@ -79,10 +74,9 @@ def GAIADR3VARIABLE_q3c_read(_file: str = GAIADR3VARIABLE_Q3C_CATALOG_FILE, _ind
             # get header
             if '#source_id' in _line.strip():
                 _header = _line.strip()[1:].split('\t')
-                for ivariable in _header: 
+                for ivariable in _header:
                     if ivariable not in GAIADR3VARIABLE_HEADERS:
-                        print(f"<ERROR> unexpected {ivariable} not in {GAIADR3VARIABLE_HEADERS}")
-                        print(f"<ERROR> unexpected {len(_header)} != {len(GAIADR3VARIABLE_HEADERS)}")
+                        print(f"<ERROR> unexpected {_header} != {GAIADR3VARIABLE_HEADERS}")
                         return
 
             # get elements
@@ -187,6 +181,7 @@ def GAIADR3VARIABLE_q3c_read(_file: str = GAIADR3VARIABLE_Q3C_CATALOG_FILE, _ind
                         in_vari_microlensing=bool(_dict['in_vari_microlensing']) if _dict['in_vari_microlensing'].strip() != '' else False,
                         in_vari_compact_companion=bool(_dict['in_vari_compact_companion']) if _dict['in_vari_compact_companion'].strip() != '' else False)
                 except Exception as _e1:
+                    import pdb; pdb.set_trace()
                     print(f"<ERROR> failed to create record _rec={_rec}, error='{_e1}'")
                     continue
                 else:
@@ -225,12 +220,14 @@ if __name__ == '__main__':
     # noinspection PyTypeChecker
     _p = argparse.ArgumentParser(description='Read Gaia Variable Star File', formatter_class=argparse.RawTextHelpFormatter)
     _p.add_argument(f'--file', default=GAIADR3VARIABLE_Q3C_CATALOG_FILE, help="""Input file [%(default)s]""")
-    _p.add_argument(f'--index', default=get_max_idx(), help="""Index [%(default)s]""")
+    _p.add_argument(f'--index', default=f"{get_max_idx()}", help="""Index [%(default)s]""")
     _p.add_argument(f'--verbose', default=False, action='store_true', help=f'if present, produce more verbose output')
     _a = _p.parse_args()
 
     # execute
-    #try:
-    GAIADR3VARIABLE_q3c_read(_file=_a.file.strip(), _index=_a.index, _verbose=bool(_a.verbose))
-    #except Exception as _:
-    #    print(f"{_}\n{__doc__}")
+    try:
+        GAIADR3VARIABLE_q3c_read(_file=_a.file.strip(), _index=int(_a.index)+1, _verbose=bool(_a.verbose))
+    except Exception as _:
+        if bool(_a.verbose):
+            print(f"{_}")
+        print(f"Use: {__doc__}")
