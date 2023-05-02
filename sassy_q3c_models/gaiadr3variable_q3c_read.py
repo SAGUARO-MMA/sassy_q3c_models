@@ -96,7 +96,7 @@ def GAIADR3VARIABLE_q3c_read(_file: str = GAIADR3VARIABLE_Q3C_CATALOG_FILE, _ind
 
                 # create orm object
                 try:
-                    _rec = GAIADR3VARIABLEQ3cRecord(
+                    _rec = GaiaDR3VariableQ3cRecord(
                         gid=_gid,
                         ra=float(_dict['ra']) if _dict['ra'].strip() != '' else math.nan,
                         ra_error=float(_dict['ra_error']) if _dict['ra_error'].strip() != '' else math.nan,
