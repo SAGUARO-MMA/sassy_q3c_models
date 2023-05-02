@@ -23,7 +23,7 @@ GAIADR3VARIABLE_Q3C_CATALOG_FILE = os.path.abspath(os.path.expanduser('/science/
 # +
 # function: get_max_idx()
 # -
-def get_max_idx(_table: str = 'GAIADR3VARIABLE_q3c', _index: str = 'sid') -> int:
+def get_max_idx(_table: str = 'GAIADR3VARIABLE_q3c', _index: str = 'gid') -> int:
     """ returns max row number in database table for key or -1 """
     try:
         with create_engine(f'postgresql+psycopg2://{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_PORT}/{DB_NAME}').connect() as _c:
@@ -63,7 +63,7 @@ def GAIADR3VARIABLE_q3c_read(_file: str = GAIADR3VARIABLE_Q3C_CATALOG_FILE, _ind
             print(f"<INFO> connected to database postgresql+psycopg2://{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_PORT}/{DB_NAME} OK, _index={_index}")
 
     # read the file
-    _sid = _index
+    _gid = _index
     _header = []
     with open(_file, 'r') as _fd:
         for _line in _fd:
@@ -97,7 +97,7 @@ def GAIADR3VARIABLE_q3c_read(_file: str = GAIADR3VARIABLE_Q3C_CATALOG_FILE, _ind
                 # create orm object
                 try:
                     _rec = GAIADR3VARIABLEQ3cRecord(
-                        sid=_sid,
+                        gid=_gid,
                         ra=float(_dict['ra']) if _dict['ra'].strip() != '' else math.nan,
                         ra_error=float(_dict['ra_error']) if _dict['ra_error'].strip() != '' else math.nan,
                         dec=float(_dict['dec']) if _dict['dec'].strip() != '' else math.nan,
@@ -183,25 +183,25 @@ def GAIADR3VARIABLE_q3c_read(_file: str = GAIADR3VARIABLE_Q3C_CATALOG_FILE, _ind
                     print(f"<ERROR> failed to create record _rec={_rec}, error='{_e1}'")
                     continue
                 else:
-                    if (_sid % GAIADR3VARIABLE_Q3C_DIVISOR == 0) and _verbose:
-                        print(f"<INFO> _sid={_sid}, created record _rec={_rec.serialized()}")
+                    if (_gid % GAIADR3VARIABLE_Q3C_DIVISOR == 0) and _verbose:
+                        print(f"<INFO> _gid={_gid}, created record _rec={_rec.serialized()}")
 
                 # add record to database
                 try:
                     session.add(_rec)
-                    if (_sid % GAIADR3VARIABLE_Q3C_DIVISOR == 0) and _verbose:
+                    if (_gid % GAIADR3VARIABLE_Q3C_DIVISOR == 0) and _verbose:
                         session.commit()
-                        print(f"_sid={_sid}, commiting record(s) OK")
+                        print(f"_gid={_gid}, commiting record(s) OK")
                 except Exception as _e2:
                     session.rollback()
-                    print(f"<ERROR> _sid={_sid}, failed to insert record {_rec.serialized()} into database, error='{_e2}'")
+                    print(f"<ERROR> _gid={_gid}, failed to insert record {_rec.serialized()} into database, error='{_e2}'")
                     continue
                 else:      
-                    if (_sid % GAIADR3VARIABLE_Q3C_DIVISOR == 0) and _verbose:
-                        print(f"_sid={_sid}, inserted record {_rec.serialized()} into database OK")
+                    if (_gid % GAIADR3VARIABLE_Q3C_DIVISOR == 0) and _verbose:
+                        print(f"_gid={_gid}, inserted record {_rec.serialized()} into database OK")
 
                 # incement counter
-                _sid += 1
+                _gid += 1
 
     # disconnect database
     if _verbose:

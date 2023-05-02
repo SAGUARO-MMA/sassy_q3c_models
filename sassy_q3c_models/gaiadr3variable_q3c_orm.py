@@ -97,7 +97,7 @@ __doc__ = """
  in_vari_microlensing           | boolean               |           |          | 
  in_vari_compact_companion      | boolean               |           |          | 
 Indexes:
-    "gaiadr3variable_q3c_pkey" PRIMARY KEY, btree (sid)
+    "gaiadr3variable_q3c_pkey" PRIMARY KEY, btree (gid)
     "idx_gaiadr3variable_q3c_ra" btree (ra)
     "idx_gaiadr3variable_q3c_dec" btree (dec)
     "idx_gaiadr3variable_q3c_ra_error" btree (ra_error)
@@ -116,7 +116,7 @@ Indexes:
 # constant(s)
 # -
 GAIADR3VARIABLE_SORT_ORDER = ['asc', 'desc', 'ascending', 'descending']
-GAIADR3VARIABLE_SORT_VALUE = ['sid', 'ra', 'dec', 'ra_error', 'dec_error', 'pmra', 'pmdec', 'mean_g_mag_fov', 'median_g_mag_fov', 'best_class_name', 'best_class_score']
+GAIADR3VARIABLE_SORT_VALUE = ['gid', 'ra', 'dec', 'ra_error', 'dec_error', 'pmra', 'pmdec', 'mean_g_mag_fov', 'median_g_mag_fov', 'best_class_name', 'best_class_score']
 GAIADR3VARIABLE_HTUPLES = (
     # 0: 
     ("ra", "ra"),
@@ -206,7 +206,8 @@ GAIADR3VARIABLE_HTUPLES = (
     # 70: 
     ("in_vari_agn", "in_vari_agn"),
     ("in_vari_microlensing", "in_vari_microlensing"),
-    ("in_vari_compact_companion", "in_vari_compact_companion")
+    ("in_vari_compact_companion", "in_vari_compact_companion"),
+    ("source_id_2", "source_id_2")
 )
 GAIADR3VARIABLE_HEADERS = [_v[0] for _v in GAIADR3VARIABLE_HTUPLES]
 GAIADR3VARIABLE_KEYS = [_v[1] for _v in GAIADR3VARIABLE_HTUPLES]
@@ -229,7 +230,7 @@ class GaiaDR3VariableQ3cRecord(db.Model):
     # define table
     # -
     __tablename__ = 'gaiadr3variable_q3c'
-    sid = db.Column(db.Integer, primary_key=True)
+    gid = db.Column(db.Integer, primary_key=True)
 
     # 0:
     ra = db.Column(db.Float, nullable=False, index=True)
@@ -334,7 +335,7 @@ class GaiaDR3VariableQ3cRecord(db.Model):
     # -
     def serialized(self):
         return {
-            'sid': self.sid,
+            'gid': self.gid,
 
             # 0:  
             'ra': self.ra,
@@ -438,7 +439,7 @@ class GaiaDR3VariableQ3cRecord(db.Model):
     # (overload) method: __str__()
     # -
     def __str__(self):
-        return self.sid
+        return self.gid
 
     # +
     # (static) method: serialize_list()
