@@ -23,7 +23,7 @@ with open('requirements.txt') as requirements_file:
 # -
 setuptools.setup(
     name="sassy_q3c_models",
-    version="1.0.0",
+    version="1.1.0",
     author="Phil Daly",
     author_email="pndaly@arizona.edu",
     description="Pythonic object request models (ORMs) for the SASSyII database tables (mainly) using Q3C indexing ",
