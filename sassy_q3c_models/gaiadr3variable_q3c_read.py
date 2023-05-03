@@ -168,20 +168,19 @@ def GAIADR3VARIABLE_q3c_read(_file: str = GAIADR3VARIABLE_Q3C_CATALOG_FILE, _ind
                         stetson_mag_rp=float(_dict['stetson_mag_rp']) if _dict['stetson_mag_rp'].strip() != '' else math.nan,
                         std_dev_over_rms_err_mag_rp=float(_dict['std_dev_over_rms_err_mag_rp']) if _dict['std_dev_over_rms_err_mag_rp'].strip() != '' else math.nan,
                         outlier_median_rp=float(_dict['outlier_median_rp']) if _dict['outlier_median_rp'].strip() != '' else math.nan,
-                        in_vari_classification_result=bool(_dict['in_vari_classification_result']) if _dict['in_vari_classification_result'].strip() != '' else False,
-                        in_vari_rrlyrae=bool(_dict['in_vari_rrlyrae']) if _dict['in_vari_rrlyrae'].strip() != '' else False,
-                        in_vari_cepheid=bool(_dict['in_vari_cepheid']) if _dict['in_vari_cepheid'].strip() != '' else False,
-                        in_vari_planetary_transit=bool(_dict['in_vari_planetary_transit']) if _dict['in_vari_planetary_transit'].strip() != '' else False,
-                        in_vari_short_timescale=bool(_dict['in_vari_short_timescale']) if _dict['in_vari_short_timescale'].strip() != '' else False,
-                        in_vari_long_period_variable=bool(_dict['in_vari_long_period_variable']) if _dict['in_vari_long_period_variable'].strip() != '' else False,
-                        in_vari_eclipsing_binary=bool(_dict['in_vari_eclipsing_binary']) if _dict['in_vari_eclipsing_binary'].strip() != '' else False,
-                        in_vari_rotation_modulation=bool(_dict['in_vari_rotation_modulation']) if _dict['in_vari_rotation_modulation'].strip() != '' else False,
-                        in_vari_ms_oscillator=bool(_dict['in_vari_ms_oscillator']) if _dict['in_vari_ms_oscillator'].strip() != '' else False,
-                        in_vari_agn=bool(_dict['in_vari_agn']) if _dict['in_vari_agn'].strip() != '' else False,
-                        in_vari_microlensing=bool(_dict['in_vari_microlensing']) if _dict['in_vari_microlensing'].strip() != '' else False,
-                        in_vari_compact_companion=bool(_dict['in_vari_compact_companion']) if _dict['in_vari_compact_companion'].strip() != '' else False)
+                        in_vari_classification_result=True if _dict['in_vari_classification_result'].strip() == 'True' else False,
+                        in_vari_rrlyrae=True if _dict['in_vari_rrlyrae'].strip() == 'True' else False,
+                        in_vari_cepheid=True if _dict['in_vari_cepheid'].strip() == 'True' else False,
+                        in_vari_planetary_transit=True if _dict['in_vari_planetary_transit'].strip() == 'True' else False,
+                        in_vari_short_timescale=True if _dict['in_vari_short_timescale'].strip() == 'True' else False,
+                        in_vari_long_period_variable=True if _dict['in_vari_long_period_variable'].strip() == 'True' else False,
+                        in_vari_eclipsing_binary=True if _dict['in_vari_eclipsing_binary'].strip() == 'True' else False,
+                        in_vari_rotation_modulation=True if _dict['in_vari_rotation_modulation'].strip() == 'True' else False,
+                        in_vari_ms_oscillator=True if _dict['in_vari_ms_oscillator'].strip() == 'True' else False,
+                        in_vari_agn=True if _dict['in_vari_agn'].strip() == 'True' else False,
+                        in_vari_microlensing=True if _dict['in_vari_microlensing'].strip() == 'True' else False,
+                        in_vari_compact_companion=True if _dict['in_vari_compact_companion'].strip() == 'True' else False)
                 except Exception as _e1:
-                    import pdb; pdb.set_trace()
                     print(f"<ERROR> failed to create record _rec={_rec}, error='{_e1}'")
                     continue
                 else:
