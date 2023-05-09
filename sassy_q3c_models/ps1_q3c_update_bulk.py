@@ -4,9 +4,6 @@
 # +
 # import(s)
 # -
-# +
-# import(s)
-# -
 from sassy_q3c_models.ps1_q3c_orm import *
 from sassy_q3c_models.ps1_q3c_orm_filters import *
 
@@ -59,46 +56,29 @@ def ps1_q3c_update_bulk(_file: str = '', _nelms: int = DEF_NELMS, _verbose: bool
 
     # process file
     with fits.open(_file) as _f:
-        if _verbose:
-            print(_f.info())
-            print(_f[0].header.cards)
         objid = _f[1].data['objid']
         ps_score = _f[1].data['ps_score']
-        if _verbose:
-            print(f"objid={objid}, type={type(objid)}, length={len(objid)}")
-            print(f"ps_score={ps_score}, type={type(ps_score)}, length={len(ps_score)}")
+
+        # report mismatch
+        if len(objid) != len(ps_score):
+            print(f"<ERROR> data mismatch in '{_file}': objid and ps_score arrays have different sizes!")
+            close(_f)
 
         # update record(s)
-        for _i, _e in enumerate(objid):
-            if _i > 5:
-                break
-            try:
-                query = session.query(Ps1Q3cRecord)
-                query = ps1_q3c_orm_filters(query, {'objid': int(_e)})
-                for _r in Ps1Q3cRecord.serialize_list(query.all()):
-                    # if _verbose and (_i % _nelms) == 0:
-                    print(f"objid {_e}, ps_score={ps_score[_i]}, _r={_r}")
-                    if 'ps_score' in _r and f"{_r['ps_score']}"=="nan":
-                        _r['ps_score'] = ps_score[_i]
-                        # if _verbose and (_i % _nelms) == 0:
-                        print(f"updating objid {_e}, ps_score={ps_score[_i]}, _r={_r}")
-                        # session.update(_pr)
-                        # if _verbose and (_i % _nelms == 0):
-                        #     print(f"commiting Ps1Q3cRecord() into database, _i={_i}")
-                        #     session.commit()
-            except Exception as _e2:
-                # session.rollback()
-                print(f"<ERROR> failed to lookup database, error='{_e2}'")
-                continue
-
-
-        # update database
-        #try:
-        #except Exception as _e4:
-        #    print(f"Failed to insert Ps1Q3cRecord() into database, _pr={_pr.serialized()}, _i={_i}, error='{_e4}'")
+        else:
+            for _i, _e in enumerate(objid):
+                try:
+                    session.query(Ps1Q3cRecord).filter(Ps1Q3cRecord.objid==int(_e)).update({'ps_score': float(ps_score[_i])}, synchronize_session='evaluate')
+                    if _verbose and (_i % _nelms) == 0:
+                       print(f"record update for objid={_e} with ps_score={ps_score[_i]}")
+                       session.commit()
+                except Exception as _e2:
+                    session.rollback()
+                    print(f"<ERROR> failed to update database, _i={_i}, _e={_e}, error='{_e2}'")
+                    continue
 
     # close
-    #session.commit()
+    session.commit()
     if hasattr(session, 'close'):
         session.close()
 
@@ -116,7 +96,7 @@ if __name__ == '__main__':
     _a = _p.parse_args()
 
     # execute
-    #try:
-    ps1_q3c_update_bulk(_file=_a.file.strip(), _nelms=int(_a.nelms), _verbose=bool(_a.verbose))
-    #except Exception as _:
-    #    print(f"{_}\n{__doc__}")
+    try:
+        ps1_q3c_update_bulk(_file=_a.file.strip(), _nelms=int(_a.nelms), _verbose=bool(_a.verbose))
+    except Exception as _:
+        print(f"{_}\n{__doc__}")
