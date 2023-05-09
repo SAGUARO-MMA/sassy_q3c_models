@@ -119,6 +119,7 @@ GAIADR3VARIABLE_SORT_ORDER = ['asc', 'desc', 'ascending', 'descending']
 GAIADR3VARIABLE_SORT_VALUE = ['gid', 'ra', 'dec', 'ra_error', 'dec_error', 'pmra', 'pmdec', 'mean_g_mag_fov', 'median_g_mag_fov', 'best_class_name', 'best_class_score']
 GAIADR3VARIABLE_HTUPLES = (
     # 0: 
+    ("source_id", "source_id"),
     ("ra", "ra"),
     ("ra_error", "ra_error"),
     ("dec", "dec"),
@@ -130,7 +131,7 @@ GAIADR3VARIABLE_HTUPLES = (
     ("parallax", "parallax"),
     ("parallax_error", "parallax_error"),
     ("solution_id", "solution_id"),
-    ("source_id", "source_id"),
+    ("source_id_2", "source_id_2"),
     ("classification", "classification"),
     ("best_class_name", "best_class_name"),
     ("best_class_score", "best_class_score"),
