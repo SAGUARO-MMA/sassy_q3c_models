@@ -72,14 +72,15 @@ you will need an account and a bot key.
 ```bash 
  % python3
  >>> import sassy_q3c_models.assasn_q3c_orm_cli
+ >>> import sassy_q3c_models.gaiadr3variable_q3c_orm_cli
  >>> import sassy_q3c_models.glade_plus_q3c_orm_cli
- >>> import sassy_q3c_models.glade_q3c_orm_cli
  >>> import sassy_q3c_models.gwgc_q3c_orm_cli
  >>> import sassy_q3c_models.hecate_q3c_orm_cli
  >>> import sassy_q3c_models.milliquas_q3c_orm_cli
  >>> import sassy_q3c_models.non_detections_q3c_orm_cli
  >>> import sassy_q3c_models.ps1_q3c_orm_cli
  >>> import sassy_q3c_models.sassy_cron_orm_cli
+ >>> import sassy_q3c_models.sdss12photoz_q3c_orm_cli
  >>> import sassy_q3c_models.tns_q3c_orm_cli
  >>> import sassy_q3c_models.ztf_q3c_orm_cli
 ```
@@ -89,15 +90,14 @@ you will need an account and a bot key.
 ```bash 
  % python3
  >>> from sassy_q3c_models.assasn_q3c_orm_cli
+ >>> from sassy_q3c_models.gaiadr3variable_q3c_orm_cli
  >>> from sassy_q3c_models.glade_plus_q3c_orm_cli
- >>> from sassy_q3c_models.glade_q3c_orm_cli
  >>> from sassy_q3c_models.gwgc_q3c_orm_cli
  >>> from sassy_q3c_models.hecate_q3c_orm_cli
  >>> from sassy_q3c_models.milliquas_q3c_orm_cli
  >>> from sassy_q3c_models.non_detections_q3c_orm_cli
  >>> from sassy_q3c_models.ps1_q3c_orm_cli
  >>> from sassy_q3c_models.sassy_cron_orm_cli
- >>> from sassy_q3c_models.sdss12phot_q3c_orm_cli
  >>> from sassy_q3c_models.sdss12photoz_q3c_orm_cli
  >>> from sassy_q3c_models.tns_q3c_orm_cli
  >>> from sassy_q3c_models.ztf_q3c_orm_cli
@@ -121,14 +121,11 @@ Add the following to your requirement.txt:
  >>> import glade_plus_q3c_orm
  >>> print(glade_plus_q3c_orm.__doc__)
 
- >>> import glade_q3c_orm
- >>> print(glade_q3c_orm.__doc__)
+ >>> import gaiadr3variable_q3c_orm
+ >>> print(gaiadr3variable_q3c_orm.__doc__)
 
  >>> import gwgc_q3c_orm
  >>> print(gwgc_q3c_orm.__doc__)
-
- >>> import gaiadr3variable_q3c_orm
- >>> print(gaiadr3variable_q3c_orm.__doc__)
 
  >>> import hecate_q3c_orm
  >>> print(hecate_q3c_orm.__doc__)
@@ -145,9 +142,6 @@ Add the following to your requirement.txt:
  >>> import sassy_cron_orm
  >>> print(sassy_cron_orm.__doc__)
 
- >>> import sdss12phot_q3c_orm
- >>> print(sdss12phot_q3c_orm.__doc__)
-
  >>> import sdss12photoz_q3c_orm
  >>> print(sdss12photoz_q3c_orm.__doc__)
 
@@ -163,13 +157,11 @@ Add the following to your requirement.txt:
 ```bash
  % python3 asassn_q3c_orm.py --help
 
+ % python3 gaiadr3variable_q3c_orm.py --help
+
  % python3 glade_plus_q3c_orm.py --help
 
- % python3 glade_q3c_orm.py --help
-
  % python3 gwgc_q3c_orm.py --help
-
- % python3 gaiadr3variable_q3c_orm.py --help
 
  % python3 hecate_q3c_orm.py --help
 
@@ -181,8 +173,6 @@ Add the following to your requirement.txt:
 
  % python3 sassy_cron_orm.py --help
 
- % python3 sdss12phot_q3c_orm.py --help
-
  % python3 sdss12photoz_q3c_orm.py --help
 
  % python3 tns_q3c_orm.py --help
@@ -192,6 +182,6 @@ Add the following to your requirement.txt:
 
 --------------------------------------
 
-Last Modified: 20230424
+Last Modified: 20230823
 
 Last Author: Phil Daly (pndaly@arizona.edu)
