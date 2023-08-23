@@ -71,7 +71,7 @@ you will need an account and a bot key.
 ### direct import
 ```bash 
  % python3
- >>> import sassy_q3c_models.assasn_q3c_orm_cli
+ >>> import sassy_q3c_models.asassn_q3c_orm_cli
  >>> import sassy_q3c_models.gaiadr3variable_q3c_orm_cli
  >>> import sassy_q3c_models.glade_plus_q3c_orm_cli
  >>> import sassy_q3c_models.gwgc_q3c_orm_cli
@@ -88,7 +88,7 @@ you will need an account and a bot key.
 
 ```bash 
  % python3
- >>> from sassy_q3c_models.assasn_q3c_orm_cli import *
+ >>> from sassy_q3c_models.asassn import *
  >>> from sassy_q3c_models.gaiadr3variable_q3c_orm_cli import *
  >>> from sassy_q3c_models.glade_plus_q3c_orm_cli import *
  >>> from sassy_q3c_models.gwgc_q3c_orm_cli import *
@@ -126,29 +126,20 @@ Add the following to your requirement.txt:
 ```
 
 ## Command Line Interface(s)
-
+ 
 ```bash
- % python3 asassn_q3c_orm.py --help
-
- % python3 gaiadr3variable_q3c_orm.py --help
-
- % python3 glade_plus_q3c_orm.py --help
-
- % python3 gwgc_q3c_orm.py --help
-
- % python3 hecate_q3c_orm.py --help
-
- % python3 milliquas_q3c_orm.py --help
-
- % python3 non_detections_orm.py --help
-
- % python3 ps1_q3c_orm.py --help
-
- % python3 sdss12photoz_q3c_orm.py --help
-
- % python3 tns_q3c_orm.py --help
-
- % python3 ztf_q3c_orm.py --help
+ % cd <your_installation_directory>
+ % python3 asassn_q3c_orm_cli.py --help
+ % python3 gaiadr3variable_q3c_orm_cli.py --help
+ % python3 glade_plus_q3c_orm_cli.py --help
+ % python3 gwgc_q3c_orm_cli.py --help
+ % python3 hecate_q3c_orm_cli.py --help
+ % python3 milliquas_q3c_orm_cli.py --help
+ % python3 non_detections_orm_cli.py --help
+ % python3 ps1_q3c_orm_cli.py --help
+ % python3 sdss12photoz_q3c_orm_cli.py --help
+ % python3 tns_q3c_orm_cli.py --help
+ % python3 ztf_q3c_orm_cli.py --help
 ```
 
 --------------------------------------
