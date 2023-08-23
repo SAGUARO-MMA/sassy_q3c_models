@@ -77,9 +77,8 @@ you will need an account and a bot key.
  >>> import sassy_q3c_models.gwgc_q3c_orm_cli
  >>> import sassy_q3c_models.hecate_q3c_orm_cli
  >>> import sassy_q3c_models.milliquas_q3c_orm_cli
- >>> import sassy_q3c_models.non_detections_q3c_orm_cli
+ >>> import sassy_q3c_models.non_detections_orm_cli
  >>> import sassy_q3c_models.ps1_q3c_orm_cli
- >>> import sassy_q3c_models.sassy_cron_orm_cli
  >>> import sassy_q3c_models.sdss12photoz_q3c_orm_cli
  >>> import sassy_q3c_models.tns_q3c_orm_cli
  >>> import sassy_q3c_models.ztf_q3c_orm_cli
@@ -89,18 +88,17 @@ you will need an account and a bot key.
 
 ```bash 
  % python3
- >>> from sassy_q3c_models.assasn_q3c_orm_cli
- >>> from sassy_q3c_models.gaiadr3variable_q3c_orm_cli
- >>> from sassy_q3c_models.glade_plus_q3c_orm_cli
- >>> from sassy_q3c_models.gwgc_q3c_orm_cli
- >>> from sassy_q3c_models.hecate_q3c_orm_cli
- >>> from sassy_q3c_models.milliquas_q3c_orm_cli
- >>> from sassy_q3c_models.non_detections_q3c_orm_cli
- >>> from sassy_q3c_models.ps1_q3c_orm_cli
- >>> from sassy_q3c_models.sassy_cron_orm_cli
- >>> from sassy_q3c_models.sdss12photoz_q3c_orm_cli
- >>> from sassy_q3c_models.tns_q3c_orm_cli
- >>> from sassy_q3c_models.ztf_q3c_orm_cli
+ >>> from sassy_q3c_models.assasn_q3c_orm_cli import *
+ >>> from sassy_q3c_models.gaiadr3variable_q3c_orm_cli import *
+ >>> from sassy_q3c_models.glade_plus_q3c_orm_cli import *
+ >>> from sassy_q3c_models.gwgc_q3c_orm_cli import *
+ >>> from sassy_q3c_models.hecate_q3c_orm_cli import *
+ >>> from sassy_q3c_models.milliquas_q3c_orm_cli import *
+ >>> from sassy_q3c_models.non_detections_orm_cli import *
+ >>> from sassy_q3c_models.ps1_q3c_orm_cli import *
+ >>> from sassy_q3c_models.sdss12photoz_q3c_orm_cli import *
+ >>> from sassy_q3c_models.tns_q3c_orm_cli import *
+ >>> from sassy_q3c_models.ztf_q3c_orm_cli import *
 ```
 
 ### your project
@@ -114,42 +112,17 @@ Add the following to your requirement.txt:
 ## Database Table(s)
 
 ```bash
- % python3
- >>> import asassn_q3c_orm
- >>> print(asassn_q3c_orm.__doc__)
-
- >>> import glade_plus_q3c_orm
- >>> print(glade_plus_q3c_orm.__doc__)
-
- >>> import gaiadr3variable_q3c_orm
- >>> print(gaiadr3variable_q3c_orm.__doc__)
-
- >>> import gwgc_q3c_orm
- >>> print(gwgc_q3c_orm.__doc__)
-
- >>> import hecate_q3c_orm
- >>> print(hecate_q3c_orm.__doc__)
-
- >>> import milliquas_q3c_orm
- >>> print(milliquas_q3c_orm.__doc__)
-
- >>> import ps1_q3c_orm
- >>> print(ps1_q3c_orm.__doc__)
-
- >>> import non_detections_orm
- >>> print(non_detections_orm.__doc__)
-
- >>> import sassy_cron_orm
- >>> print(sassy_cron_orm.__doc__)
-
- >>> import sdss12photoz_q3c_orm
- >>> print(sdss12photoz_q3c_orm.__doc__)
-
- >>> import tns_q3c_orm
- >>> print(tns_q3c_orm.__doc__)
-
- >>> import ztf_q3c_orm
- >>> print(ztf_q3c_orm.__doc__)
+ python3 -c "import sassy_q3c_models.asassn_q3c_orm;          print(sassy_q3c_models.asassn_q3c_orm.__doc__)"
+ python3 -c "import sassy_q3c_models.glade_plus_q3c_orm;      print(sassy_q3c_models.glade_plus_q3c_orm.__doc__)"
+ python3 -c "import sassy_q3c_models.gwgc_q3c_orm;            print(sassy_q3c_models.gwgc_q3c_orm.__doc__)"
+ python3 -c "import sassy_q3c_models.gaiadr3variable_q3c_orm; print(sassy_q3c_models.gaiadr3variable_q3c_orm.__doc__)"
+ python3 -c "import sassy_q3c_models.hecate_q3c_orm;          print(sassy_q3c_models.hecate_q3c_orm.__doc__)"
+ python3 -c "import sassy_q3c_models.milliquas_q3c_orm;       print(sassy_q3c_models.milliquas_q3c_orm.__doc__)"
+ python3 -c "import sassy_q3c_models.non_detections_orm;      print(sassy_q3c_models.non_detections_orm.__doc__)"
+ python3 -c "import sassy_q3c_models.ps1_q3c_orm;             print(sassy_q3c_models.ps1_q3c_orm.__doc__)"
+ python3 -c "import sassy_q3c_models.sdss12photoz_q3c_orm;    print(sassy_q3c_models.sdss12photoz_q3c_orm.__doc__)"
+ python3 -c "import sassy_q3c_models.tns_q3c_orm;             print(sassy_q3c_models.tns_q3c_orm.__doc__)"
+ python3 -c "import sassy_q3c_models.ztf_q3c_orm;             print(sassy_q3c_models.ztf_q3c_orm.__doc__)"
 ```
 
 ## Command Line Interface(s)
@@ -170,8 +143,6 @@ Add the following to your requirement.txt:
  % python3 non_detections_orm.py --help
 
  % python3 ps1_q3c_orm.py --help
-
- % python3 sassy_cron_orm.py --help
 
  % python3 sdss12photoz_q3c_orm.py --help
 

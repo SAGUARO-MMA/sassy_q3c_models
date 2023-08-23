@@ -182,8 +182,6 @@ def gaiadr3variable_q3c_orm_filters(query: Any = None, request_args: dict = None
     if request_args.get('in_vari_compact_companion'):
         query = query.filter(GaiaDR3VariableQ3cRecord.in_vari_compact_companion == str(request_args['in_vari_compact_companion']))
 
-
-
     # sort results
     sort_value = request_args.get('sort_value', GAIADR3VARIABLE_SORT_VALUE[0]).lower()
     sort_order = request_args.get('sort_order', GAIADR3VARIABLE_SORT_ORDER[0]).lower()
