@@ -26,12 +26,6 @@ __doc__ = """ python3 ps1_q3c_update_bulk.py --help """
 DEF_FILE = '/science/catalogs/ps1_psc/hlsp_ps1-psc_ps1_gpc1_0_multi_v1_cat.fits'
 DEF_NELMS = 50000
 
-DB_HOST = 'localhost'
-DB_NAME = 'sassy'
-DB_PASS = 'SASSy_520'
-DB_PORT = 5432
-DB_USER = 'sassy'
-
 
 # +
 # function: ps1_q3c_update_bulk()

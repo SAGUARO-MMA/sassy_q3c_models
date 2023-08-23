@@ -13,13 +13,6 @@ from sassy_q3c_models.ps1_q3c_orm_filters import *
 __doc__ = """ python3 ps1_q3c_orm_cli.py --help """
 
 
-DB_HOST = 'localhost'
-DB_PORT = 5432
-DB_NAME = 'sassy'
-DB_USER = 'sassy'
-DB_PASS = 'SASSy_520'
-
-
 # +
 # __text__
 # -
@@ -60,6 +53,21 @@ celld_photoz   float       The distance to the nearest SOM cell centre in the ph
 cellid_photoz  int         The identifier of the nearest SOM cell in the photo-z SOM (see Sect. 3.3 of B20).
 ps_score       float       The machine learning score (ps_score) computed by Tachibana & Miller 2018, 
                            where a score of 0 corresponds to extended sources and 1 corresponds to point sources.
+objname        varchar[64] The PanSTARRS_DR2 name.
+ramean         float       The PanSTARRS_DR2 raMean.
+rameanerr      float       The PanSTARRS_DR2 raMeanErr.
+decmean        float       The PanSTARRS_DR2 decMean.
+decmeanerr     float       The PanSTARRS_DR2 decMeanErr.
+gmeanpsfmag    float       The PanSTARRS_DR2 gMeanPSFMag.
+gmeanpsfmagerr float       The PanSTARRS_DR2 gMeanPSFMagErr.
+rmeanpsfmag    float       The PanSTARRS_DR2 rMeanPSFMag.
+rmeanpsfmagerr float       The PanSTARRS_DR2 rMeanPSFMagErr.
+imeanpsfmag    float       The PanSTARRS_DR2 iMeanPSFMag.
+imeanpsfmagerr float       The PanSTARRS_DR2 iMeanPSFMagErr.
+zmeanpsfmag    float       The PanSTARRS_DR2 zMeanPSFMag.
+zmeanpsfmagerr float       The PanSTARRS_DR2 zMeanPSFMagErr.
+ymeanpsfmag    float       The PanSTARRS_DR2 yMeanPSFMag.
+ymeanpsfmagerr float       The PanSTARRS_DR2 yMeanPSFMagErr.
 """
 
 # +
@@ -88,6 +96,8 @@ def ps1_q3c_orm_cli(_args: Any = None):
         request_args['pid'] = f'{_args.pid}'
     if _args.objid:
         request_args['objid'] = f'{_args.objid}'
+    if _args.objname:
+        request_args['objname'] = f'{_args.objname}'
     if _args.psps_objid:
         request_args['psps_objid'] = f'{_args.psps_objid}'
     if _args.ra__gte:
@@ -98,6 +108,26 @@ def ps1_q3c_orm_cli(_args: Any = None):
         request_args['dec__gte'] = f'{_args.dec__gte}'
     if _args.dec__lte:
         request_args['dec__lte'] = f'{_args.dec__lte}'
+    if _args.gmag__gte:
+        request_args['gmag__gte'] = f'{_args.gmag__gte}'
+    if _args.gmag__lte:
+        request_args['gmag__lte'] = f'{_args.gmag__lte}'
+    if _args.rmag__gte:
+        request_args['rmag__gte'] = f'{_args.rmag__gte}'
+    if _args.rmag__lte:
+        request_args['rmag__lte'] = f'{_args.rmag__lte}'
+    if _args.imag__gte:
+        request_args['imag__gte'] = f'{_args.imag__gte}'
+    if _args.imag__lte:
+        request_args['imag__lte'] = f'{_args.imag__lte}'
+    if _args.zmag__gte:
+        request_args['zmag__gte'] = f'{_args.zmag__gte}'
+    if _args.zmag__lte:
+        request_args['zmag__lte'] = f'{_args.zmag__lte}'
+    if _args.ymag__gte:
+        request_args['ymag__gte'] = f'{_args.ymag__gte}'
+    if _args.ymag__lte:
+        request_args['ymag__lte'] = f'{_args.ymag__lte}'
     if _args.ps_score__gte:
         request_args['ps_score__gte'] = f'{_args.ps_score__gte}'
     if _args.ps_score__lte:
@@ -152,11 +182,22 @@ if __name__ == '__main__':
     _p.add_argument(f'--ellipse', help=f'Ellipse search [ra (deg),dec (deg),major_axis,axis_ratio,pos_angle (deg)]')
     _p.add_argument(f'--pid', help=f'pid <int>')
     _p.add_argument(f'--objid', help=f'Object Identifier <bigint>')
+    _p.add_argument(f'--objname', help=f'Object Name <str>')
     _p.add_argument(f'--psps_objid', help=f'PS1 Identifier <bigint>')
     _p.add_argument(f'--ra__gte', help=f'RA >= <float>')
     _p.add_argument(f'--ra__lte', help=f'RA <= <float>')
     _p.add_argument(f'--dec__gte', help=f'Dec >= <float>')
     _p.add_argument(f'--dec__lte', help=f'Dec <= <float>')
+    _p.add_argument(f'--gmag__gte', help=f'gMeanPSFMag >= <float>')
+    _p.add_argument(f'--gmag__lte', help=f'gMeanPSFMag <= <float>')
+    _p.add_argument(f'--rmag__gte', help=f'rMeanPSFMag >= <float>')
+    _p.add_argument(f'--rmag__lte', help=f'rMeanPSFMag <= <float>')
+    _p.add_argument(f'--imag__gte', help=f'iMeanPSFMag >= <float>')
+    _p.add_argument(f'--imag__lte', help=f'iMeanPSFMag <= <float>')
+    _p.add_argument(f'--zmag__gte', help=f'zMeanPSFMag >= <float>')
+    _p.add_argument(f'--zmag__lte', help=f'zMeanPSFMag <= <float>')
+    _p.add_argument(f'--ymag__gte', help=f'yMeanPSFMag >= <float>')
+    _p.add_argument(f'--ymag__lte', help=f'yMeanPSFMag <= <float>')
     _p.add_argument(f'--ps_score__gte', help=f'Machine Learning Score >= <float>')
     _p.add_argument(f'--ps_score__lte', help=f'Machine Learning Score <= <float>')
     _p.add_argument(f'--sort_order', help=f"Sort order, one of {PS1_SORT_ORDER}")

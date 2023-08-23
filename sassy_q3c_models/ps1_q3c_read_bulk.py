@@ -26,12 +26,6 @@ __doc__ = """ python3 ps1_q3c_read_bulk.py --help """
 DEF_NELMS = 50000
 DEF_COLUMNS = 19
 
-DB_HOST = 'localhost'
-DB_NAME = 'sassy'
-DB_PASS = 'SASSy_520'
-DB_PORT = 5432
-DB_USER = 'sassy'
-
 
 # +
 # function: ps1_q3c_read_bulk()
