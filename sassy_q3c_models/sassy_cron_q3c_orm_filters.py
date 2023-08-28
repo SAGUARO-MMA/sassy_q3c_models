@@ -59,6 +59,10 @@ def sassy_cron_q3c_orm_filters(query: Any = None, request_args: dict = None):
     if request_args.get('zoid'):
         query = query.filter(SassyCronQ3cRecord.zoid.ilike(f"%{request_args['zoid']}%"))
 
+    # return records with zfid like value (API: ?zfid=1)
+    if request_args.get('zfid'):
+        query = query.filter(SassyCronQ3cRecord.zfid == int(request_args['zfid']))
+
     # return records with gdist >= value (API: ?gdist__gte=0.0)
     if request_args.get('gdist__gte'):
         query = query.filter(SassyCronQ3cRecord.gdist >= float(request_args['gdist__gte']))

@@ -112,6 +112,8 @@ def sassy_cron_q3c_orm_cli(_args: Any = None):
         request_args['gz__lte'] = f'{_args.gz__lte}'
     if _args.zoid:
         request_args['zoid'] = f'{_args.zoid}'
+    if _args.zfid:
+        request_args['zfid'] = f'{_args.zfid}'
     if _args.zra__gte:
         request_args['zra__gte'] = f'{_args.zra__gte}'
     if _args.zra__lte:
@@ -183,6 +185,7 @@ if __name__ == '__main__':
     _p.add_argument(f'--gz__gte', help=f'Redshift >= <float>')
     _p.add_argument(f'--gz__lte', help=f'Redshift <= <float>')
     _p.add_argument(f'--zoid', help=f'ZTF name like <str>')
+    _p.add_argument(f'--zfid', help=f'ZTF filter number <int>')
     _p.add_argument(f'--zra__gte', help=f'RA (deg) >= <float>')
     _p.add_argument(f'--zra__lte', help=f'RA (deg) <= <float>')
     _p.add_argument(f'--zdec__gte', help=f'Dec (deg) >= <float>')
