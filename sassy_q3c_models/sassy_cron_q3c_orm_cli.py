@@ -61,10 +61,8 @@ __text__ = """
 |internal_names    | character varying(256)      |
 |creationdate      | timestamp without time zone |
 |lastmodified      | timestamp without time zone |
-|aetype            | character varying(64)       |
-|altype            | character varying(64)       |
-|aeprob            | double precision            |
-|alprob            | double precision            |
+|class_name        | character varying(64)       |
+|class_prob        | double precision            |
 |dpng              | character varying(200)      |
 |spng              | character varying(200)      |
 |tpng              | character varying(200)      |
@@ -94,10 +92,8 @@ def sassy_cron_q3c_orm_cli(_args: Any = None):
         request_args['cone'] = f'{_args.cone}'
     if _args.ellipse:
         request_args['ellipse'] = f'{_args.ellipse}'
-    if _args.aetype:
-        request_args['aetype'] = f'{_args.aetype}'
-    if _args.altype:
-        request_args['altype'] = f'{_args.altype}'
+    if _args.class_name:
+        request_args['class_name'] = f'{_args.class_name}'
     if _args.gdist__gte:
         request_args['gdist__gte'] = f'{_args.gdist__gte}'
     if _args.gdist__lte:
@@ -176,8 +172,7 @@ if __name__ == '__main__':
     _p.add_argument(f'--astrocone', help=f'Astrocone search [name,radius (deg)]')
     _p.add_argument(f'--cone', help=f'Cone search [ra (deg),dec (deg),radius (deg)]')
     _p.add_argument(f'--ellipse', help=f'Ellipse search [ra (deg),dec (deg),major_axis,axis_ratio,pos_angle (deg)]')
-    _p.add_argument(f'--aetype', help=f'aetype like <str>')
-    _p.add_argument(f'--altype', help=f'altype like <str>')
+    _p.add_argument(f'--class_name', help=f'class name like <str>')
     _p.add_argument(f'--gdist__gte', help=f'Distance >= <float>')
     _p.add_argument(f'--gdist__lte', help=f'Distance >= <float>')
     _p.add_argument(f'--gsep__gte', help=f'Separation <= <float>')

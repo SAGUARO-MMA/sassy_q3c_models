@@ -47,13 +47,9 @@ def sassy_cron_q3c_orm_filters(query: Any = None, request_args: dict = None):
     if request_args.get('sid'):
         query = query.filter(SassyCronQ3cRecord.sid == int(request_args['sid']))
 
-    # return records with aetype like value (API: ?aetype=demo)
-    if request_args.get('aetype'):
-        query = query.filter(SassyCronQ3cRecord.aetype.ilike(f"%{request_args['aetype']}%"))
-
-    # return records with altype like value (API: ?altype=demo)
-    if request_args.get('altype'):
-        query = query.filter(SassyCronQ3cRecord.altype.ilike(f"%{request_args['altype']}%"))
+    # return records with class_name like value (API: ?class_name='SN')
+    if request_args.get('class_name'):
+        query = query.filter(SassyCronQ3cRecord.class_name.ilike(f"%{request_args['class_name']}%"))
 
     # return records with zoid like value (API: ?zoid=demo)
     if request_args.get('zoid'):

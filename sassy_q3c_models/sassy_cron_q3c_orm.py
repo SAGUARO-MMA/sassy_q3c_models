@@ -55,10 +55,8 @@ __doc__ = """
  internal_names    | character varying(256)      |           |          | 
  creationdate      | timestamp without time zone |           |          | 
  lastmodified      | timestamp without time zone |           |          | 
- aetype            | character varying(64)       |           |          | ''::character varying
- altype            | character varying(64)       |           |          | ''::character varying
- aeprob            | double precision            |           |          | 'NaN'::double precision
- alprob            | double precision            |           |          | 'NaN'::double precision
+ class_name        | character varying(64)       |           |          | ''::character varying
+ class_prob        | double precision            |           |          | 'NaN'::double precision
  dpng              | character varying(200)      |           |          | ''::character varying
  spng              | character varying(200)      |           |          | ''::character varying
  tpng              | character varying(200)      |           |          | ''::character varying
@@ -76,14 +74,13 @@ SASSY_CRON_PAG_URL = ''
 SASSY_CRON_PDF_URL = ''
 SASSY_CRON_SORT_ORDER = ['asc', 'desc', 'ascending', 'descending']
 SASSY_CRON_SORT_VALUE = ['zoid', 'zjd', 'zmagap', 'zmagpsf', 'zmagdiff', 'zra', 'zdec', 'gz', 'gdist', 'gsep',
-                         'aetype', 'altype', 'aeprob', 'alprob', 'sid']
+                         'class_name', 'class_prob', 'sid']
 SASSY_CRON_HEADERS = ('zoid', 'zjd', 'zmagap', 'zmagpsf', 'zmagdiff', 'zfid', 'zdrb', 'zrb', 'zsid', 'zcandid',
                       'zssnamenr', 'zra', 'zdec', 'gid', 'gra', 'gdec', 'gz', 'gdist', 'gsep', 'tid', 'objid',
                       'name_prefix', 'name', 'ra', 'declination', 'redshift', 'typeid', 'objtype',
                       'reporting_groupid', 'reporting_group', 'source_groupid', 'source_group', 'discoverydate',
                       'discoverymag', 'discmagfilter', 'filtername', 'reporters', 'time_received', 'internal_names',
-                      'creationdate', 'lastmodified', 'aetype', 'altype', 'aeprob', 'alprob', 'dpng', 'spng',
-                      'tpng', 'sid')
+                      'creationdate', 'lastmodified', 'class_name', 'class_prob', 'dpng', 'spng', 'tpng', 'sid')
 
 
 # +
@@ -143,10 +140,8 @@ class SassyCronQ3cRecord(db.Model):
     internal_names = db.Column(db.String(DB_VARCHAR_256))
     creationdate = db.Column(db.DateTime)
     lastmodified = db.Column(db.DateTime)
-    aetype = db.Column(db.String(DB_VARCHAR_64))
-    altype = db.Column(db.String(DB_VARCHAR_64))
-    aeprob = db.Column(db.Float)
-    alprob = db.Column(db.Float)
+    class_name = db.Column(db.String(DB_VARCHAR_64))
+    class_prob = db.Column(db.Float)
     dpng = db.Column(db.String(DB_VARCHAR_200))
     spng = db.Column(db.String(DB_VARCHAR_200))
     tpng = db.Column(db.String(DB_VARCHAR_200))
@@ -198,10 +193,8 @@ class SassyCronQ3cRecord(db.Model):
             'internal_names': self.internal_names,
             'creationdate': self.creationdate,
             'lastmodified': self.lastmodified,
-            'aetype': self.aetype,
-            'altype': self.altype,
-            'aeprob': self.aeprob,
-            'alprob': self.alprob,
+            'class_name': self.class_name,
+            'class_prob': self.class_prob,
             'dpng': self.dpng,
             'spng': self.spng,
             'tpng': self.tpng,
