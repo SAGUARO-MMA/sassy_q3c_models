@@ -19,7 +19,7 @@ __doc__ = """python3 ztf_fp_q3c_read_bulk.py --help"""
 # +
 # constant(s)
 # -
-DEF_NELMS = 50
+DEF_NELMS = 50000
 
 
 # +
@@ -30,13 +30,13 @@ def db_bulk_insert(_connection: Any = None, _cursor: Any = None, _irows: list = 
     # check input(s)
     if _connection is None or _cursor is None or _irows is None:
         return
-    print(f"<INFO> _irows={_irows}")
-    if all(len(_) == 29 for _ in _irows):
-        print(f"<INFO> all fields present in _irows")
+    if not all(len(_) == 29 for _ in _irows):
+        print(f"<ERROR> not all fields present in _irows")
+        return
 
     # bulk ingest
     try:
-        print(f"<INFO> _irows={_irows}")
+        print(f"<INFO> inserting {_irows} into database")
         psycopg2.extras.execute_values(
             _cursor,
             """INSERT INTO ztf_fp_q3c (candid, oid, field, rcid, fid, pid, rfid, sciinpseeing, scibckgnd, scisigpix, 
@@ -141,7 +141,7 @@ def ztf_fp_q3c_read_bulk(_file: str = '', _dir: str = '', _nelms: int = DEF_NELM
                 continue
             if 'fp_hists' in _packets[_i]:
                 _fph = _packets[_i]['fp_hists']
-                print(f"_fph={_fph}")
+                # print(f"_fph={_fph}")
                 if _fph is None or len(_fph) == 0:
                     print(f"<WARNING> empty 'fp_hists' in packet!")
                     continue
@@ -149,7 +149,7 @@ def ztf_fp_q3c_read_bulk(_file: str = '', _dir: str = '', _nelms: int = DEF_NELM
                     # _fph = sorted(_fph, key=lambda x: x['jd'], reverse=True)
                     # print(f"_fph={_fph}")
                     for _cand in _fph:
-                        print(f"_cand={_cand}")
+                        # print(f"_cand={_cand}")
                         if all(_ in _cand for _ in _headers):
                             _ztf_fp_q3c.append([
                                 _candid, 
