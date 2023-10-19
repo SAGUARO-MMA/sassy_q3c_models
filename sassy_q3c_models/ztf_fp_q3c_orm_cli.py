@@ -23,6 +23,8 @@ ZtfFpQ3cRecord
 Column              Description
 ------------------------------------------------------------------------------------------------------
 fpid                Database index
+candid              Candidate identifier
+oid                 ZTF Object identifier
 field               ZTF field ID
 rcid                Readout channel ID [00 .. 63]
 fid                 Filter ID (1=g; 2=R; 3=i)
@@ -81,6 +83,10 @@ def ztf_fp_q3c_orm_cli(_args: Any = None):
         request_args['ellipse'] = f'{_args.ellipse}'
     if _args.fpid:
         request_args['fpid'] = f'{_args.fpid}'
+    if _args.candid:
+        request_args['candid'] = f'{_args.candid}'
+    if _args.oid:
+        request_args['oid'] = f'{_args.oid}'
     if _args.field:
         request_args['field'] = f'{_args.field}'
     if _args.fid:
@@ -137,6 +143,8 @@ if __name__ == '__main__':
     _p.add_argument(f'--astrocone', help=f'Astrocone search [name,radius (deg)]')
     _p.add_argument(f'--cone', help=f'Cone search [ra (deg),dec (deg),radius (deg)]')
     _p.add_argument(f'--ellipse', help=f'Ellipse search [ra (deg),dec (de),major_axis,axis_ratio,pos_angle (deg)]')
+    _p.add_argument(f'--candid', help=f'fpid <int>')
+    _p.add_argument(f'--oid', help=f'oid <str>')
     _p.add_argument(f'--fpid', help=f'fpid <int>')
     _p.add_argument(f'--field', help=f'field <int>')
     _p.add_argument(f'--fid', help=f'fid <int>')

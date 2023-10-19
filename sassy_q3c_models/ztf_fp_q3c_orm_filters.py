@@ -42,6 +42,15 @@ def ztf_fp_q3c_orm_filters(query: Any = None, request_args: dict = None):
                 float(_rat), float(_pos)))
         except:
             pass
+
+    # return records with a given candid (API: ?candid=1)
+    if request_args.get('candid'):
+        query = query.filter(ZtfFpQ3cRecord.candid == int(request_args['candid']))
+
+    # return records with a given oid (API: ?oid=ZTF18dsgvaw)
+    if request_args.get('oid'):
+        query = query.filter(ZtfFpQ3cRecord.oid.ilike(f"%{request_args['oid']}%"))
+
     # return records with a given fpid (API: ?fpid=1)
     if request_args.get('fpid'):
         query = query.filter(ZtfFpQ3cRecord.fpid == int(request_args['fpid']))

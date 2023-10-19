@@ -13,6 +13,8 @@ PGPASSWORD=${5} psql --echo-all -h ${1} -p ${2} -U ${4} -d ${3} << END_TABLE
 DROP TABLE IF EXISTS ztf_fp_q3c;
 CREATE TABLE ztf_fp_q3c (
   fpid serial PRIMARY KEY,
+  candid bigint NOT NULL,
+  oid VARCHAR(64) NOT NULL,
   field integer,
   rcid integer,
   fid integer NOT NULL,

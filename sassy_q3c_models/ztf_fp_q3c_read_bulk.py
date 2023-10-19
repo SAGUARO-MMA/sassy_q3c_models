@@ -39,10 +39,10 @@ def db_bulk_insert(_connection: Any = None, _cursor: Any = None, _irows: list = 
         print(f"<INFO> _irows={_irows}")
         psycopg2.extras.execute_values(
             _cursor,
-            """INSERT INTO ztf_fp_q3c (field, rcid, fid, pid, rfid, sciinpseeing, scibckgnd, scisigpix, magzpsci,
-                                       magzpsciunc, magzpscirms, clrcoeff, clrcounc, exptime, adpctdif1, adpctdif2,
-                                       diffmaglim, programid, jd, forcediffimflux, forcediffimfluxunc, procstatus, 
-                                       distnr, ranr, decnr, magnr, sigmagnr, chinr, sharpnr) VALUES %s""", _irows, page_size=100)
+            """INSERT INTO ztf_fp_q3c (candid, oid, field, rcid, fid, pid, rfid, sciinpseeing, scibckgnd, scisigpix, 
+                                       magzpsci, magzpsciunc, magzpscirms, clrcoeff, clrcounc, exptime, adpctdif1, adpctdif2, diffmaglim, programid, 
+                                       jd, forcediffimflux, forcediffimfluxunc, procstatus, distnr, ranr, decnr, magnr, sigmagnr, chinr, 
+                                       sharpnr) VALUES %s""", _irows, page_size=100)
         _connection.commit()
     except Exception as _:
         print(f"<ERROR> failed to insert values into database, error='{_}'")
@@ -108,7 +108,8 @@ def ztf_fp_q3c_read_bulk(_file: str = '', _dir: str = '', _nelms: int = DEF_NELM
         return
 
     # process files
-    _headers = {_ for _ in ZTF_FP_Q3C_HEADERS if _ != 'fpid'}
+    _headers = {_ for _ in ZTF_FP_Q3C_HEADERS if _ not in ['fpid', 'candid', 'oid']}
+    print(f"<INFO> _headers={_headers}")
     for _fe in _files:
 
         if os.path.isdir(_fe):
@@ -131,16 +132,28 @@ def ztf_fp_q3c_read_bulk(_file: str = '', _dir: str = '', _nelms: int = DEF_NELM
 
         # process the data
         for _i in range(len(_packets)):
+            _candid, _oid = -1, ''
+            if 'objectId' in _packets[_i] and 'candid' in _packets[_i]:
+                _oid = _packets[_i]['objectId']
+                _candid = int(_packets[_i]['candid'])
+            else:
+                print(f"<WARNING> no 'candid' or 'objectid' in packet!")
+                continue
             if 'fp_hists' in _packets[_i]:
                 _fph = _packets[_i]['fp_hists']
                 print(f"_fph={_fph}")
-                if _fph is not None:
-                    _fph = sorted(_fph, key=lambda x: x['jd'], reverse=True)
-                    print(f"_fph={_fph}")
+                if _fph is None or len(_fph) == 0:
+                    print(f"<WARNING> empty 'fp_hists' in packet!")
+                    continue
+                else:
+                    # _fph = sorted(_fph, key=lambda x: x['jd'], reverse=True)
+                    # print(f"_fph={_fph}")
                     for _cand in _fph:
                         print(f"_cand={_cand}")
                         if all(_ in _cand for _ in _headers):
                             _ztf_fp_q3c.append([
+                                _candid, 
+                                _oid,
                                 int(_cand['field']), 
                                 int(_cand['rcid']), 
                                 int(_cand['fid']),

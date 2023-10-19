@@ -15,6 +15,9 @@ __doc__ = """
        Column       |         Type          | Collation | Nullable |                 Default                  | Storage  | Stats target | Description
 --------------------+-----------------------+-----------+----------+------------------------------------------+----------+--------------+-------------
  fpid               | bigint                |           | not null | nextval('ztf_fp_q3c_fpid_seq'::regclass) | plain    |              |
+ candid             | bigint                |           | not null |                                          | plain    |              |
+ oid                | character varying(64) |           |          |                                          | extended |              |
+ fpid               | bigint                |           | not null | nextval('ztf_fp_q3c_fpid_seq'::regclass) | plain    |              |
  field              | integer               |           |          |                                          | plain    |              |
  rcid               | integer               |           |          |                                          | plain    |              |
  fid                | integer               |           | not null |                                          | plain    |              |
@@ -59,12 +62,11 @@ ZTF_FP_Q3C_DAT_URL = ''
 ZTF_FP_Q3C_PAG_URL = ''
 ZTF_FP_Q3C_PDF_URL = ''
 ZTF_FP_Q3C_SORT_ORDER = ['asc', 'desc', 'ascending', 'descending']
-ZTF_FP_Q3C_SORT_VALUE = ['fpid', 'field', 'ranr', 'decnr', 'jd', 'fid']
-ZTF_FP_Q3C_HEADERS = {'fpid', 'field', 'rcid', 'fid', 'pid', 'rfid',
-    'sciinpseeing', 'scibckgnd', 'scisigpix', 'magzpsci', 'magzpsciunc',
-    'magzpscirms', 'clrcoeff', 'clrcounc', 'exptime', 'adpctdif1', 'adpctdif2',
-    'diffmaglim', 'programid', 'jd', 'forcediffimflux', 'forcediffimfluxunc',
-    'procstatus', 'distnr', 'ranr', 'decnr', 'magnr', 'sigmagnr', 'chinr', 'sharpnr'}
+ZTF_FP_Q3C_SORT_VALUE = ['fpid', 'field', 'ranr', 'decnr', 'jd', 'fid', 'candid', 'oid']
+ZTF_FP_Q3C_HEADERS = ('fpid', 'candid', 'oid', 'field', 'rcid', 'fid', 'pid', 'rfid', 'sciinpseeing', 'scibckgnd', 
+                      'scisigpix', 'magzpsci', 'magzpsciunc', 'magzpscirms', 'clrcoeff', 'clrcounc', 'exptime', 'adpctdif1', 'adpctdif2', 'diffmaglim', 
+                      'programid', 'jd', 'forcediffimflux', 'forcediffimfluxunc', 'procstatus', 'distnr', 'ranr', 'decnr', 'magnr', 'sigmagnr', 
+                      'chinr', 'sharpnr')
 
 
 # +
@@ -84,6 +86,8 @@ class ZtfFpQ3cRecord(db.Model):
     # -
     __tablename__ = 'ztf_fp_q3c'
     fpid = db.Column(db.BigInteger, primary_key=True)
+    candid = db.Column(db.BigInteger, nullable=False)
+    oid = db.Column(db.String(DB_VARCHAR_64), nullable=False)
     field = db.Column(db.Integer)
     rcid = db.Column(db.Integer)
     fid = db.Column(db.Integer, nullable=False)
@@ -120,6 +124,8 @@ class ZtfFpQ3cRecord(db.Model):
     def serialized(self):
         return {
             'fpid': self.fpid,
+            'candid': self.candid,
+            'oid': self.oid,
             'field': self.field,
             'rcid': self.rcid,
             'fid': self.fid,
