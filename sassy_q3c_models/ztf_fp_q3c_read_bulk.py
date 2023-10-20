@@ -30,13 +30,13 @@ def db_bulk_insert(_connection: Any = None, _cursor: Any = None, _irows: list = 
     # check input(s)
     if _connection is None or _cursor is None or _irows is None:
         return
-    if not all(len(_) == 29 for _ in _irows):
+    if not all(len(_) == 31 for _ in _irows):
         print(f"<ERROR> not all fields present in _irows")
         return
 
     # bulk ingest
     try:
-        print(f"<INFO> inserting {_irows} into database")
+        print(f"<INFO> inserting {len(_irows)} rows into database")
         psycopg2.extras.execute_values(
             _cursor,
             """INSERT INTO ztf_fp_q3c (candid, oid, field, rcid, fid, pid, rfid, sciinpseeing, scibckgnd, scisigpix, 
@@ -82,7 +82,6 @@ def ztf_fp_q3c_read_bulk(_file: str = '', _dir: str = '', _nelms: int = DEF_NELM
         return
     else:
         print(f"{get_utc()}> Processing {_total} files")
-        print(f"{get_utc()}> _files={_files}")
 
     # connect to database (method 1)
     try:
@@ -141,15 +140,13 @@ def ztf_fp_q3c_read_bulk(_file: str = '', _dir: str = '', _nelms: int = DEF_NELM
                 continue
             if 'fp_hists' in _packets[_i]:
                 _fph = _packets[_i]['fp_hists']
-                # print(f"_fph={_fph}")
                 if _fph is None or len(_fph) == 0:
-                    print(f"<WARNING> empty 'fp_hists' in packet!")
+                    print(f"<WARNING> empty 'fp_hists' in packet! _fph={_fph}, _oid='{_oid}', _candid={_candid}")
                     continue
                 else:
-                    # _fph = sorted(_fph, key=lambda x: x['jd'], reverse=True)
-                    # print(f"_fph={_fph}")
                     for _cand in _fph:
-                        # print(f"_cand={_cand}")
+                        if _ic > _nelms:
+                            print(f"_cand={_cand}")
                         if all(_ in _cand for _ in _headers):
                             _ztf_fp_q3c.append([
                                 _candid, 
@@ -184,6 +181,8 @@ def ztf_fp_q3c_read_bulk(_file: str = '', _dir: str = '', _nelms: int = DEF_NELM
                                 float(_cand['chinr']), 
                                 float(_cand['sharpnr'])])
                             _ic += 1
+                        if _ic > _nelms:
+                            print(f"_ztf_fp_q3c[-1]={_ztf_fp_q3c[-1]}")
 
         # submit after _nelms records have been found
         if _ic > _nelms and len(_ztf_fp_q3c) > 0:
@@ -222,8 +221,8 @@ if __name__ == '__main__':
     _p.add_argument(f'--verbose', default=False, action='store_true', help=f'if present, produce more verbose output')
 
     # execute
-    #try:
-    _a = _p.parse_args()
-    ztf_fp_q3c_read_bulk(_file=_a.file.strip(), _dir=_a.directory.strip(), _nelms=int(_a.nelms), _verbose=bool(_a.verbose))
-    #except Exception as _:
-    #    print(f"{_}\n{__doc__}")
+    try:
+        _a = _p.parse_args()
+        ztf_fp_q3c_read_bulk(_file=_a.file.strip(), _dir=_a.directory.strip(), _nelms=int(_a.nelms), _verbose=bool(_a.verbose))
+    except Exception as _:
+        print(f"{_}\n{__doc__}")
