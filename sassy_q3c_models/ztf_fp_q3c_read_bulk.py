@@ -180,9 +180,9 @@ def ztf_fp_q3c_read_bulk(_file: str = '', _dir: str = '', _nelms: int = DEF_NELM
                                 float(_cand['sigmagnr']), 
                                 float(_cand['chinr']), 
                                 float(_cand['sharpnr'])])
+                            if _ic > _nelms:
+                                print(f"_ztf_fp_q3c[-1]={_ztf_fp_q3c[-1]}")
                             _ic += 1
-                        if _ic > _nelms:
-                            print(f"_ztf_fp_q3c[-1]={_ztf_fp_q3c[-1]}")
 
         # submit after _nelms records have been found
         if _ic > _nelms and len(_ztf_fp_q3c) > 0:
