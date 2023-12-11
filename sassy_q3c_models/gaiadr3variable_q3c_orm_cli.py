@@ -118,7 +118,7 @@ def gaiadr3variable_q3c_orm_cli(_args: Any = None):
     try:
         if _args.verbose:
             print(f'executing query')
-        query = session.query(GaiaDr3VariableQ3cRecord)
+        query = session.query(GaiaDR3VariableQ3cRecord)
         if _args.verbose:
             print(f'query = {query}')
         query = gaiadr3variable_q3c_orm_filters(query, request_args)
@@ -129,7 +129,7 @@ def gaiadr3variable_q3c_orm_cli(_args: Any = None):
 
     # report output
     print(f"#{','.join(_ for _ in GAIADR3VARIABLE_HEADERS)}")
-    for _e in GaiaDr3VariableQ3cRecord.serialize_list(query.all()):
+    for _e in GaiaDR3VariableQ3cRecord.serialize_list(query.all()):
         if verify_keys(_e, set(GAIADR3VARIABLE_HEADERS)):
             print(f"{','.join(str(_e[_l]) for _l in GAIADR3VARIABLE_HEADERS)}")
 
@@ -140,7 +140,7 @@ def gaiadr3variable_q3c_orm_cli(_args: Any = None):
 if __name__ == '__main__':
 
     # noinspection PyTypeChecker
-    _p = argparse.ArgumentParser(description=f'Query GaiaDr3Variable', formatter_class=argparse.RawTextHelpFormatter)
+    _p = argparse.ArgumentParser(description=f'Query GaiaDR3VariableQ3c', formatter_class=argparse.RawTextHelpFormatter)
 
     # database query argument(s)
     _p.add_argument(f'--astrocone', help=f'Astrocone search [name,radius (deg)]')

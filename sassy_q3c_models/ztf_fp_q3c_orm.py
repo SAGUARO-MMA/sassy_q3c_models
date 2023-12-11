@@ -58,9 +58,9 @@ Access method: heap
 # +
 # constant(s)
 # -
-ZTF_FP_Q3C_DAT_URL = ''
+ZTF_FP_Q3C_DAT_URL = 'https://ztf.uw.edu/alerts/public'
 ZTF_FP_Q3C_PAG_URL = ''
-ZTF_FP_Q3C_PDF_URL = ''
+ZTF_FP_Q3C_PDF_URL = 'https://irsa.ipac.caltech.edu/data/ZTF/docs/ztf_forced_photometry.pdf'
 ZTF_FP_Q3C_SORT_ORDER = ['asc', 'desc', 'ascending', 'descending']
 ZTF_FP_Q3C_SORT_VALUE = ['fpid', 'field', 'ranr', 'decnr', 'jd', 'fid', 'candid', 'oid']
 ZTF_FP_Q3C_HEADERS = ('fpid', 'candid', 'oid', 'field', 'rcid', 'fid', 'pid', 'rfid', 'sciinpseeing', 'scibckgnd', 
