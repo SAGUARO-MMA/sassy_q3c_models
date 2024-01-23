@@ -79,6 +79,7 @@ you will need an account and a bot key.
  >>> import sassy_q3c_models.milliquas_q3c_orm_cli
  >>> import sassy_q3c_models.non_detections_orm_cli
  >>> import sassy_q3c_models.ps1_q3c_orm_cli
+ >>> import sassy_q3c_models.romabzcat_q3c_orm_cli
  >>> import sassy_q3c_models.sdss12photoz_q3c_orm_cli
  >>> import sassy_q3c_models.tns_q3c_orm_cli
  >>> import sassy_q3c_models.ztf_q3c_orm_cli
@@ -96,6 +97,7 @@ you will need an account and a bot key.
  >>> from sassy_q3c_models.milliquas_q3c_orm_cli import *
  >>> from sassy_q3c_models.non_detections_orm_cli import *
  >>> from sassy_q3c_models.ps1_q3c_orm_cli import *
+ >>> from sassy_q3c_models.romabzcat_q3c_orm_cli import *
  >>> from sassy_q3c_models.sdss12photoz_q3c_orm_cli import *
  >>> from sassy_q3c_models.tns_q3c_orm_cli import *
  >>> from sassy_q3c_models.ztf_q3c_orm_cli import *
@@ -120,6 +122,7 @@ Add the following to your requirement.txt:
  python3 -c "import sassy_q3c_models.milliquas_q3c_orm;       print(sassy_q3c_models.milliquas_q3c_orm.__doc__)"
  python3 -c "import sassy_q3c_models.non_detections_orm;      print(sassy_q3c_models.non_detections_orm.__doc__)"
  python3 -c "import sassy_q3c_models.ps1_q3c_orm;             print(sassy_q3c_models.ps1_q3c_orm.__doc__)"
+ python3 -c "import sassy_q3c_models.romabzcat_q3c_orm;       print(sassy_q3c_models.romabzcat_q3c_orm.__doc__)"
  python3 -c "import sassy_q3c_models.sdss12photoz_q3c_orm;    print(sassy_q3c_models.sdss12photoz_q3c_orm.__doc__)"
  python3 -c "import sassy_q3c_models.tns_q3c_orm;             print(sassy_q3c_models.tns_q3c_orm.__doc__)"
  python3 -c "import sassy_q3c_models.ztf_q3c_orm;             print(sassy_q3c_models.ztf_q3c_orm.__doc__)"
@@ -137,6 +140,7 @@ Add the following to your requirement.txt:
  % python3 milliquas_q3c_orm_cli.py --help
  % python3 non_detections_orm_cli.py --help
  % python3 ps1_q3c_orm_cli.py --help
+ % python3 romabzcat_q3c_orm_cli.py --help
  % python3 sdss12photoz_q3c_orm_cli.py --help
  % python3 tns_q3c_orm_cli.py --help
  % python3 ztf_q3c_orm_cli.py --help
@@ -144,6 +148,6 @@ Add the following to your requirement.txt:
 
 --------------------------------------
 
-Last Modified: 20230823
+Last Modified: 20240123
 
 Last Author: Phil Daly (pndaly@arizona.edu)
