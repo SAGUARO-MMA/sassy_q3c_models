@@ -221,10 +221,11 @@ def fermi_lat_q3c_orm_cli(_args: Any = None):
         raise Exception(f"failed to execute query, error='{_e2}'")
 
     # report output alphabetically
-    print(f"#{','.join(_ for _ in FERMI_LAT_KEYS)}")
+    _keys = ['fid'] + FERMI_LAT_KEYS
+    print(f"#{','.join(_ for _ in _keys)}")
     for _e in FermiLatQ3cRecord.serialize_list(query.all()):
-        if verify_keys(_e, set(FERMI_LAT_KEYS)):
-            print(f"{','.join(str(_e[_l]) for _l in FERMI_LAT_KEYS)}")
+        if verify_keys(_e, set(_keys)):
+            print(f"{','.join(str(_e[_l]) for _l in _keys)}")
 
 
 # +
