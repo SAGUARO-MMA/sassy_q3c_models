@@ -26,8 +26,8 @@ CREATE TABLE fermi_lat_q3c (
   dec double precision);
 END_TABLE
 PGPASSWORD=${5} psql --echo-all -h ${1} -p ${2} -U ${4} -d ${3} << END_Q3C
-  CREATE INDEX idx_fermi_lat_q3c_rmag ON fermi_lat_q3c(rmag);
-  CREATE INDEX idx_fermi_lat_q3c_z ON fermi_lat_q3c(z);
+  CREATE INDEX idx_fermi_lat_q3c_b ON fermi_lat_q3c(b);
+  CREATE INDEX idx_fermi_lat_q3c_l ON fermi_lat_q3c(l);
   CREATE INDEX ON fermi_lat_q3c (q3c_ang2ipix(ra, dec));
   CLUSTER fermi_lat_q3c_q3c_ang2ipix_idx ON fermi_lat_q3c;
   ANALYZE VERBOSE fermi_lat_q3c;
