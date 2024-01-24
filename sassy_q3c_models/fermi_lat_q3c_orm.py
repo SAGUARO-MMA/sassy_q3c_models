@@ -100,16 +100,17 @@ class FermiLatQ3cRecord(db.Model):
         return {
             'fid': self.fid,
             'name': self.name,
-            'ra': self.ra,
-            'dec': self.dec,
-            'l': self.l,
             'b': self.b,
+            'l': self.l,
             'lbllac': self.lbllac,
             'pbllac': self.pbllac,
             'pfsrq': self.pfsrq,
             'classification': self.classification,
             'lbllaclit': self.lbllaclit,
-            'classlit': self.classlit
+            'classlit': self.classlit,
+            'simbad': self.simbad,
+            'ra': self.ra,
+            'dec': self.dec
         }
 
     # +
