@@ -23,13 +23,13 @@ except:
 # +
 # __doc__
 # -
-__doc__ = """python3 roma_bzcat_q3c_molleweide.py --help"""
+__doc__ = """python3 roma_bzcat_q3c_hammer.py --help"""
 
 
 # +
-# function: roma_bzcat_q3c_molleweide()
+# function: roma_bzcat_q3c_hammer()
 # -
-def roma_bzcat_q3c_molleweide() -> None:
+def roma_bzcat_q3c_hammer() -> None:
 
     # get data
     try:
@@ -41,45 +41,45 @@ def roma_bzcat_q3c_molleweide() -> None:
         raise Exception(f"failed to connect to database, error='{_e1}'")
 
     # get co-oords
-    _dec, _ra = [], []
+    _l, _b = [], []
     for _e in RomaBzcatQ3cRecord.serialize_list(query.all()):
-        # if verify_keys(_e, set(ROMA_BZCAT_KEYS)):
-        _ra.append(_e['ra'])
-        _dec.append(_e['dec'])
-    print(f"_ra={_ra}, len={len(_ra)}")
-    print(f"_dec={_dec}, len={len(_dec)}")
-    _ra_np = np.array(_ra)
-    _dec_np = np.array(_dec)
+        _l.append(_e['l'])
+        _b.append(_e['b'])
+    print(f"_l={_l}, len={len(_l)}")
+    print(f"_b={_b}, len={len(_b)}")
+    _l_np = np.array(_l)
+    _b_np = np.array(_b)
 
-    # massage all RA data so that east is to the left
-    _ra_np = np.remainder(_ra_np + 360.0 - ORIGIN, 360.0)
-    _ind = _ra_np > 180.0
-    _ra_np[_ind] -= 360.0
-    _ra_np = -_ra_np
+    # massage all l data so that east is to the left
+    _l_np = np.remainder(_l_np + 360.0 - ORIGIN, 360.0)
+    _ind = _l_np > 180.0
+    _l_np[_ind] -= 360.0
+    # _l_np = -_l_np
 
     # set up plot
     fig = plt.figure(figsize=(8, 6))
-    ax = fig.add_subplot(111, projection="mollweide", **{'facecolor': 'LightYellow'})
+    ax = fig.add_subplot(111, projection="hammer", **{'facecolor': 'LightYellow'})
 
     # plot data
     try:
-        ax.scatter(np.radians(_ra_np), np.radians(_dec_np), color='blue', s=2.5,
+        ax.scatter(np.radians(_l_np), np.radians(_b_np), color='blue', s=2.5,
                    alpha=0.25, marker='D', label="ROMA_BZCAT")
     except Exception as _ep1:
         raise Exception(f"{_ep1}")
 
     # add label(s), legend, title, grid
     tick_labels = np.array([150, 120, 90, 60, 30, 0, 330, 300, 270, 240, 210])
+    # tick_labels = np.array([150, 120, 90, 60, 30, 0, 330, 300, 270, 240, 210])
     tick_labels = np.remainder(tick_labels + 360.0 + ORIGIN, 360.0)
-    tick_labels = [f"\n{int(_v):d}{DEGREE}\n\n{int(_v/15.0):d}{UPPER_H}" for _v in tick_labels]
+    # tick_labels = [f"\n{int(_v):d}{DEGREE}\n\n{int(_v/15.0):d}{UPPER_H}" for _v in tick_labels]
     ax.set_xticklabels(tick_labels, **{'va': 'center', 'color': 'black'})
-    ax.set_xlabel(f'Right Ascension (J2k{DEGREE})')
-    ax.set_ylabel(f'Declination (J2k{DEGREE})')
+    ax.set_xlabel(f'Galactic Longitude (l{DEGREE})')
+    ax.set_ylabel(f'Galactic Latitude (b{DEGREE})')
     ax.grid(True)
     plt.title(f"Roma BZCAT Coverage Map")
 
     # output(s)
-    _png = os.path.abspath(os.path.expanduser(f"roma_bzcat_q3c_molleweide.png"))
+    _png = os.path.abspath(os.path.expanduser(f"roma_bzcat_q3c_hammer.png"))
     plt.savefig(fname=f"{_png}", format='png', dpi=100, bbox_inches='tight')
 
 
@@ -94,6 +94,6 @@ if __name__ == '__main__':
 
     # execute
     try:
-        roma_bzcat_q3c_molleweide()
+        roma_bzcat_q3c_hammer()
     except Exception as _:
         print(f"{_}\nUse: {__doc__}")

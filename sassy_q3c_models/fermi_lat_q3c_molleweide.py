@@ -4,7 +4,7 @@
 # +
 # import(s)
 # -
-from sassy_q3c_models.roma_bzcat_q3c_orm import *
+from sassy_q3c_models.fermi_lat_q3c_orm import *
 import numpy as np
 import matplotlib as mpl
 import matplotlib.pyplot as plt
@@ -23,27 +23,26 @@ except:
 # +
 # __doc__
 # -
-__doc__ = """python3 roma_bzcat_q3c_molleweide.py --help"""
+__doc__ = """python3 fermi_lat_q3c_molleweide.py --help"""
 
 
 # +
-# function: roma_bzcat_q3c_molleweide()
+# function: fermi_lat_q3c_molleweide()
 # -
-def roma_bzcat_q3c_molleweide() -> None:
+def fermi_lat_q3c_molleweide() -> None:
 
     # get data
     try:
         engine = create_engine(f'postgresql+psycopg2://{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_PORT}/{DB_NAME}')
         get_session = sessionmaker(bind=engine)
         session = get_session()
-        query = session.query(RomaBzcatQ3cRecord)
+        query = session.query(FermiLatQ3cRecord)
     except Exception as _e1:
         raise Exception(f"failed to connect to database, error='{_e1}'")
 
     # get co-oords
     _dec, _ra = [], []
-    for _e in RomaBzcatQ3cRecord.serialize_list(query.all()):
-        # if verify_keys(_e, set(ROMA_BZCAT_KEYS)):
+    for _e in FermiLatQ3cRecord.serialize_list(query.all()):
         _ra.append(_e['ra'])
         _dec.append(_e['dec'])
     print(f"_ra={_ra}, len={len(_ra)}")
@@ -64,7 +63,7 @@ def roma_bzcat_q3c_molleweide() -> None:
     # plot data
     try:
         ax.scatter(np.radians(_ra_np), np.radians(_dec_np), color='blue', s=2.5,
-                   alpha=0.25, marker='D', label="ROMA_BZCAT")
+                   alpha=0.25, marker='D', label="FERMI_LAT")
     except Exception as _ep1:
         raise Exception(f"{_ep1}")
 
@@ -76,10 +75,10 @@ def roma_bzcat_q3c_molleweide() -> None:
     ax.set_xlabel(f'Right Ascension (J2k{DEGREE})')
     ax.set_ylabel(f'Declination (J2k{DEGREE})')
     ax.grid(True)
-    plt.title(f"Roma BZCAT Coverage Map")
+    plt.title(f"Fermi LAT Coverage Map")
 
     # output(s)
-    _png = os.path.abspath(os.path.expanduser(f"roma_bzcat_q3c_molleweide.png"))
+    _png = os.path.abspath(os.path.expanduser(f"fermi_lat_q3c_molleweide.png"))
     plt.savefig(fname=f"{_png}", format='png', dpi=100, bbox_inches='tight')
 
 
@@ -89,11 +88,11 @@ def roma_bzcat_q3c_molleweide() -> None:
 if __name__ == '__main__':
 
     # noinspection PyTypeChecker
-    _p = argparse.ArgumentParser(description='Plot ROMA_BZCAT Molleweide', formatter_class=argparse.RawTextHelpFormatter)
+    _p = argparse.ArgumentParser(description='Plot FERMI_LAT Molleweide', formatter_class=argparse.RawTextHelpFormatter)
     _a = _p.parse_args()
 
     # execute
     try:
-        roma_bzcat_q3c_molleweide()
+        fermi_lat_q3c_molleweide()
     except Exception as _:
         print(f"{_}\nUse: {__doc__}")
