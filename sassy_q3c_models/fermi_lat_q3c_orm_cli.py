@@ -224,8 +224,8 @@ def fermi_lat_q3c_orm_cli(_args: Any = None):
     _keys = ['fid'] + FERMI_LAT_KEYS
     print(f"#{','.join(_ for _ in _keys)}")
     for _e in FermiLatQ3cRecord.serialize_list(query.all()):
-        if verify_keys(_e, set(_keys)):
-            print(f"{','.join(str(_e[_l]) for _l in _keys)}")
+        # if verify_keys(_e, set(_keys)):
+        print(f"{','.join(str(_e[_l]) for _l in _keys)}")
 
 
 # +
