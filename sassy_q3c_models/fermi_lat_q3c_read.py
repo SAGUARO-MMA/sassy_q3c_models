@@ -104,11 +104,11 @@ def fermi_lat_q3c_read(_file: str = FERMI_LAT_Q3C_CATALOG_FILE, _verbose: bool =
 
                 # add record to database
                 try:
-                    # session.add(_rec)
-                    # session.commit()
+                    session.add(_rec)
+                    session.commit()
                     print(f"_fid={_fid}, committed record {_rec.serialized()} into database OK")
                 except Exception as _e2:
-                    # session.rollback()
+                    session.rollback()
                     print(f"<ERROR> _fid={_fid}, failed to insert record {_rec.serialized()} into database, error='{_e2}'")
                     continue
                 else:      
@@ -130,7 +130,7 @@ def fermi_lat_q3c_read(_file: str = FERMI_LAT_Q3C_CATALOG_FILE, _verbose: bool =
 if __name__ == '__main__':
 
     # noinspection PyTypeChecker
-    _p = argparse.ArgumentParser(description='Read Roma BZCAT File', formatter_class=argparse.RawTextHelpFormatter)
+    _p = argparse.ArgumentParser(description='Read Fermi LAT File', formatter_class=argparse.RawTextHelpFormatter)
     _p.add_argument(f'--file', default=FERMI_LAT_Q3C_CATALOG_FILE, help="""Input file [%(default)s]""")
     _p.add_argument(f'--verbose', default=False, action='store_true', help=f'if present, produce more verbose output')
     _a = _p.parse_args()
