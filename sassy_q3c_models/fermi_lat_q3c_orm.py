@@ -11,6 +11,28 @@ from sassy_q3c_models import *
 # __doc__ string
 # -
 __doc__ = """
+                                                            Table "public.fermi_lat_q3c"
+     Column     |         Type          | Collation | Nullable |                  Default                   | Storage  | Stats target | Description
+----------------+-----------------------+-----------+----------+--------------------------------------------+----------+--------------+-------------
+ fid            | integer               |           | not null | nextval('fermi_lat_q3c_fid_seq'::regclass) | plain    |              |
+ name           | character varying(24) |           | not null |                                            | extended |              |
+ b              | double precision      |           |          |                                            | plain    |              |
+ l              | double precision      |           |          |                                            | plain    |              |
+ lbllac         | double precision      |           |          |                                            | plain    |              |
+ pbllac         | double precision      |           |          |                                            | plain    |              |
+ pfsrq          | double precision      |           |          |                                            | plain    |              |
+ classification | character varying(16) |           |          |                                            | extended |              |
+ lbllaclit      | double precision      |           |          |                                            | plain    |              |
+ classlit       | character varying(16) |           |          |                                            | extended |              |
+ simbad         | character varying(8)  |           |          |                                            | extended |              |
+ ra             | double precision      |           |          |                                            | plain    |              |
+ dec            | double precision      |           |          |                                            | plain    |              |
+Indexes:
+    "fermi_lat_q3c_pkey" PRIMARY KEY, btree (fid)
+    "fermi_lat_q3c_q3c_ang2ipix_idx" btree (q3c_ang2ipix(ra, "dec")) CLUSTER
+    "idx_fermi_lat_q3c_b" btree (b)
+    "idx_fermi_lat_q3c_l" btree (l)
+Access method: heap
 """
 
 # +
