@@ -42,7 +42,7 @@ FERMI_LAT_DAT_URL = 'https://cdsarc.cds.unistra.fr/ftp/J/MNRAS/490/4770/table1.d
 FERMI_LAT_PAG_URL = 'https://cdsarc.cds.unistra.fr/viz-bin/cat/J/MNRAS/490/4770'
 FERMI_LAT_PDF_URL = 'https://arxiv.org/pdf/1911.02948.pdf'
 FERMI_LAT_SORT_ORDER = ['asc', 'desc', 'ascending', 'descending']
-FERMI_LAT_SORT_VALUE = ['fid', 'name', 'ra', 'dec', 'z', 'rmag']
+FERMI_LAT_SORT_VALUE = ['fid', 'name', 'ra', 'dec', 'l', 'b']
 FERMI_LAT_HEADERS = ('fid', 'name', 'b', 'l', 'lbllac', 'pbllac', 'pfsrq', 'classification', 'lbllaclit', 'classlit', 'simbad', 'ra', 'dec')
 FERMI_LAT_HTUPLES = (
     ("Name", "name"),

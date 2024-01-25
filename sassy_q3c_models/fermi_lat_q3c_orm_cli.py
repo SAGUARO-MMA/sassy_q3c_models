@@ -263,9 +263,9 @@ if __name__ == '__main__':
     _a = _p.parse_args()
 
     # execute
-    #try:
-    fermi_lat_q3c_orm_cli(_args=_a)
-    #except Exception as _:
-    #    if bool(_a.verbose):
-    #        print(f"{_}")
-    #    print(f"Use: {__doc__}")
+    try:
+        fermi_lat_q3c_orm_cli(_args=_a)
+    except Exception as _:
+        if bool(_a.verbose):
+            print(f"{_}")
+        print(f"Use: {__doc__}")
