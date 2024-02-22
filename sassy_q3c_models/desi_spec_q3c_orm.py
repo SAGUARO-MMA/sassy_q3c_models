@@ -169,7 +169,7 @@ DESI_SPEC_DAT_URL = ''
 DESI_SPEC_PAG_URL = ''
 DESI_SPEC_PDF_URL = ''
 DESI_SPEC_SORT_ORDER = ['asc', 'desc', 'ascending', 'descending']
-DESI_SPEC_SORT_VALUE = ['fid', 'name', 'ra', 'dec', 'l', 'b']
+DESI_SPEC_SORT_VALUE = ['did', 'spectype', 'objtype', 'brickname', 'target_ra', 'target_dec', 'z']
 DESI_SPEC_HEADERS = (
     'did', 'targetid', 'survey', 'program', 'healpix', 'spgrpval', 'z', 'zerr', 'zwarn', 'chi2',
     'coeff_0', 'coeff_1', 'coeff_2', 'coeff_3', 'coeff_4', 'coeff_5', 'coeff_6', 'coeff_7', 'coeff_8', 'coeff_9',
