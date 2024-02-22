@@ -73,6 +73,7 @@ you will need an account and a bot key.
  % python3
  >>> import sassy_q3c_models.asassn_q3c_orm_cli
  >>> import sassy_q3c_models.fermi_lat_q3c_orm_cli
+ >>> import sassy_q3c_models.desi_spec_q3c_orm_cli
  >>> import sassy_q3c_models.gaiadr3variable_q3c_orm_cli
  >>> import sassy_q3c_models.glade_plus_q3c_orm_cli
  >>> import sassy_q3c_models.gwgc_q3c_orm_cli
@@ -92,6 +93,7 @@ you will need an account and a bot key.
  % python3
  >>> from sassy_q3c_models.asassn_q3c_orm_cli import *
  >>> from sassy_q3c_models.fermi_lat_q3c_orm_cli import *
+ >>> from sassy_q3c_models.desi_spec_q3c_orm_cli import *
  >>> from sassy_q3c_models.gaiadr3variable_q3c_orm_cli import *
  >>> from sassy_q3c_models.glade_plus_q3c_orm_cli import *
  >>> from sassy_q3c_models.gwgc_q3c_orm_cli import *
@@ -118,6 +120,7 @@ Add the following to your requirement.txt:
 ```bash
  python3 -c "import sassy_q3c_models.asassn_q3c_orm;          print(sassy_q3c_models.asassn_q3c_orm.__doc__)"
  python3 -c "import sassy_q3c_models.fermi_lat_q3c_orm;       print(sassy_q3c_models.fermi_lat_q3c_orm.__doc__)"
+ python3 -c "import sassy_q3c_models.desi_spec_q3c_orm;       print(sassy_q3c_models.desi_spec_q3c_orm.__doc__)"
  python3 -c "import sassy_q3c_models.glade_plus_q3c_orm;      print(sassy_q3c_models.glade_plus_q3c_orm.__doc__)"
  python3 -c "import sassy_q3c_models.gwgc_q3c_orm;            print(sassy_q3c_models.gwgc_q3c_orm.__doc__)"
  python3 -c "import sassy_q3c_models.gaiadr3variable_q3c_orm; print(sassy_q3c_models.gaiadr3variable_q3c_orm.__doc__)"
@@ -137,6 +140,7 @@ Add the following to your requirement.txt:
  % cd <your_installation_directory>
  % python3 asassn_q3c_orm_cli.py --help
  % python3 fermi_lat_q3c_orm_cli.py --help
+ % python3 desi_spec_q3c_orm_cli.py --help
  % python3 gaiadr3variable_q3c_orm_cli.py --help
  % python3 glade_plus_q3c_orm_cli.py --help
  % python3 gwgc_q3c_orm_cli.py --help
@@ -152,6 +156,6 @@ Add the following to your requirement.txt:
 
 --------------------------------------
 
-Last Modified: 20240124
+Last Modified: 20240222
 
 Last Author: Phil Daly (pndaly@arizona.edu)
