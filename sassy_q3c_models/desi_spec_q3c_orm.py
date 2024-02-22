@@ -271,7 +271,7 @@ class DesiSpecQ3cRecord(db.Model):
     shape_e1 = db.Column(db.Float)
     shape_e2 = db.Column(db.Float)
     ref_id = db.Column(db.BigInteger)
-    ref_cat = db.Column(db.String(2) default='')
+    ref_cat = db.Column(db.String(2), default='')
     gaia_phot_g_mean_mag = db.Column(db.Float)
     gaia_phot_bp_mean_mag = db.Column(db.Float)
     gaia_phot_rp_mean_mag = db.Column(db.Float)
