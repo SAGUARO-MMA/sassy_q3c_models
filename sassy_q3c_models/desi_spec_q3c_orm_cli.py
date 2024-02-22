@@ -235,11 +235,10 @@ def desi_spec_q3c_orm_cli(_args: Any = None):
         raise Exception(f"failed to execute query, error='{_e2}'")
 
     # report output alphabetically
-    _keys = ['fid'] + DESI_SPEC_KEYS
-    print(f"#{','.join(_ for _ in _keys)}")
+    # _keys = ['fid'] + DESI_SPEC_HEADERS
+    print(f"#{','.join(_ for _ in DESI_SPEC_HEADERS)}")
     for _e in DesiSpecQ3cRecord.serialize_list(query.all()):
-        # if verify_keys(_e, set(_keys)):
-        print(f"{','.join(str(_e[_l]) for _l in _keys)}")
+        print(f"{','.join(str(_e[_l]) for _l in DESI_SPEC_HEADERS)}")
 
 
 # +
