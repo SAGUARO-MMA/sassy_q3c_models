@@ -176,7 +176,7 @@ DESI_SPEC_HEADERS = (
     'npixels', 'spectype', 'subtype', 'ncoeff', 'deltachi2', 'coadd_fiberstatus', 'target_ra', 'target_dec', 'pmra', 'pmdec',
     'ref_epoch', 'fa_target', 'fa_type', 'objtype', 'subpriority', 'obsconditions', 'release', 'brickname', 'brickid', 'brick_objid',
     'morphtype', 'ebv', 'flux_g', 'flux_r', 'flux_z', 'flux_w1', 'flux_w2', 'flux_ivar_g', 'flux_ivar_r', 'flux_ivar_z',
-    'flux_ivar_w1', 'flux_ivar_w2', 'fiberflux_g', 'fiberflux_R', 'fiberflux_Z', 'fibertotflux_g', 'fibertotflux_r', 'fibertotflux_z', 
+    'flux_ivar_w1', 'flux_ivar_w2', 'fiberflux_g', 'fiberflux_r', 'fiberflux_z', 'fibertotflux_g', 'fibertotflux_r', 'fibertotflux_z', 
     'maskbits', 'sersic', 'shape_r', 'shape_e1', 'shape_e2', 'ref_id', 'ref_cat', 'gaia_phot_g_mean_mag', 'gaia_phot_bp_mean_mag', 
     'gaia_phot_rp_mean_mag', 'parallax', 'photsys', 'priority_init', 'numobs_init', 'cmx_target', 'sv1_desi_target', 'sv1_bgs_target', 
     'sv1_mws_target', 'sv1_scnd_target', 'sv2_desi_target', 'sv2_bgs_target', 'sv2_mws_target', 'sv2_scnd_target', 'sv3_desi_target', 
@@ -260,8 +260,8 @@ class DesiSpecQ3cRecord(db.Model):
     flux_ivar_w1 = db.Column(db.Float)
     flux_ivar_w2 = db.Column(db.Float)
     fiberflux_g = db.Column(db.Float)
-    fiberflux_R = db.Column(db.Float)
-    fiberflux_Z = db.Column(db.Float)
+    fiberflux_r = db.Column(db.Float)
+    fiberflux_z = db.Column(db.Float)
     fibertotflux_g = db.Column(db.Float)
     fibertotflux_r = db.Column(db.Float)
     fibertotflux_z = db.Column(db.Float)
