@@ -183,7 +183,7 @@ DESI_SPEC_HEADERS = (
     'sv3_bgs_target', 'sv3_mws_target', 'sv3_scnd_target', 'desi_target', 'bgs_target', 'mws_target', 'scnd_target', 'plate_ra', 
     'plate_dec', 'coadd_numexp', 'coadd_exptime', 'coadd_numnight', 'coadd_numtile', 'mean_delta_x', 'rms_delta_x', 'mean_delta_y', 
     'rms_delta_y', 'mean_fiber_ra', 'std_fiber_ra', 'mean_fiber_dec', 'std_fiber_dec', 'mean_psf_to_fiber_specflux', 'tsnr2_gpbdark_b', 
-    'tsnr2_elg_b double', 'tsnr2_gpbbright_b', 'tsnr2_lya_b', 'tsnr2_bgs_b', 'tsnr2_gpbbackup_b', 'tsnr2_qso_b', 'tsnr2_lrg_b', 
+    'tsnr2_elg_b', 'tsnr2_gpbbright_b', 'tsnr2_lya_b', 'tsnr2_bgs_b', 'tsnr2_gpbbackup_b', 'tsnr2_qso_b', 'tsnr2_lrg_b', 
     'tsnr2_gpbdark_r', 'tsnr2_elg_r', 'tsnr2_gpbbright_r', 'tsnr2_lya_r', 'tsnr2_bgs_r', 'tsnr2_gpbbackup_r', 'tsnr2_qso_r', 
     'tsnr2_lrg_r', 'tsnr2_gpbdark_z', 'tsnr2_elg_z', 'tsnr2_gpbbright_z', 'tsnr2_lya_z', 'tsnr2_bgs_z', 'tsnr2_gpbbackup_z',
     'tsnr2_qso_z', 'tsnr2_lrg_z', 'tsnr2_gpbdark', 'tsnr2_elg', 'tsnr2_gpbbright', 'tsnr2_lya', 'tsnr2_bgs', 'tsnr2_gpbbackup', 
