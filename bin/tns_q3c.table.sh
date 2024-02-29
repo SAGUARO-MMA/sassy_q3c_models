@@ -27,7 +27,7 @@ CREATE TABLE tns_q3c (
   discoverydate TIMESTAMP,
   discoverymag double precision,
   discmagfilter integer,
-  filtername VARCHAR(8),
+  filtername VARCHAR(24),
   reporters VARCHAR(2048),
   time_received TIMESTAMP,
   internal_names VARCHAR(256),

@@ -30,7 +30,7 @@ __doc__ = """
  discoverydate     | timestamp without time zone |           |          | 
  discoverymag      | double precision            |           |          | 
  discmagfilter     | integer                     |           |          | 
- filtername        | character varying(8)        |           |          | 
+ filtername        | character varying(24)       |           |          | 
  reporters         | character varying(2048)     |           |          | 
  time_received     | timestamp without time zone |           |          | 
  internal_names    | character varying(256)      |           |          | 
@@ -89,7 +89,7 @@ class TnsQ3cRecord(db.Model):
     discoverydate = db.Column(db.DateTime)
     discoverymag = db.Column(db.Float)
     discmagfilter = db.Column(db.Integer)
-    filtername = db.Column(db.String(DB_VARCHAR_8))
+    filtername = db.Column(db.String(DB_VARCHAR_24))
     reporters = db.Column(db.String(DB_VARCHAR_2048))
     time_received = db.Column(db.DateTime)
     internal_names = db.Column(db.String(DB_VARCHAR_256))
