@@ -165,9 +165,9 @@ Access method: heap
 # +
 # constant(s)
 # -
-DESI_SPEC_DAT_URL = ''
-DESI_SPEC_PAG_URL = ''
-DESI_SPEC_PDF_URL = ''
+DESI_SPEC_DAT_URL = 'https://data.desi.lbl.gov/public/edr/spectro/redux/fuji/zcatalog/zall-pix-fuji.fits'
+DESI_SPEC_PAG_URL = 'https://datalab.noirlab.edu/desi/index.php'
+DESI_SPEC_PDF_URL = 'https://arxiv.org/pdf/2306.06308.pdf'
 DESI_SPEC_SORT_ORDER = ['asc', 'desc', 'ascending', 'descending']
 DESI_SPEC_SORT_VALUE = ['did', 'spectype', 'objtype', 'brickname', 'target_ra', 'target_dec', 'z']
 DESI_SPEC_HEADERS = (
@@ -499,7 +499,7 @@ class DesiSpecQ3cRecord(db.Model):
     # (overload) method: __str__()
     # -
     def __str__(self):
-        return self.fid
+        return self.did
 
     # +
     # (static) method: serialize_list()
