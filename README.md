@@ -1,4 +1,4 @@
-# sassy_q3c_models
+# sassy\_q3c\_models
 
 Pythonic object request models (ORMs) for the SASSyII database tables (mainly) using Q3C indexing.
 
@@ -6,8 +6,8 @@ Pythonic object request models (ORMs) for the SASSyII database tables (mainly) u
 ## Set Up
 
 ```bash
- % git clone https://github.com/SAGUARO-MMA/sassy_q3c_models.git
- % cd sassy_q3c_models
+ % git clone https://github.com/SAGUARO-MMA/sassy\_q3c\_models.git
+ % cd sassy\_q3c\_models
  % python3 -m pip install -r requirements.txt
  % python3 setup.py install
 ```
@@ -15,7 +15,7 @@ Pythonic object request models (ORMs) for the SASSyII database tables (mainly) u
 or
 
 ```bash
- % pip install git+https://github.com/SAGUARO-MMA/sassy_q3c_models.git
+ % pip install git+https://github.com/SAGUARO-MMA/sassy\_q3c\_models.git
 ```
 
 
@@ -34,33 +34,33 @@ together), do the following (which assumes you have a standard PostGreSQL instal
 catalog (as it's the smallest):
 
  - Execute using /bin/bash (change as you see fit):
-   - export DB_HOST='localhost'
-   - export DB_PORT=5432
-   - export DB_NAME='mydb'
-   - export DB_USER='myu'
-   - export DB_PASS='myp'
+   - export DB\_HOST='localhost'
+   - export DB\_PORT=5432
+   - export DB\_NAME='mydb'
+   - export DB\_USER='myu'
+   - export DB\_PASS='myp'
  - Create the database table by executing:
-   - cd sassy_q3c_models/bin
-   - bash gwgc.table.sh `${DB_HOST}` `${DB_PORT}` `${DB_NAME}` `${DB_USER}` `${DB_PASS}`
+   - cd sassy\_q3c\_models/bin
+   - bash gwgc.table.sh `${DB\_HOST}` `${DB\_PORT}` `${DB\_NAME}` `${DB\_USER}` `${DB\_PASS}`
  - Get and check the catalog by executing:
-   - cd sassy_q3c_models/sassy_q3c_models
-   - python3 gwgc_q3c_orm_cli.py --catalog --verbose
+   - cd sassy\_q3c\_models/sassy\_q3c\_models
+   - python3 gwgc\_q3c\_orm\_cli.py --catalog --verbose
    - mv gwgc.dat.gz gwgc.dat
    - wc -l gwgc.dat
      - 53312 gwgc.dat
    - md5sum gwgc.dat
      - d42cbe71e33a56d8fbc214c673e594ad gwgc.dat
  - Load the catalog by executing:
-   - cd sassy_q3c_models/sassy_q3c_models
-   - python3 gwgc_q3c_read.py --file=gwgc.dat
+   - cd sassy\_q3c\_models/sassy\_q3c\_models
+   - python3 gwgc\_q3c\_read.py --file=gwgc.dat
  - Execute a simple check:
-   - cd sassy_q3c_models/bin
-   - mv sassy_q3c_models/sassy_q3c_models/gwgc.dat .
-   - bash gwgc_q3c.check.sh `${DB_HOST}` `${DB_PORT}` `${DB_NAME}` `${DB_USER}` `${DB_PASS}`
+   - cd sassy\_q3c\_models/bin
+   - mv sassy\_q3c\_models/sassy\_q3c\_models/gwgc.dat .
+   - bash gwgc\_q3c.check.sh `${DB\_HOST}` `${DB\_PORT}` `${DB\_NAME}` `${DB\_USER}` `${DB\_PASS}`
 
 You can do similar things with the other, well known, static catalogs (*i.e. viz.,* create the database
 table, get the catalog and then read the catalog in with the appropriate read file). For the dynamic catalogs 
-(non_detections and ztf), you will find the data uploads a significant burden so seek advice first.
+(non\_detections and ztf), you will find the data uploads a significant burden so seek advice first.
 For TNS, they have a nightly data dump that can be used to re-produce the public data but, for that,
 you will need an account and a bot key.
 
@@ -71,40 +71,44 @@ you will need an account and a bot key.
 ### direct import
 ```bash 
  % python3
- >>> import sassy_q3c_models.asassn_q3c_orm_cli
- >>> import sassy_q3c_models.fermi_lat_q3c_orm_cli
- >>> import sassy_q3c_models.desi_spec_q3c_orm_cli
- >>> import sassy_q3c_models.gaiadr3variable_q3c_orm_cli
- >>> import sassy_q3c_models.glade_plus_q3c_orm_cli
- >>> import sassy_q3c_models.gwgc_q3c_orm_cli
- >>> import sassy_q3c_models.hecate_q3c_orm_cli
- >>> import sassy_q3c_models.milliquas_q3c_orm_cli
- >>> import sassy_q3c_models.non_detections_orm_cli
- >>> import sassy_q3c_models.ps1_q3c_orm_cli
- >>> import sassy_q3c_models.romabzcat_q3c_orm_cli
- >>> import sassy_q3c_models.sdss12photoz_q3c_orm_cli
- >>> import sassy_q3c_models.tns_q3c_orm_cli
- >>> import sassy_q3c_models.ztf_q3c_orm_cli
+ >>> import sassy\_q3c\_models.asassn\_q3c\_orm\_cli
+ >>> import sassy\_q3c\_models.desi\_spec\_q3c\_orm\_cli
+ >>> import sassy\_q3c\_models.fermi\_lat\_q3c\_orm\_cli
+ >>> import sassy\_q3c\_models.gaiadr3variable\_q3c\_orm\_cli
+ >>> import sassy\_q3c\_models.glade\_plus\_q3c\_orm\_cli
+ >>> import sassy\_q3c\_models.gwgc\_q3c\_orm\_cli
+ >>> import sassy\_q3c\_models.hecate\_q3c\_orm\_cli
+ >>> import sassy\_q3c\_models.ls\_dr10\_photo\_z\_q3c\_orm\_cli
+ >>> import sassy\_q3c\_models.milliquas\_q3c\_orm\_cli
+ >>> import sassy\_q3c\_models.non\_detections\_orm\_cli
+ >>> import sassy\_q3c\_models.ps1\_q3c\_orm\_cli
+ >>> import sassy\_q3c\_models.roma\_bzcat\_q3c\_orm\_cli
+ >>> import sassy\_q3c\_models.sdss12photoz\_q3c\_orm\_cli
+ >>> import sassy\_q3c\_models.tns\_q3c\_orm\_cli
+ >>> import sassy\_q3c\_models.ztf\_fp\_q3c\_orm\_cli
+ >>> import sassy\_q3c\_models.ztf\_q3c\_orm\_cli
 ```
 
 ### from import
 
 ```bash 
  % python3
- >>> from sassy_q3c_models.asassn_q3c_orm_cli import *
- >>> from sassy_q3c_models.fermi_lat_q3c_orm_cli import *
- >>> from sassy_q3c_models.desi_spec_q3c_orm_cli import *
- >>> from sassy_q3c_models.gaiadr3variable_q3c_orm_cli import *
- >>> from sassy_q3c_models.glade_plus_q3c_orm_cli import *
- >>> from sassy_q3c_models.gwgc_q3c_orm_cli import *
- >>> from sassy_q3c_models.hecate_q3c_orm_cli import *
- >>> from sassy_q3c_models.milliquas_q3c_orm_cli import *
- >>> from sassy_q3c_models.non_detections_orm_cli import *
- >>> from sassy_q3c_models.ps1_q3c_orm_cli import *
- >>> from sassy_q3c_models.romabzcat_q3c_orm_cli import *
- >>> from sassy_q3c_models.sdss12photoz_q3c_orm_cli import *
- >>> from sassy_q3c_models.tns_q3c_orm_cli import *
- >>> from sassy_q3c_models.ztf_q3c_orm_cli import *
+ >>> from sassy\_q3c\_models.asassn\_q3c\_orm\_cli import *
+ >>> from sassy\_q3c\_models.desi\_spec\_q3c\_orm\_cli import *
+ >>> from sassy\_q3c\_models.fermi\_lat\_q3c\_orm\_cli import *
+ >>> from sassy\_q3c\_models.gaiadr3variable\_q3c\_orm\_cli import *
+ >>> from sassy\_q3c\_models.glade\_plus\_q3c\_orm\_cli import *
+ >>> from sassy\_q3c\_models.gwgc\_q3c\_orm\_cli import *
+ >>> from sassy\_q3c\_models.hecate\_q3c\_orm\_cli import *
+ >>> from sassy\_q3c\_models.ls\_dr10\_photo\_z\_q3c\_orm\_cli import *
+ >>> from sassy\_q3c\_models.milliquas\_q3c\_orm\_cli import *
+ >>> from sassy\_q3c\_models.non\_detections\_orm\_cli import *
+ >>> from sassy\_q3c\_models.ps1\_q3c\_orm\_cli import *
+ >>> from sassy\_q3c\_models.roma\_bzcat\_q3c\_orm\_cli import *
+ >>> from sassy\_q3c\_models.sdss12photoz\_q3c\_orm\_cli import *
+ >>> from sassy\_q3c\_models.tns\_q3c\_orm\_cli import *
+ >>> from sassy\_q3c\_models.ztf\_fp\_q3c\_orm\_cli import *
+ >>> from sassy\_q3c\_models.ztf\_q3c\_orm\_cli import *
 ```
 
 ### your project
@@ -112,50 +116,54 @@ you will need an account and a bot key.
 Add the following to your requirement.txt:
 
 ```bash
-  git+https://github.com/SAGUARO-MMA/sassy_q3c_models.git
+  git+https://github.com/SAGUARO-MMA/sassy\_q3c\_models.git
 ```
 
 ## Database Table(s)
 
 ```bash
- python3 -c "import sassy_q3c_models.asassn_q3c_orm;          print(sassy_q3c_models.asassn_q3c_orm.__doc__)"
- python3 -c "import sassy_q3c_models.fermi_lat_q3c_orm;       print(sassy_q3c_models.fermi_lat_q3c_orm.__doc__)"
- python3 -c "import sassy_q3c_models.desi_spec_q3c_orm;       print(sassy_q3c_models.desi_spec_q3c_orm.__doc__)"
- python3 -c "import sassy_q3c_models.glade_plus_q3c_orm;      print(sassy_q3c_models.glade_plus_q3c_orm.__doc__)"
- python3 -c "import sassy_q3c_models.gwgc_q3c_orm;            print(sassy_q3c_models.gwgc_q3c_orm.__doc__)"
- python3 -c "import sassy_q3c_models.gaiadr3variable_q3c_orm; print(sassy_q3c_models.gaiadr3variable_q3c_orm.__doc__)"
- python3 -c "import sassy_q3c_models.hecate_q3c_orm;          print(sassy_q3c_models.hecate_q3c_orm.__doc__)"
- python3 -c "import sassy_q3c_models.milliquas_q3c_orm;       print(sassy_q3c_models.milliquas_q3c_orm.__doc__)"
- python3 -c "import sassy_q3c_models.non_detections_orm;      print(sassy_q3c_models.non_detections_orm.__doc__)"
- python3 -c "import sassy_q3c_models.ps1_q3c_orm;             print(sassy_q3c_models.ps1_q3c_orm.__doc__)"
- python3 -c "import sassy_q3c_models.romabzcat_q3c_orm;       print(sassy_q3c_models.romabzcat_q3c_orm.__doc__)"
- python3 -c "import sassy_q3c_models.sdss12photoz_q3c_orm;    print(sassy_q3c_models.sdss12photoz_q3c_orm.__doc__)"
- python3 -c "import sassy_q3c_models.tns_q3c_orm;             print(sassy_q3c_models.tns_q3c_orm.__doc__)"
- python3 -c "import sassy_q3c_models.ztf_q3c_orm;             print(sassy_q3c_models.ztf_q3c_orm.__doc__)"
+ python3 -c "import sassy\_q3c\_models.asassn\_q3c\_orm;             print(sassy\_q3c\_models.asassn\_q3c\_orm.\_\_doc\_\_)"
+ python3 -c "import sassy\_q3c\_models.desi\_spec\_q3c\_orm;         print(sassy\_q3c\_models.desi\_spec\_q3c\_orm.\_\_doc\_\_)"
+ python3 -c "import sassy\_q3c\_models.fermi\_lat\_q3c\_orm;         print(sassy\_q3c\_models.fermi\_lat\_q3c\_orm.\_\_doc\_\_)"
+ python3 -c "import sassy\_q3c\_models.glade\_plus\_q3c\_orm;        print(sassy\_q3c\_models.glade\_plus\_q3c\_orm.\_\_doc\_\_)"
+ python3 -c "import sassy\_q3c\_models.gwgc\_q3c\_orm;               print(sassy\_q3c\_models.gwgc\_q3c\_orm.\_\_doc\_\_)"
+ python3 -c "import sassy\_q3c\_models.gaiadr3variable\_q3c\_orm;    print(sassy\_q3c\_models.gaiadr3variable\_q3c\_orm.\_\_doc\_\_)"
+ python3 -c "import sassy\_q3c\_models.hecate\_q3c\_orm;             print(sassy\_q3c\_models.hecate\_q3c\_orm.\_\_doc\_\_)"
+ python3 -c "import sassy\_q3c\_models.ls\_dr10\_photo\_z\_q3c\_orm; print(sassy\_q3c\_models.ls\_dr10\_photo\_z\_q3c\_orm.\_\_doc\_\_)"
+ python3 -c "import sassy\_q3c\_models.milliquas\_q3c\_orm;          print(sassy\_q3c\_models.milliquas\_q3c\_orm.\_\_doc\_\_)"
+ python3 -c "import sassy\_q3c\_models.non\_detections\_orm;         print(sassy\_q3c\_models.non\_detections\_orm.\_\_doc\_\_)"
+ python3 -c "import sassy\_q3c\_models.ps1\_q3c\_orm;                print(sassy\_q3c\_models.ps1\_q3c\_orm.\_\_doc\_\_)"
+ python3 -c "import sassy\_q3c\_models.romabzcat\_q3c\_orm;          print(sassy\_q3c\_models.romabzcat\_q3c\_orm.\_\_doc\_\_)"
+ python3 -c "import sassy\_q3c\_models.sdss12photoz\_q3c\_orm;       print(sassy\_q3c\_models.sdss12photoz\_q3c\_orm.\_\_doc\_\_)"
+ python3 -c "import sassy\_q3c\_models.tns\_q3c\_orm;                print(sassy\_q3c\_models.tns\_q3c\_orm.\_\_doc\_\_)"
+ python3 -c "import sassy\_q3c\_models.ztf\_fp\_q3c\_orm;            print(sassy\_q3c\_models.ztf\_fp\_q3c\_orm.\_\_doc\_\_)"
+ python3 -c "import sassy\_q3c\_models.ztf\_q3c\_orm;                print(sassy\_q3c\_models.ztf\_q3c\_orm.\_\_doc\_\_)"
 ```
 
 ## Command Line Interface(s)
  
 ```bash
- % cd <your_installation_directory>
- % python3 asassn_q3c_orm_cli.py --help
- % python3 fermi_lat_q3c_orm_cli.py --help
- % python3 desi_spec_q3c_orm_cli.py --help
- % python3 gaiadr3variable_q3c_orm_cli.py --help
- % python3 glade_plus_q3c_orm_cli.py --help
- % python3 gwgc_q3c_orm_cli.py --help
- % python3 hecate_q3c_orm_cli.py --help
- % python3 milliquas_q3c_orm_cli.py --help
- % python3 non_detections_orm_cli.py --help
- % python3 ps1_q3c_orm_cli.py --help
- % python3 romabzcat_q3c_orm_cli.py --help
- % python3 sdss12photoz_q3c_orm_cli.py --help
- % python3 tns_q3c_orm_cli.py --help
- % python3 ztf_q3c_orm_cli.py --help
+ % cd <your\_installation\_directory>
+ % python3 asassn\_q3c\_orm\_cli.py --help
+ % python3 desi\_spec\_q3c\_orm\_cli.py --help
+ % python3 fermi\_lat\_q3c\_orm\_cli.py --help
+ % python3 gaiadr3variable\_q3c\_orm\_cli.py --help
+ % python3 glade\_plus\_q3c\_orm\_cli.py --help
+ % python3 gwgc\_q3c\_orm\_cli.py --help
+ % python3 hecate\_q3c\_orm\_cli.py --help
+ % python3 ls\_dr10\_photo\_z\_q3c\_orm\_cli.py --help
+ % python3 milliquas\_q3c\_orm\_cli.py --help
+ % python3 non\_detections\_orm\_cli.py --help
+ % python3 ps1\_q3c\_orm\_cli.py --help
+ % python3 romabzcat\_q3c\_orm\_cli.py --help
+ % python3 sdss12photoz\_q3c\_orm\_cli.py --help
+ % python3 tns\_q3c\_orm\_cli.py --help
+ % python3 ztf\_q3c\_orm\_cli.py --help
+ % python3 ztf\_fp\_q3c\_orm\_cli.py --help
 ```
 
 --------------------------------------
 
-Last Modified: 20240222
+Last Modified: 20240424
 
 Last Author: Phil Daly (pndaly@arizona.edu)
