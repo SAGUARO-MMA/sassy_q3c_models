@@ -56,6 +56,10 @@ z_phot_u68_i     double   Upper 68% confidence region, derived from the photo-z 
 z_phot_u95       double   Upper 95% confidence region, derived from the photo-z PDF
 z_phot_u95_i     double   Upper 95% confidence region, derived from the photo-z PDF (inc i band)
 z_spec           double   Spectroscopic Z
+ra               double   RA (J2000)
+declination      double   Dec (J2000)
+flux_r           double   R-band Flux
+flux_z           double   Z-band Flux
 """
 
 
@@ -118,6 +122,10 @@ def ls_dr10_photo_z_q3c_orm_cli(_args: Any = None):
         request_args['z_spec__gte'] = f'{_args.z_spec__gte}'
     if _args.z_spec__lte:
         request_args['z_spec__lte'] = f'{_args.z_spec__lte}'
+    if _args.r_flux__gte:
+        request_args['r_flux__gte'] = f'{_args.r_flux__gte}'
+    if _args.r_flux__lte:
+        request_args['r_flux__lte'] = f'{_args.r_flux__lte}'
     if _args.sort_order:
         request_args['sort_order'] = f'{_args.sort_order}'
     if _args.sort_value:
@@ -186,6 +194,8 @@ if __name__ == '__main__':
     _p.add_argument(f'--iz_median__lte', help=f'Z i median <= <float>')
     _p.add_argument(f'--z_spec__gte', help=f'Z spec >= <float>')
     _p.add_argument(f'--z_spec__lte', help=f'Z spec <= <float>')
+    _p.add_argument(f'--r_flux__gte', help=f'R flux >= <float>')
+    _p.add_argument(f'--r_flux__lte', help=f'R flux <= <float>')
     _p.add_argument(f'--sort_order', help=f"Sort order, one of {LSDR10_PHOTOZ_SORT_ORDER}")
     _p.add_argument(f'--sort_value', help=f"Sort value, one of {LSDR10_PHOTOZ_SORT_VALUE}")
 

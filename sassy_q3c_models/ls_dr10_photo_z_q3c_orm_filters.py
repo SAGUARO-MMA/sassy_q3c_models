@@ -100,6 +100,14 @@ def ls_dr10_photo_z_q3c_orm_filters(query: Any = None, request_args: dict = None
     if request_args.get('z_spec__lte'):
         query = query.filter(LsDr10PhotoZQ3cRecord.z_spec <= float(request_args['z_spec__lte']))
 
+    # return records with R flux >= value (API: ?r_flux__gte=0.5)
+    if request_args.get('r_flux__gte'):
+        query = query.filter(LsDr10PhotoZQ3cRecord.flux_r >= float(request_args['r_flux__gte']))
+
+    # return records with R flux <= value (API: ?r_flux__lte=0.75)
+    if request_args.get('r_flux__lte'):
+        query = query.filter(LsDr10PhotoZQ3cRecord.flux_r <= float(request_args['r_flux__lte']))
+
     # sort results
     sort_value = request_args.get('sort_value', LSDR10_PHOTOZ_SORT_VALUE[0]).lower()
     sort_order = request_args.get('sort_order', LSDR10_PHOTOZ_SORT_ORDER[0]).lower()

@@ -40,6 +40,8 @@ __doc__ = """
  kfold_i         | integer          |           |          |                                                  | plain    |              | 
  ra              | double precision |           |          |                                                  | plain    |              | 
  declination     | double precision |           |          |                                                  | plain    |              | 
+ flux_r          | double precision |           |          |                                                  | plain    |              | 
+ flux_z          | double precision |           |          |                                                  | plain    |              | 
 Indexes:
     "ls_dr10_photo_z_q3c_pkey" PRIMARY KEY, btree (lid)
     "idx_ls_dr10_photo_z_q3c_objid" btree (objid)
@@ -48,6 +50,7 @@ Indexes:
     "idx_ls_dr10_photo_z_q3c_z_phot_median" btree (z_phot_median)
     "idx_ls_dr10_photo_z_q3c_z_phot_median_i" btree (z_phot_median_i)
     "idx_ls_dr10_photo_z_q3c_z_spec" btree (z_spec)
+    "idx_ls_dr10_photo_z_q3c_flux_r" btree (flux_r)
     "ls_dr10_photo_z_q3c_q3c_ang2ipix_idx" btree (q3c_ang2ipix(ra, declination)) CLUSTER
 Access method: heap
 """
@@ -64,7 +67,7 @@ LSDR10_PHOTOZ_SORT_VALUE = ['lid', 'objid', 'ra', 'declination', 'z_phot_mean', 
 LSDR10_PHOTOZ_HEADERS = ('lid', 'brickid', 'objid', 'z_phot_mean', 'z_phot_median', 'z_phot_std', 'z_phot_l68', 'z_phot_u68', 
                          'z_phot_l95', 'z_phot_u95', 'z_phot_mean_i', 'z_phot_median_i', 'z_phot_std_i', 'z_phot_l68_i', 
                          'z_phot_u68_i', 'z_phot_l95_i', 'z_phot_u95_i', 'z_spec', 'release', 'training', 'training_i', 
-                         'survey', 'kfold', 'kfold_i', 'ra', 'declination')
+                         'survey', 'kfold', 'kfold_i', 'ra', 'declination', 'flux_r', 'flux_z')
 
 
 # +
@@ -109,6 +112,8 @@ class LsDr10PhotoZQ3cRecord(db.Model):
     kfold_i = db.Column(db.Integer)
     ra = db.Column(db.Float, nullable=False, index=True)
     declination = db.Column(db.Float, nullable=False, index=True)
+    flux_r = db.Column(db.Float, index=True)
+    flux_z = db.Column(db.Float)
 
     # +
     # method: serialized()
@@ -140,7 +145,9 @@ class LsDr10PhotoZQ3cRecord(db.Model):
             'kfold': self.kfold,
             'kfold_i': self.kfold_i,
             'ra': self.ra,
-            'declination': self.declination
+            'declination': self.declination,
+            'flux_r': self.flux_r,
+            'flux_z': self.flux_z
         }
 
     # +
