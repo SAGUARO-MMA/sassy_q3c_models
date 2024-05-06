@@ -31,6 +31,8 @@ CREATE TABLE tns_q3c (
   reporters VARCHAR(2048),
   time_received TIMESTAMP,
   internal_names VARCHAR(256),
+  Discovery_ADS_bibcode VARCHAR(256),
+  Class_ADS_bibcodes VARCHAR(256),
   creationdate TIMESTAMP,
   lastmodified TIMESTAMP);
 END_TABLE

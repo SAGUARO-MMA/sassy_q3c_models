@@ -47,6 +47,9 @@ def tns_q3c_read(_file: str = '', _verbose: bool = False) -> None:
 
     # do we have the correct number of columns?
     _headers = [_v.strip().replace('"', '') for _v in _lines[0].strip().split(',')]
+    if _verbose:
+        print(f"_headers={_headers}, len={len(_headers)}")
+        print(f"TNS_COLUMNS={TNS_COLUMNS}")
     if len(_headers) != TNS_COLUMNS:
         raise Exception(f"ERROR: {os.path.basename(_file)} has incorrect headers")
     _lines.pop(0)
@@ -103,7 +106,9 @@ def tns_q3c_read(_file: str = '', _verbose: bool = False) -> None:
                 _tns_q3c['reporters'] = _el[16]
                 _tns_q3c['time_received'] = _el[17]
                 _tns_q3c['internal_names'] = _el[18]
-                _tns_q3c['creationdate'] = _el[19]
+                _tns_q3c['discovery_ads_bibcode'] = _el[19]
+                _tns_q3c['class_ads_bibcodes'] = _el[20]
+                _tns_q3c['creationdate'] = _el[21]
                 _tns_q3c['lastmodified'] = _el[20]
                 _tns_rec = TnsQ3cRecord(**_tns_q3c)
             except Exception as _e:
@@ -144,9 +149,7 @@ if __name__ == '__main__':
     _a = _p.parse_args()
 
     # execute
-    try:
-        tns_q3c_read(_file=_a.file.strip(), _verbose=bool(_a.verbose))
-    except Exception as _:
-        if bool(_a.verbose):
-            print(f"{_}")
-        print(f"Use: {__doc__}")
+    #try:
+    tns_q3c_read(_file=_a.file.strip(), _verbose=bool(_a.verbose))
+    #except Exception as _:
+    #    print(f"{_}\n{__doc__}")
