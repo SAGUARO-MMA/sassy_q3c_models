@@ -109,7 +109,7 @@ def tns_q3c_read(_file: str = '', _verbose: bool = False) -> None:
                 _tns_q3c['discovery_ads_bibcode'] = _el[19]
                 _tns_q3c['class_ads_bibcodes'] = _el[20]
                 _tns_q3c['creationdate'] = _el[21]
-                _tns_q3c['lastmodified'] = _el[20]
+                _tns_q3c['lastmodified'] = _el[22]
                 _tns_rec = TnsQ3cRecord(**_tns_q3c)
             except Exception as _e:
                 _tid -= 1
