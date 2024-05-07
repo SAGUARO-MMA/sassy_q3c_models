@@ -95,8 +95,8 @@ class TnsQ3cRecord(db.Model):
     reporters = db.Column(db.String(DB_VARCHAR_2048))
     time_received = db.Column(db.DateTime)
     internal_names = db.Column(db.String(DB_VARCHAR_256))
-    discovery_ads_bibcode = db.Column(db.String(DB_VARCHAR_256)),
-    class_ads_bibcodes = db.Column(db.String(DB_VARCHAR_256)),
+    discovery_ads_bibcode = db.Column(db.String(DB_VARCHAR_256))
+    class_ads_bibcodes = db.Column(db.String(DB_VARCHAR_256))
     creationdate = db.Column(db.DateTime)
     lastmodified = db.Column(db.DateTime)
 
