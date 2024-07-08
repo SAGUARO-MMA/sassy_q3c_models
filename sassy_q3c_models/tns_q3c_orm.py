@@ -11,33 +11,32 @@ from sassy_q3c_models import *
 # __doc__ string
 # -
 __doc__ = """
-                                                                  Table "public.tns_q3c"
-        Column         |            Type             | Collation | Nullable |               Default                | Storage  | Stats target | Description 
+        Column         |            Type             | Collation | Nullable |               Default                | Storage  | Stats target | Description
 -----------------------+-----------------------------+-----------+----------+--------------------------------------+----------+--------------+-------------
- tid                   | integer                     |           | not null | nextval('tns_q3c_tid_seq'::regclass) | plain    |              | 
- objid                 | integer                     |           |          |                                      | plain    |              | 
- name_prefix           | character varying(4)        |           |          |                                      | extended |              | 
- name                  | character varying(32)       |           |          |                                      | extended |              | 
- ra                    | double precision            |           |          |                                      | plain    |              | 
- declination           | double precision            |           |          |                                      | plain    |              | 
- redshift              | double precision            |           |          |                                      | plain    |              | 
- typeid                | integer                     |           |          |                                      | plain    |              | 
- objtype               | character varying(32)       |           |          |                                      | extended |              | 
- reporting_groupid     | integer                     |           |          |                                      | plain    |              | 
- reporting_group       | character varying(32)       |           |          |                                      | extended |              | 
- source_groupid        | integer                     |           |          |                                      | plain    |              | 
- source_group          | character varying(32)       |           |          |                                      | extended |              | 
- discoverydate         | timestamp without time zone |           |          |                                      | plain    |              | 
- discoverymag          | double precision            |           |          |                                      | plain    |              | 
- discmagfilter         | integer                     |           |          |                                      | plain    |              | 
- filtername            | character varying(24)       |           |          |                                      | extended |              | 
- reporters             | character varying(2048)     |           |          |                                      | extended |              | 
- time_received         | timestamp without time zone |           |          |                                      | plain    |              | 
- internal_names        | character varying(256)      |           |          |                                      | extended |              | 
- discovery_ads_bibcode | character varying(256)      |           |          |                                      | extended |              | 
- class_ads_bibcodes    | character varying(256)      |           |          |                                      | extended |              | 
- creationdate          | timestamp without time zone |           |          |                                      | plain    |              | 
- lastmodified          | timestamp without time zone |           |          |                                      | plain    |              | 
+ tid                   | integer                     |           | not null | nextval('tns_q3c_tid_seq'::regclass) | plain    |              |
+ objid                 | integer                     |           |          |                                      | plain    |              |
+ name_prefix           | character varying(4)        |           |          |                                      | extended |              |
+ name                  | character varying(32)       |           |          |                                      | extended |              |
+ ra                    | double precision            |           |          |                                      | plain    |              |
+ declination           | double precision            |           |          |                                      | plain    |              |
+ redshift              | double precision            |           |          |                                      | plain    |              |
+ typeid                | integer                     |           |          |                                      | plain    |              |
+ objtype               | character varying(32)       |           |          |                                      | extended |              |
+ reporting_groupid     | integer                     |           |          |                                      | plain    |              |
+ reporting_group       | character varying(32)       |           |          |                                      | extended |              |
+ source_groupid        | integer                     |           |          |                                      | plain    |              |
+ source_group          | character varying(32)       |           |          |                                      | extended |              |
+ discoverydate         | timestamp without time zone |           |          |                                      | plain    |              |
+ discoverymag          | double precision            |           |          |                                      | plain    |              |
+ discmagfilter         | integer                     |           |          |                                      | plain    |              |
+ filtername            | character varying(24)       |           |          |                                      | extended |              |
+ reporters             | character varying(2048)     |           |          |                                      | extended |              |
+ time_received         | timestamp without time zone |           |          |                                      | plain    |              |
+ internal_names        | character varying(256)      |           |          |                                      | extended |              |
+ discovery_ads_bibcode | character varying(256)      |           |          |                                      | extended |              |
+ class_ads_bibcodes    | character varying(256)      |           |          |                                      | extended |              |
+ creationdate          | timestamp without time zone |           |          |                                      | plain    |              |
+ lastmodified          | timestamp without time zone |           |          |                                      | plain    |              |
 Indexes:
     "tns_q3c_pkey" PRIMARY KEY, btree (tid)
     "tns_q3c_q3c_ang2ipix_idx" btree (q3c_ang2ipix(ra, declination)) CLUSTER

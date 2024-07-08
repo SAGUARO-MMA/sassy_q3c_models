@@ -78,7 +78,7 @@ you will need an account and a bot key.
  >>> import sassy\_q3c\_models.glade\_plus\_q3c\_orm\_cli
  >>> import sassy\_q3c\_models.gwgc\_q3c\_orm\_cli
  >>> import sassy\_q3c\_models.hecate\_q3c\_orm\_cli
- >>> import sassy\_q3c\_models.ls\_dr10\_photo\_z\_q3c\_orm\_cli
+ >>> import sassy\_q3c\_models.ls\_dr10\_q3c\_orm\_cli
  >>> import sassy\_q3c\_models.milliquas\_q3c\_orm\_cli
  >>> import sassy\_q3c\_models.non\_detections\_orm\_cli
  >>> import sassy\_q3c\_models.ps1\_q3c\_orm\_cli
@@ -100,7 +100,7 @@ you will need an account and a bot key.
  >>> from sassy\_q3c\_models.glade\_plus\_q3c\_orm\_cli import *
  >>> from sassy\_q3c\_models.gwgc\_q3c\_orm\_cli import *
  >>> from sassy\_q3c\_models.hecate\_q3c\_orm\_cli import *
- >>> from sassy\_q3c\_models.ls\_dr10\_photo\_z\_q3c\_orm\_cli import *
+ >>> from sassy\_q3c\_models.ls\_dr10\_q3c\_orm\_cli import *
  >>> from sassy\_q3c\_models.milliquas\_q3c\_orm\_cli import *
  >>> from sassy\_q3c\_models.non\_detections\_orm\_cli import *
  >>> from sassy\_q3c\_models.ps1\_q3c\_orm\_cli import *
@@ -129,7 +129,7 @@ Add the following to your requirement.txt:
  python3 -c "import sassy\_q3c\_models.gwgc\_q3c\_orm;               print(sassy\_q3c\_models.gwgc\_q3c\_orm.\_\_doc\_\_)"
  python3 -c "import sassy\_q3c\_models.gaiadr3variable\_q3c\_orm;    print(sassy\_q3c\_models.gaiadr3variable\_q3c\_orm.\_\_doc\_\_)"
  python3 -c "import sassy\_q3c\_models.hecate\_q3c\_orm;             print(sassy\_q3c\_models.hecate\_q3c\_orm.\_\_doc\_\_)"
- python3 -c "import sassy\_q3c\_models.ls\_dr10\_photo\_z\_q3c\_orm; print(sassy\_q3c\_models.ls\_dr10\_photo\_z\_q3c\_orm.\_\_doc\_\_)"
+ python3 -c "import sassy\_q3c\_models.ls\_dr10\_q3c\_orm;           print(sassy\_q3c\_models.ls\_dr10\_q3c\_orm.\_\_doc\_\_)"
  python3 -c "import sassy\_q3c\_models.milliquas\_q3c\_orm;          print(sassy\_q3c\_models.milliquas\_q3c\_orm.\_\_doc\_\_)"
  python3 -c "import sassy\_q3c\_models.non\_detections\_orm;         print(sassy\_q3c\_models.non\_detections\_orm.\_\_doc\_\_)"
  python3 -c "import sassy\_q3c\_models.ps1\_q3c\_orm;                print(sassy\_q3c\_models.ps1\_q3c\_orm.\_\_doc\_\_)"
@@ -151,7 +151,7 @@ Add the following to your requirement.txt:
  % python3 glade\_plus\_q3c\_orm\_cli.py --help
  % python3 gwgc\_q3c\_orm\_cli.py --help
  % python3 hecate\_q3c\_orm\_cli.py --help
- % python3 ls\_dr10\_photo\_z\_q3c\_orm\_cli.py --help
+ % python3 ls\_dr10\_q3c\_orm\_cli.py --help
  % python3 milliquas\_q3c\_orm\_cli.py --help
  % python3 non\_detections\_orm\_cli.py --help
  % python3 ps1\_q3c\_orm\_cli.py --help
@@ -164,6 +164,6 @@ Add the following to your requirement.txt:
 
 --------------------------------------
 
-Last Modified: 20240424
+Last Modified: 20240708
 
 Last Author: Phil Daly (pndaly@arizona.edu)
