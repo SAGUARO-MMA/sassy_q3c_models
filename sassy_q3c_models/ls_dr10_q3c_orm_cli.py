@@ -235,7 +235,6 @@ if __name__ == '__main__':
     _p.add_argument(f'--w4_flux__gte', help=f'W4 flux >= <float>')
     _p.add_argument(f'--w4_flux__lte', help=f'W4 flux <= <float>')
     _p.add_argument(f'--sort_order', help=f"Sort order, one of {LSDR10_SORT_ORDER}")
-    _p.add_argument(f'--sort_order', help=f"Sort order, one of {LSDR10_SORT_ORDER}")
     _p.add_argument(f'--sort_value', help=f"Sort value, one of {LSDR10_SORT_VALUE}")
 
     # non-database query argument(s)
