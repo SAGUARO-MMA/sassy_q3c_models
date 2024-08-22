@@ -118,6 +118,8 @@ def ls_dr10_q3c_orm_cli(_args: Any = None):
         request_args['ellipse'] = f'{_args.ellipse}'
     if _args.lid:
         request_args['lid'] = f'{_args.lid}'
+    if _args.objid:
+        request_args['objid'] = f'{_args.objid}'
     if _args.ra__gte:
         request_args['ra__gte'] = f'{_args.ra__gte}'
     if _args.ra__lte:
@@ -204,6 +206,7 @@ if __name__ == '__main__':
     _p.add_argument(f'--cone', help=f'Cone search [ra (deg),declination (deg),radius (deg)]')
     _p.add_argument(f'--ellipse', help=f'Ellipse search [ra (deg),declination (de),major_axis,axis_ratio,pos_angle (deg)]')
     _p.add_argument(f'--lid', help=f'lid <int>')
+    _p.add_argument(f'--objid', help=f'objid <int>')
     _p.add_argument(f'--ra__gte', help=f'RA >= <float>')
     _p.add_argument(f'--ra__lte', help=f'RA <= <float>')
     _p.add_argument(f'--dec__gte', help=f'Dec >= <float>')

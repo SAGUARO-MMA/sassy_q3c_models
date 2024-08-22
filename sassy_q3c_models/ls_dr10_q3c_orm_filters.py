@@ -44,6 +44,10 @@ def ls_dr10_q3c_orm_filters(query: Any = None, request_args: dict = None):
     if request_args.get('lid'):
         query = query.filter(LsDr10Q3cRecord.lid == int(request_args['lid']))
 
+    # return records with objid = value (API: ?objid=20)
+    if request_args.get('objid'):
+        query = query.filter(LsDr10Q3cRecord.objid == int(request_args['objid']))
+
     # return records with an RA >= value in deg (API: ?ra__gte=12.0)
     if request_args.get('ra__gte'):
         query = query.filter(LsDr10Q3cRecord.ra >= float(request_args['ra__gte']))
