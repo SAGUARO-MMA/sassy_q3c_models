@@ -115,6 +115,9 @@ Indexes:
 # +
 # constant(s)
 # -
+GAIA_DR3_DAT_URL = ''
+GAIA_DR3_PAG_URL = 'https://www.cosmos.esa.int/web/gaia/dr3'
+GAIA_DR3_PDF_URL = 'https://doi.org/10.1051/0004-6361/202243940'
 GAIADR3VARIABLE_SORT_ORDER = ['asc', 'desc', 'ascending', 'descending']
 GAIADR3VARIABLE_SORT_VALUE = ['gid', 'ra', 'dec', 'ra_error', 'dec_error', 'pmra', 'pmdec', 'mean_g_mag_fov', 'median_g_mag_fov', 'best_class_name', 'best_class_score']
 GAIADR3VARIABLE_HTUPLES = (
